@@ -41,7 +41,7 @@ function verMas(nombre, imagen, descripcion) {
     });
 }
 
-// Mostrar formulario de agendar cita
+// Mostrar formulario de agendar cita en la pagina principal//
 function mostrarFormularioCita() {
     Swal.fire({
         title: 'Agendar Cita',
