@@ -136,3 +136,11 @@ body {
     padding: 2rem;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
+    select#tipo_usuario {
+        font-size: 1.1rem;
+        padding: 10px;
+        width: 100%;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+    }
