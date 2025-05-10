@@ -64,7 +64,7 @@
 </header>
 
 
-
+<!-- Imagen 1 -->
 <!-- Carrusel de vehículos -->
 <section id="inicio" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
