@@ -1,0 +1,138 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fuente y fondo base */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Contenedor principal */
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Título */
+.login-container h2 {
+    text-align: center;
+    color: #111827;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+}
+
+/* Formulario */
+.login-form .form-group {
+    margin-bottom: 1.2rem;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 0.4rem;
+    color: #374151;
+    font-weight: 500;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border 0.3s ease;
+}
+
+.login-form input:focus {
+    border-color: #3b82f6;
+    outline: none;
+}
+
+/* Botón */
+.login-button {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #2563eb;
+}
+
+/* Mensaje de error */
+.error-msg {
+    margin-top: 1rem;
+    color: #dc2626;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Enlace de registro */
+.registro-link {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.95rem;
+    color: #374151;
+}
+
+.registro-link a {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.registro-link a:hover {
+    text-decoration: underline;
+}
+/* Video de fondo reducido */
+.background-video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 120%;         /* Antes era auto, ahora controlamos el tamaño */
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: contain; /* Contain para evitar que se corte */
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.9; /* (opcional) un poco de transparencia para suavizar */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.login-container {
+    position: relative;
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}

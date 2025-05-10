@@ -1,0 +1,115 @@
+/* Estilos para la sección de contactos */
+.contact {
+    background-color: #f8f9fa;
+    padding: 5rem 0;
+    position: relative;
+}
+
+.contact_heading {
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+
+.contact_heading h2 {
+    font-family: var(--primary-font);
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.contact_heading p {
+    font-family: var(--text-font);
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.contact_container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.contact_form {
+    background-color: white;
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form_group {
+    margin-bottom: 1.5rem;
+}
+
+.form_group input,
+.form_group select {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: var(--text-font);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form_group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: var(--text-font);
+    font-size: 1rem;
+    min-height: 150px;
+    resize: vertical;
+}
+
+.form_group input:focus,
+.form_group select:focus,
+.form_group textarea:focus {
+    border-color: #b81717;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(184, 23, 23, 0.1);
+}
+
+.submit_btn {
+    width: 100%;
+    padding: 1rem;
+    background-color: #b81717;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-family: var(--primary-font);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit_btn:hover {
+    background-color: #8f1212;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 760px) {
+    .contact {
+        padding: 3rem 0;
+    }
+
+    .contact_form {
+        padding: 2rem;
+    }
+
+    .contact_heading {
+        margin-bottom: 2rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .contact_container {
+        padding: 0 1rem;
+    }
+
+    .contact_form {
+        padding: 1.5rem;
+    }
+}

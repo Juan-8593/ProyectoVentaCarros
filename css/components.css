@@ -1,0 +1,297 @@
+/* Carousel y Dots Navigation */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slide {
+    display: none;
+    width: 100%;
+    height: auto;
+}
+
+.slide.active {
+    display: block;
+}
+
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+}
+
+.nav-button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.nav-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.dots {
+    display: flex;
+    gap: 8px;
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot-active {
+    background-color: #b81717;
+    transform: scale(1.2);
+}
+
+.dot:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.sale {
+    position: absolute;
+    top: 20px;
+    right: 10%;
+    background-color: #69d5ff;
+    width: 120px;
+    height: 112px;
+    padding: 1.5rem;
+    border-radius: 50%;
+    border: 2px dashed #fff;
+    outline: 3px solid #ff69b4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Alfa Slab One', cursive;
+    text-align: center;
+    z-index: 2;
+}
+
+.price {
+    font-size: 0.9rem;
+    line-height: 1;
+    color: black;
+    margin: 0;
+}
+
+.price small {
+    font-size: 0.7rem;
+    color: black;
+}
+
+.oferta {
+    font-size: 1.2rem;
+    line-height: 1;
+    margin-top: 0.2rem;
+    color: black;
+}
+
+@media screen and (max-width: 768px) {
+    .sale {
+        width: 80px;
+        height: 80px;
+        padding: 1.2rem;
+    }
+    
+    .price {
+        font-size: 0.8rem;
+    }
+    
+    .oferta {
+        font-size: 1.1rem;
+    }
+}
+
+.price {
+    color: #fff;
+    font-size: 1.2rem;
+    line-height: 1;
+    margin: 0;
+}
+
+.price small {
+    color: #fff;
+    font-size: 0.8rem;
+}
+
+.oferta {
+    color: #fff;
+    font-size: 1.8rem;
+    line-height: 1;
+    margin: 0.3rem 0 0 0;
+}
+
+.price, 
+.oferta {
+    color: #fff;
+}
+
+.price {
+    font-size: 1rem;
+    line-height: 1;
+    color: black;
+}
+
+.price small {
+    font-size: 0.8rem;
+    color: #fff;
+    color: black;
+}
+
+.oferta {
+    font-size: 1.5rem;
+    line-height: 1;
+    margin-top: 0.3rem;
+    color: black;
+}
+
+@media screen and (max-width: 768px) {
+    .sale {
+        top: 10%;
+        right: 5%;
+        width: 100px;
+        height: 100px;
+        padding: 1.5rem;
+    }
+    
+    .price {
+        font-size: 1rem;
+    }
+    
+    .oferta {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .sale {
+        left: 30rem;
+        bottom: 15rem;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .sale {
+        left: 25rem;
+        bottom: 12rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .sale {
+        left: 18rem;
+        bottom: 10rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .sale {
+        left: 12rem;
+        bottom: 8rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .sale {
+        left: 8rem;
+        bottom: 6rem;
+    }
+}
+
+.reservation_form {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: 
+        "name email"
+        "date time"
+        "people button";
+    gap: 1.5rem;
+}
+
+.reservation_form input {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: var(--primary-font);
+    font-size: 1rem;
+}
+
+.name { grid-area: name; }
+.email { grid-area: email; }
+.date { grid-area: date; }
+.time { grid-area: time; }
+.people { grid-area: people; }
+.button { grid-area: button; }
+
+.button {
+    background-color: #b81717;
+    color: white;
+    border: none;
+    padding: 1rem;
+    font-family: var(--primary-font);
+    font-size: 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+    .reservation_form {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "name"
+            "email"
+            "date"
+            "time"
+            "people"
+            "button";
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .button {
+        padding: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .reservation_form {
+        padding: 0.5rem;
+    }
+
+    .reservation_form input,
+    .button {
+        padding: 0.7rem;
+        font-size: 0.9rem;
+    }
+}
