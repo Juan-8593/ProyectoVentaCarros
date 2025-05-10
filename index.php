@@ -246,7 +246,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="Imagen/chevrolet1.jpg" class="card-img-top" alt="Chevrolet Silverado 2025">
+                        <img src="Imagen/Silverado 2025 .jpg" class="card-img-top" alt="Chevrolet Silverado 2025">
                         <div class="card-body">
                             <h5 class="card-title">Chevrolet Silverado 2025</h5>
                             <p class="card-text">Potencia y durabilidad.</p>
@@ -265,7 +265,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="Imagen/bmw1.jpg" class="card-img-top" alt="BMW 3 Series 2025">
+                        <img src="Imagen/BMW 3 Series 2025.jpg" class="card-img-top" alt="BMW 3 Series 2025">
                         <div class="card-body">
                             <h5 class="card-title">BMW 3 Series 2025</h5>
                             <p class="card-text">Confort deportivo y tecnología avanzada.</p>
