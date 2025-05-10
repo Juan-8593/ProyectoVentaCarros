@@ -13,41 +13,58 @@
 
 <!-- Encabezado -->
 <header class="bg-dark text-white p-3">
-    <div class="container d-flex justify-content-between align-items-center">
-        <h1 class="h3 mb-0"><i class="bi bi-car-front"></i> Car Evolution</h1>
-        <nav class="d-flex align-items-center">
-            <ul class="nav me-3">
-                <li class="nav-item"><a href="#inicio" class="nav-link text-white">Inicio</a></li>
+    <!-- Logo a la izquierda -->
+    <h1 class="h3 mb-0 d-flex align-items-center"><i class="bi bi-car-front"></i> Car Evolution</h1>
 
-                <!-- Dropdown Vehículos -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white" href="#" id="vehiculosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Vehículos
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#toyota">Toyota</a></li>
-                        <li><a class="dropdown-item" href="#mazda">Mazda</a></li>
-                        <li><a class="dropdown-item" href="#ferrari">Ferrari</a></li>
-                        <li><a class="dropdown-item" href="#audi">Audi</a></li>
-                        <li><a class="dropdown-item" href="#lamborghini">Lamborghini</a></li>
-                        <li><a class="dropdown-item" href="#suzuki">Suzuki</a></li>
-                        <li><a class="dropdown-item" href="#hyundai">Hyundai</a></li>
-                        <li><a class="dropdown-item" href="#chevrolet">Chevrolet</a></li>
-                        <li><a class="dropdown-item" href="#bmw">BMW</a></li>
-                        <li><a class="dropdown-item" href="#mercedes">Mercedes-Benz</a></li>
-                        <li><a class="dropdown-item" href="#nissan">Nissan</a></li>
-                    </ul>
-                </li>
+    <!-- Navegación alineada a la derecha -->
+    <div class="d-flex align-items-center ms-auto">
+        <ul class="nav">
+            <li class="nav-item"><a href="#inicio" class="nav-link text-white">Inicio</a></li>
 
-                <li class="nav-item"><a href="#" class="nav-link text-white" onclick="mostrarFormularioCita()">Agendar Cita</a></li>
-                <li class="nav-item"><a href="#" class="nav-link text-white" onclick="mostrarFormularioContacto()">Contacto</a></li>
-            </ul>
-            <!-- Icono del carrito -->
-            <a href="#" class="text-white fs-4"><i class="bi bi-cart4"></i></a>
-        </nav>
+            <!-- Dropdown Vehículos -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" href="#" id="vehiculosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Vehículos
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#toyota">Toyota</a></li>
+                    <li><a class="dropdown-item" href="#mazda">Mazda</a></li>
+                    <li><a class="dropdown-item" href="#ferrari">Ferrari</a></li>
+                    <li><a class="dropdown-item" href="#audi">Audi</a></li>
+                    <li><a class="dropdown-item" href="#lamborghini">Lamborghini</a></li>
+                    <li><a class="dropdown-item" href="#suzuki">Suzuki</a></li>
+                    <li><a class="dropdown-item" href="#hyundai">Hyundai</a></li>
+                    <li><a class="dropdown-item" href="#chevrolet">Chevrolet</a></li>
+                    <li><a class="dropdown-item" href="#bmw">BMW</a></li>
+                    <li><a class="dropdown-item" href="#mercedes">Mercedes-Benz</a></li>
+                    <li><a class="dropdown-item" href="#nissan">Nissan</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item"><a href="#" class="nav-link text-white" onclick="mostrarFormularioCita()">Agendar Cita</a></li>
+            <li class="nav-item"><a href="#" class="nav-link text-white" onclick="mostrarFormularioContacto()">Contacto</a></li>
+
+            <!-- Login con dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white d-flex align-items-center" href="#" id="loginDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-person-plus-fill me-1"></i> Login
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="loginDropdown">
+                    <li><a class="dropdown-item" href="#" onclick="mostrarFormularioLogin()">Iniciar Sesión</a></li>
+                    <li><a class="dropdown-item" href="#" onclick="mostrarFormularioRegistro()">Registrar</a></li>
+                </ul>
+            </li>
+
+            <!-- Carrito -->
+            <li class="nav-item">
+                <a href="#" class="nav-link text-white fs-5"><i class="bi bi-cart4"></i></a>
+            </li>
+        </ul>
     </div>
 </header>
-ASDAS
+
+
+
 <!-- Carrusel de vehículos -->
 <section id="inicio" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">

@@ -9,37 +9,66 @@ body {
 
 /* Encabezado */
 header {
-    background-color: #343a40;
-    color: white;
+    background-color: #000000;
+    color: rgb(224, 224, 224);
+    display: flex;
+    justify-content: space-between; /* Asegura que los elementos estén espaciados */
+    align-items: center; /* Alinea todos los items verticalmente al centro */
     padding: 15px 20px;
 }
 
+/* Logo Car Evolution */
 header h1 {
     font-size: 2rem;
     margin: 0;
 }
 
-/* Barra de navegación */
-nav ul {
-    display: flex;
-    list-style: none;
-    padding: 0;
+/* Estilo de la navegación */
+header .nav {
+    display: flex; /* Usamos flex para que los elementos se alineen horizontalmente */
+    align-items: center;
+    margin-left: auto; /* Esto empuja el menú hacia la derecha */
+    padding: 0; /* Asegura que no haya espacio extra alrededor */
+    margin: 0;  /* Elimina márgenes innecesarios */
+}
+
+/* Aseguramos que los elementos no se estiren */
+header .nav-item {
+    margin-left: 20px; /* Espacio entre los ítems */
+    flex-grow: 0; /* Evita que los elementos ocupen espacio extra */
+}
+
+/* Eliminar márgenes y padding en el dropdown */
+header .nav-item .dropdown-menu {
+    min-width: 160px; /* Esto asegura que el dropdown no ocupe demasiado espacio */
+    margin-top: 0;  /* Asegura que no haya margen superior */
+}
+
+/* Evitar que el ul tenga márgenes/paddings no deseados */
+header .nav ul {
     margin: 0;
+    padding: 0;
 }
 
-nav .nav-item {
-    margin-right: 20px;
-}
-
-nav .nav-link {
-    color: white;
-    font-size: 1.1rem;
+/* Estilo de los enlaces de navegación */
+header .nav-item a {
+    color: rgb(224, 224, 224);
     text-decoration: none;
+    display: flex; /* Para alinear los iconos con el texto */
+    align-items: center;
 }
 
-nav .nav-link:hover {
-    color: #f39c12;
+/* Asegurar que no haya márgenes extra en el icono de login */
+header .nav-item .bi {
+    margin-right: 5px; /* Espacio entre el icono y el texto */
 }
+
+/* Hover sobre los enlaces de navegación */
+header .nav-item a:hover {
+    background-color: #000000;
+    color: #ffffff;
+}
+    
 
 /* Carrusel */
 #inicio {
@@ -236,4 +265,7 @@ footer a:hover {
     form button {
         padding: 10px;
     }
+}
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
 }
