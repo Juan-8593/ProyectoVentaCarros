@@ -51,7 +51,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="loginDropdown">
                     <li><a class="dropdown-item" href="login.php">Iniciar Sesión</a></li>
-                    <li><a class="dropdown-item" href="#" onclick="mostrarFormularioRegistro()">Registrar</a></li>
+                    <li><a class="dropdown-item" href="registro.php">Registrar</a></li>
                 </ul>
             </li>
 
