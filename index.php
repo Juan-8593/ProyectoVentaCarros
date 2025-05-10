@@ -11,41 +11,43 @@
 </head>
 <body>
 
-    <!-- Encabezado -->
-    <header class="bg-dark text-white p-3">
-        <div class="container d-flex justify-content-between align-items-center">
-            <h1 class="h3 mb-0"><i class="bi bi-car-front"></i> Car Evolution</h1>
-            <nav>
-                <ul class="nav">
-                    <li class="nav-item"><a href="#inicio" class="nav-link text-white">Inicio</a></li>
+<!-- Encabezado -->
+<header class="bg-dark text-white p-3">
+    <div class="container d-flex justify-content-between align-items-center">
+        <h1 class="h3 mb-0"><i class="bi bi-car-front"></i> Car Evolution</h1>
+        <nav class="d-flex align-items-center">
+            <ul class="nav me-3">
+                <li class="nav-item"><a href="#inicio" class="nav-link text-white">Inicio</a></li>
 
-                    <!-- Dropdown Vehículos -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="vehiculosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Vehículos
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#toyota">Toyota</a></li>
-                            <li><a class="dropdown-item" href="#mazda">Mazda</a></li>
-                            <li><a class="dropdown-item" href="#ferrari">Ferrari</a></li>
-                            <li><a class="dropdown-item" href="#audi">Audi</a></li>
-                            <li><a class="dropdown-item" href="#lamborghini">Lamborghini</a></li>
-                            <li><a class="dropdown-item" href="#suzuki">Suzuki</a></li>
-                            <li><a class="dropdown-item" href="#hyundai">Hyundai</a></li>
-                            <li><a class="dropdown-item" href="#chevrolet">Chevrolet</a></li>
-                            <li><a class="dropdown-item" href="#bmw">BMW</a></li>
-                            <li><a class="dropdown-item" href="#mercedes">Mercedes-Benz</a></li>
-                            <li><a class="dropdown-item" href="#nissan">Nissan</a></li>
-                        </ul>
-                    </li>
+                <!-- Dropdown Vehículos -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="vehiculosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Vehículos
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#toyota">Toyota</a></li>
+                        <li><a class="dropdown-item" href="#mazda">Mazda</a></li>
+                        <li><a class="dropdown-item" href="#ferrari">Ferrari</a></li>
+                        <li><a class="dropdown-item" href="#audi">Audi</a></li>
+                        <li><a class="dropdown-item" href="#lamborghini">Lamborghini</a></li>
+                        <li><a class="dropdown-item" href="#suzuki">Suzuki</a></li>
+                        <li><a class="dropdown-item" href="#hyundai">Hyundai</a></li>
+                        <li><a class="dropdown-item" href="#chevrolet">Chevrolet</a></li>
+                        <li><a class="dropdown-item" href="#bmw">BMW</a></li>
+                        <li><a class="dropdown-item" href="#mercedes">Mercedes-Benz</a></li>
+                        <li><a class="dropdown-item" href="#nissan">Nissan</a></li>
+                    </ul>
+                </li>
 
-                    <li class="nav-item"><a href="#" class="nav-link text-white" onclick="mostrarFormularioCita()">Agendar Cita</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-white" onclick="mostrarFormularioContacto()">Contacto</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
+                <li class="nav-item"><a href="#" class="nav-link text-white" onclick="mostrarFormularioCita()">Agendar Cita</a></li>
+                <li class="nav-item"><a href="#" class="nav-link text-white" onclick="mostrarFormularioContacto()">Contacto</a></li>
+            </ul>
+            <!-- Icono del carrito -->
+            <a href="#" class="text-white fs-4"><i class="bi bi-cart4"></i></a>
+        </nav>
+    </div>
+</header>
+ASDAS
 <!-- Carrusel de vehículos -->
 <section id="inicio" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
@@ -246,7 +248,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="Imagen/Silverado 2025 .jpg" class="card-img-top" alt="Chevrolet Silverado 2025">
+                        <img src="Imagen/chevrolet1.jpg" class="card-img-top" alt="Chevrolet Silverado 2025">
                         <div class="card-body">
                             <h5 class="card-title">Chevrolet Silverado 2025</h5>
                             <p class="card-text">Potencia y durabilidad.</p>
@@ -265,7 +267,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="Imagen/BMW 3 Series 2025.jpg" class="card-img-top" alt="BMW 3 Series 2025">
+                        <img src="Imagen/bmw1.jpg" class="card-img-top" alt="BMW 3 Series 2025">
                         <div class="card-body">
                             <h5 class="card-title">BMW 3 Series 2025</h5>
                             <p class="card-text">Confort deportivo y tecnología avanzada.</p>
