@@ -52,7 +52,7 @@ header .nav ul {
 
 /* Estilo de los enlaces de navegación */
 header .nav-item a {
-    color: rgb(224, 224, 224);
+    color: rgb(0, 0, 0);
     text-decoration: none;
     display: flex; /* Para alinear los iconos con el texto */
     align-items: center;
