@@ -1,0 +1,239 @@
+/* Estilos generales del cuerpo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Encabezado */
+header {
+    background-color: #343a40;
+    color: white;
+    padding: 15px 20px;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+/* Barra de navegación */
+nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav .nav-item {
+    margin-right: 20px;
+}
+
+nav .nav-link {
+    color: white;
+    font-size: 1.1rem;
+    text-decoration: none;
+}
+
+nav .nav-link:hover {
+    color: #f39c12;
+}
+
+/* Carrusel */
+#inicio {
+    width: 100%; /* El carrusel debe ocupar el 100% del ancho */
+    max-width: 100%; /* Limitar el tamaño máximo al 100% */
+    margin: 0 auto; /* Centrar el carrusel */
+    height: 450px;  /* Altura fija para el carrusel */
+    position: relative;  /* Para asegurar el correcto posicionamiento de los controles */
+}
+
+/* Contenedor interno del carrusel */
+.carousel-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;  /* Aseguramos que el contenedor ocupe toda la altura */
+}
+
+/* Estilo de las imágenes del carrusel */
+.carousel-item img {
+    width: 100%;  /* Asegura que la imagen ocupe todo el ancho */
+    height: 100%;  /* Asegura que la imagen ocupe todo el alto */
+    object-fit: cover;  /* La imagen cubre todo el espacio sin distorsionarse */
+}
+
+/* Estilo de cada item del carrusel */
+.carousel-item {
+    height: 100%;  /* Aseguramos que los items del carrusel ocupen toda la altura del contenedor */
+}
+
+
+/* Sección de vehículos */
+#vehiculos {
+    padding: 50px 0;
+    background-color: #f1f1f1;
+}
+
+#vehiculos h2 {
+    font-weight: bold;
+    color: #343a40;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-title {
+    font-weight: bold;
+    color: #343a40;
+    font-size: 1.25rem;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.card .btn {
+    background-color: #343a40;
+    color: white;
+    border: none;
+}
+
+.card .btn:hover {
+    background-color: #f39c12;
+}
+
+/* Sección de agenda */
+#cita {
+    background-color: #e9ecef;
+    padding: 50px 0;
+}
+
+#cita h2 {
+    font-weight: bold;
+    color: #343a40;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+form .form-label {
+    font-weight: bold;
+    color: #343a40;
+}
+
+form input, form textarea {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+form button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+}
+
+form button:hover {
+    background-color: #218838;
+}
+
+/* Sección de contacto */
+#contacto {
+    padding: 50px 0;
+}
+
+#contacto h2 {
+    font-weight: bold;
+    color: #343a40;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#contacto .form-label {
+    font-weight: bold;
+    color: #343a40;
+}
+
+#contacto input, #contacto textarea {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+#contacto button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+#contacto button:hover {
+    background-color: #0056b3;
+}
+
+/* Pie de página */
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+footer a {
+    color: white;
+    margin-right: 10px;
+    font-size: 1.5rem;
+}
+
+footer a:hover {
+    color: #f39c12;
+}
+
+/* Media Queries para dispositivos móviles */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    nav .nav-item {
+        margin-right: 10px;
+    }
+
+    .carousel-item img {
+        height: 300px;
+    }
+
+    .card-img-top {
+        height: 180px;
+    }
+
+    form input, form textarea {
+        padding: 8px;
+    }
+
+    form button {
+        padding: 10px;
+    }
+}

@@ -1,0 +1,93 @@
+/* Fondo de video */
+.background-video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.9;
+}
+
+/* Contenedor principal del formulario */
+.login-container {
+    position: relative;
+    z-index: 1;
+    max-width: 400px;
+    margin: 8% auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+/* Título */
+.login-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+/* Estilos del formulario */
+.login-form .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-weight: bold;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.login-form input:focus {
+    border-color: #5b9bd5;
+    box-shadow: 0 0 5px rgba(91, 155, 213, 0.5);
+}
+
+/* Botón */
+.login-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #5b9bd5;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.login-button:hover {
+    background-color: #417cb8;
+}
+
+/* Link inferior */
+.registro-link {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.registro-link a {
+    color: #5b9bd5;
+    text-decoration: none;
+}
+
+.registro-link a:hover {
+    text-decoration: underline;
+}
