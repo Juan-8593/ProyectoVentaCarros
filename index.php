@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -47,13 +50,21 @@
             <!-- Login con dropdown -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-white d-flex align-items-center" href="#" id="loginDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-person-plus-fill me-1"></i> Login
+                    <i class="bi bi-person-plus-fill me-1"></i>
+                    <?php echo isset($_SESSION['usuario']) ? htmlspecialchars($_SESSION['usuario']) : 'Login'; ?>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="loginDropdown">
-                    <li><a class="dropdown-item" href="login.php">Iniciar Sesión</a></li>
-                    <li><a class="dropdown-item" href="registro.php">Registrar</a></li>
+                    <?php if (isset($_SESSION['usuario'])): ?>
+                        <li><a class="dropdown-item" href="logout.php">Cerrar Sesión</a></li>
+                    <?php else: ?>
+                        <li><a class="dropdown-item" href="login.php">Iniciar Sesión</a></li>
+                        <li><a class="dropdown-item" href="registro.php">Registrar</a></li>
+                    <?php endif; ?>
                 </ul>
             </li>
+        </ul>
+    </div>
+</header>
 
             <!-- Carrito -->
             <li class="nav-item">

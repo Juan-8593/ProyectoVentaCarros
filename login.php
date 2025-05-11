@@ -79,20 +79,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Mostrar el SweetAlert2 si la sesión fue exitosa -->
     <?php if (isset($_SESSION['login_success']) && $_SESSION['login_success']): ?>
         <script>
-            // Asegúrate de que el nombre del usuario esté correctamente pasado desde la sesión
+            // Mostrar el SweetAlert2 con el nombre del usuario
             Swal.fire({
                 title: 'Inicio de sesión correcto!',
                 icon: 'success',
-                text: '¡Bienvenido, <?php echo $_SESSION['nombre']; ?>!', // Mostrar el nombre del usuario
+                text: '¡Bienvenido, <?php echo $_SESSION['nombre']; ?>!',
                 confirmButtonText: 'OK'
             }).then(function() {
-                window.location.href = 'index.php';  // Redirigir a index
+                // Redirigir a index.php después de hacer clic en OK
+                window.location.href = 'index.php';  // Redirige al índice o a la página principal
             });
         </script>
         <?php
-        // Borrar la variable de sesión después de mostrar el alert
+        // Limpiar las variables de sesión después de mostrar el alert
         unset($_SESSION['login_success']);
-        unset($_SESSION['nombre']);  // Limpiar el nombre de la sesión después de usarlo
+        unset($_SESSION['nombre']); // Limpiar el nombre de la sesión después de usarlo
         ?>
     <?php endif; ?>
 
