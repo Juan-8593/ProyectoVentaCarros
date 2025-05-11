@@ -15,13 +15,13 @@ session_start();
 <body>
 
 <!-- Encabezado -->
-<header class="bg-dark text-white p-3">
+<header class="bg-dark text-white p-3 d-flex justify-content-between align-items-center">
     <!-- Logo a la izquierda -->
     <h1 class="h3 mb-0 d-flex align-items-center"><i class="bi bi-car-front"></i> Car Evolution</h1>
 
     <!-- Navegación alineada a la derecha -->
     <div class="d-flex align-items-center ms-auto">
-        <ul class="nav">
+        <ul class="nav align-items-center">
             <li class="nav-item"><a href="#inicio" class="nav-link text-white">Inicio</a></li>
 
             <!-- Dropdown Vehículos -->
@@ -62,9 +62,6 @@ session_start();
                     <?php endif; ?>
                 </ul>
             </li>
-        </ul>
-    </div>
-</header>
 
             <!-- Carrito -->
             <li class="nav-item">
@@ -73,6 +70,7 @@ session_start();
         </ul>
     </div>
 </header>
+
 
 <!-- Carrusel de vehículos -->
 <section id="inicio" class="carousel slide" data-bs-ride="carousel">

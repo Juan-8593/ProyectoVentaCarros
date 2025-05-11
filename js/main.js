@@ -134,3 +134,47 @@ document.addEventListener("DOMContentLoaded", () => {
         mostrarFormularioContacto();
     });
 });
+
+function mostrarFormularioCita() {
+    Swal.fire({
+        title: 'Agendar Cita',
+        html:
+            `<input type="text" id="nombre" class="swal2-input" placeholder="Nombre" required>
+             <input type="email" id="correo" class="swal2-input" placeholder="Correo" required>
+             <input type="date" id="fecha" class="swal2-input" required>
+             <input type="time" id="hora" class="swal2-input" required>`,
+        confirmButtonText: 'Agendar',
+        focusConfirm: false,
+        preConfirm: () => {
+            const nombre = document.getElementById('nombre').value;
+            const correo = document.getElementById('correo').value;
+            const fecha = document.getElementById('fecha').value;
+            const hora = document.getElementById('hora').value;
+
+            if (!nombre || !correo || !fecha || !hora) {
+                Swal.showValidationMessage('Todos los campos son obligatorios');
+                return false;
+            }
+
+            // Enviar datos a PHP usando fetch (AJAX)
+            return fetch('procesar_cita.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `nombre=${encodeURIComponent(nombre)}&correo=${encodeURIComponent(correo)}&fecha=${encodeURIComponent(fecha)}&hora=${encodeURIComponent(hora)}`
+            })
+            .then(response => response.text())
+            .then(result => {
+                if (result.includes("exitosamente")) {
+                    Swal.fire('¡Listo!', 'Cita agendada exitosamente.', 'success');
+                } else {
+                    Swal.fire('Error', result, 'error');
+                }
+            })
+            .catch(error => {
+                Swal.fire('Error', 'Error en la conexión con el servidor.', 'error');
+            });
+        }
+    });
+}
