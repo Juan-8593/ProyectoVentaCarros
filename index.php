@@ -30,17 +30,17 @@ session_start();
                     Vehículos
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#toyota">Toyota</a></li>
-                    <li><a class="dropdown-item" href="#mazda">Mazda</a></li>
+                    <!-- <li><a class="dropdown-item" href="#toyota">Toyota</a></li>
+                    <li><a class="dropdown-item" href="#mazda">Mazda</a></li> -->
                     <li><a class="dropdown-item" href="#ferrari">Ferrari</a></li>
                     <li><a class="dropdown-item" href="#audi">Audi</a></li>
-                    <li><a class="dropdown-item" href="#lamborghini">Lamborghini</a></li>
+                    <!-- <li><a class="dropdown-item" href="#lamborghini">Lamborghini</a></li>
                     <li><a class="dropdown-item" href="#suzuki">Suzuki</a></li>
-                    <li><a class="dropdown-item" href="#hyundai">Hyundai</a></li>
+                    <li><a class="dropdown-item" href="#hyundai">Hyundai</a></li> -->
                     <li><a class="dropdown-item" href="#chevrolet">Chevrolet</a></li>
                     <li><a class="dropdown-item" href="#bmw">BMW</a></li>
-                    <li><a class="dropdown-item" href="#mercedes">Mercedes-Benz</a></li>
-                    <li><a class="dropdown-item" href="#nissan">Nissan</a></li>
+                    <!-- <li><a class="dropdown-item" href="#mercedes">Mercedes-Benz</a></li>
+                    <li><a class="dropdown-item" href="#nissan">Nissan</a></li> -->
                 </ul>
             </li>
 
@@ -113,7 +113,7 @@ session_start();
 </section>
 
     <!-- Sección Toyota -->
-    <section id="toyota" class="py-5 bg-light">
+    <!-- <section id="toyota" class="py-5 bg-light">
         <div class="container">
             <h2 class="text-center mb-4">Toyota</h2>
             <div class="row">
@@ -129,10 +129,10 @@ session_start();
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Sección Mazda -->
-    <section id="mazda" class="py-5">
+    <!-- <section id="mazda" class="py-5">
         <div class="container">
             <h2 class="text-center mb-4">Mazda</h2>
             <div class="row">
@@ -148,7 +148,7 @@ session_start();
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Sección Ferrari -->
     <section id="ferrari" class="py-5 bg-light">
@@ -157,11 +157,11 @@ session_start();
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="Imagen/ferrari1.jpg" class="card-img-top" alt="Ferrari F8 Tributo">
+                        <img src="Imagen/Ferrari1.jpg" class="card-img-top" alt="Ferrari F8 Tributo">
                         <div class="card-body">
                             <h5 class="card-title">Ferrari F8 Tributo</h5>
                             <p class="card-text">Potencia y lujo incomparables.</p>
-                            <button class="btn btn-primary" onclick="verMas('Ferrari F8 Tributo', 'Imagen/ferrari1.jpg', 'Potencia y lujo incomparables.')">Ver más</button>
+                            <button class="btn btn-primary" onclick="verMas('Ferrari F8 Tributo', 'Imagen/Ferrari1.jpg', 'Potencia y lujo incomparables.')">Ver más</button>
                         </div>
                     </div>
                 </div>
@@ -209,7 +209,7 @@ session_start();
     </section>
 
     <!-- Sección Lamborghini -->
-    <section id="lamborghini" class="py-5 bg-light">
+    <!-- <section id="lamborghini" class="py-5 bg-light">
         <div class="container">
             <h2 class="text-center mb-4">Lamborghini</h2>
             <div class="row">
@@ -225,9 +225,9 @@ session_start();
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
-    <!-- Sección Suzuki -->
+    <!-- Sección Suzuki
     <section id="suzuki" class="py-5">
         <div class="container">
             <h2 class="text-center mb-4">Suzuki</h2>
@@ -244,10 +244,10 @@ session_start();
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Sección Hyundai -->
-    <section id="hyundai" class="py-5 bg-light">
+    <!-- <section id="hyundai" class="py-5 bg-light">
         <div class="container">
             <h2 class="text-center mb-4">Hyundai</h2>
             <div class="row">
@@ -263,7 +263,7 @@ session_start();
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Sección Chevrolet -->
     <section id="chevrolet" class="py-5">
@@ -272,11 +272,11 @@ session_start();
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="Imagen/chevrolet1.jpg" class="card-img-top" alt="Chevrolet Silverado 2025">
+                        <img src="Imagen/Silverado 2025 .jpg" class="card-img-top" alt="Chevrolet Silverado 2025">
                         <div class="card-body">
                             <h5 class="card-title">Chevrolet Silverado 2025</h5>
                             <p class="card-text">Potencia y durabilidad.</p>
-                            <button class="btn btn-primary" onclick="verMas('Chevrolet Silverado 2025', 'Imagen/chevrolet1.jpg', 'Potencia y durabilidad.')">Ver más</button>
+                            <button class="btn btn-primary" onclick="verMas('Chevrolet Silverado 2025', 'Imagen/Silverado 2025 .jpg', 'Potencia y durabilidad.')">Ver más</button>
                         </div>
                     </div>
                 </div>
@@ -291,11 +291,11 @@ session_start();
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="Imagen/bmw1.jpg" class="card-img-top" alt="BMW 3 Series 2025">
+                        <img src="Imagen/BMW 3 Series 2025.jpg" class="card-img-top" alt="BMW 3 Series 2025">
                         <div class="card-body">
                             <h5 class="card-title">BMW 3 Series 2025</h5>
                             <p class="card-text">Confort deportivo y tecnología avanzada.</p>
-                            <button class="btn btn-primary" onclick="verMas('BMW 3 Series 2025', 'Imagen/bmw1.jpg', 'Confort deportivo y tecnología avanzada.')">Ver más</button>
+                            <button class="btn btn-primary" onclick="verMas('BMW 3 Series 2025', 'Imagen/BMW 3 Series 2025.jpg', 'Confort deportivo y tecnología avanzada.')">Ver más</button>
                         </div>
                     </div>
                 </div>
@@ -304,7 +304,7 @@ session_start();
     </section>
 
     <!-- Sección Mercedes-Benz -->
-    <section id="mercedes" class="py-5">
+    <!-- <section id="mercedes" class="py-5">
         <div class="container">
             <h2 class="text-center mb-4">Mercedes-Benz</h2>
             <div class="row">
@@ -320,10 +320,10 @@ session_start();
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Sección Nissan -->
-    <section id="nissan" class="py-5 bg-light">
+    <!-- <section id="nissan" class="py-5 bg-light">
         <div class="container">
             <h2 class="text-center mb-4">Nissan</h2>
             <div class="row">
@@ -339,7 +339,7 @@ session_start();
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Pie de página -->
     <footer class="bg-dark text-white text-center py-3">
