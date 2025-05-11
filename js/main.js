@@ -178,3 +178,40 @@ function mostrarFormularioCita() {
         }
     });
 }
+
+function mostrarFormularioContacto() {
+    Swal.fire({
+        title: 'Contacto',
+        html: `
+            <form id="formContacto">
+                <input type="text" name="nombre" class="swal2-input" placeholder="Tu nombre" required>
+                <input type="email" name="correo" class="swal2-input" placeholder="Tu correo" required>
+                <textarea name="mensaje" class="swal2-textarea" placeholder="Escribe tu mensaje" required></textarea>
+            </form>
+        `,
+        showCancelButton: true,
+        confirmButtonText: 'Enviar',
+        preConfirm: () => {
+            const form = document.getElementById('formContacto');
+            const formData = new FormData(form);
+
+            return fetch('guardar_contacto.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(result => {
+                if (result.trim() === "ok") {
+                    Swal.fire('¡Mensaje enviado!', 'Gracias por contactarnos.', 'success');
+                } else {
+                    Swal.fire('Error', result, 'error');
+                }
+            })
+            .catch(() => {
+                Swal.fire('Error', 'No se pudo enviar el mensaje.', 'error');
+            });
+
+            return false;
+        }
+    });
+}

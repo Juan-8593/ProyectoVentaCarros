@@ -1,39 +1,26 @@
 <?php
-// Conexión a la base de datos
-$servername = "localhost";
-$username = "root"; // Cambia esto si usas otro usuario
-$password = "";     // Cambia si tienes contraseña
-$dbname = "2doParcial";
+$conexion = new mysqli("localhost", "root", "", "jjlcars");
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Verificar conexión
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
+if ($conexion->connect_error) {
+    die("Error en la conexión: " . $conexion->connect_error);
 }
 
-// Obtener datos del formulario
-$Nombre = $_POST['nombre'];
-$Telefono = $_POST['telefono'];
-$Email = $_POST['email'];
-$Asunto = $_POST['asunto'];
-$Mensaje = $_POST['mensaje'];
+$nombre = $_POST['nombre'] ?? '';
+$correo = $_POST['correo'] ?? '';
+$mensaje = $_POST['mensaje'] ?? '';
 
-// Insertar en la base de datos
-$sql = "INSERT INTO Contactos (Nombre, Telefono, email, asunto, mensaje) 
-        VALUES (?, ?, ?, ?, ?)";
-
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("sssss", $Nombre, $Telefono, $Email, $Asunto, $Mensaje);
-
-if ($stmt->execute()) {
-    // Redirige a index.html con un parámetro para saber que fue exitoso
-    header("Location: index.php?mensaje=enviado");
-    exit();
+if ($nombre && $correo && $mensaje) {
+    $stmt = $conexion->prepare("INSERT INTO contacto (nombre, correo, mensaje) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $nombre, $correo, $mensaje);
+    if ($stmt->execute()) {
+        echo "ok";
+    } else {
+        echo "Error al guardar";
+    }
+    $stmt->close();
 } else {
-    echo "Error: " . $stmt->error;
+    echo "Datos incompletos";
 }
 
-$stmt->close();
-$conn->close();
+$conexion->close();
 ?>
