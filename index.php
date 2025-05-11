@@ -77,26 +77,26 @@ session_start();
     <div class="carousel-inner">
         <!-- Imagen 1 -->
         <div class="carousel-item active">
-            <img src="Imagen/Audi1.jpg" class="carousel-img" alt="Audi Modelo 2025">
+            <img src="Imagen/FerrarimasvendidoCarrusel.jpg" class="carousel-img" alt="Ferrari F80">
             <div class="carousel-caption d-none d-md-block">
-                <h5>Audi Modelo 2025</h5>
-                <p>Confort y tecnología de punta para el conductor moderno.</p>
+                <h5>Ferrari F80</h5>
+                <p>El Cavallino más rapido de la historia, y el más vendido de nuestra agencia.</p>
             </div>
         </div>
         <!-- Imagen 2 -->
         <div class="carousel-item">
-            <img src="Imagen/Audi2.jpg" class="carousel-img" alt="Audi Q5 2025">
+            <img src="Imagen/LamborghiniSC20Exclusivo.jpg" class="carousel-img" alt="Lamborghini SC20">
             <div class="carousel-caption d-none d-md-block">
-                <h5>Audi Q5 2025</h5>
-                <p>Estilo y rendimiento para una conducción excepcional.</p>
+                <h5>Lamborghini SC20</h5>
+                <p>El Lamborghini más exlusivo de nuestra agencia.</p>
             </div>
         </div>
         <!-- Imagen 3 -->
         <div class="carousel-item">
-            <img src="Imagen/Audi3.jpg" class="carousel-img" alt="Audi A6 2025">
+            <img src="Imagen/Mustang Shelby GT 500CR.jpg" class="carousel-img" alt="Mustang Shelby GT 500CR">
             <div class="carousel-caption d-none d-md-block">
-                <h5>Audi A6 2025</h5>
-                <p>Lujo, confort y eficiencia en un solo vehículo.</p>
+                <h5>Mustang Shelby GT 500CR</h5>
+                <p>Claisco, veloz y sobre todo llamativo para la Universidad.</p>
             </div>
         </div>
     </div>
@@ -119,11 +119,11 @@ session_start();
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="Imagen/toyota1.jpg" class="card-img-top" alt="Toyota Corolla 2025">
+                        <img src="Imagen/ToyotaCorolla2025.jpg" class="card-img-top" alt="Toyota Corolla 2025">
                         <div class="card-body">
                             <h5 class="card-title">Toyota Corolla 2025</h5>
                             <p class="card-text">Eficiencia japonesa con tecnología de punta.</p>
-                            <button class="btn btn-primary" onclick="verMas('Toyota Corolla 2025', 'Imagen/toyota1.jpg', 'Eficiencia japonesa con tecnología de punta.')">Ver más</button>
+                            <button class="btn btn-primary" onclick="verMas('Toyota Corolla 2025', 'Imagen/ToyotaCorolla2025.jpg', 'Eficiencia japonesa con tecnología de punta.')">Ver más</button>
                         </div>
                     </div>
                 </div>
@@ -138,11 +138,11 @@ session_start();
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="Imagen/mazda1.jpg" class="card-img-top" alt="Mazda CX-5 2025">
+                        <img src="Imagen/MazdaCX-52025.jpg" class="card-img-top" alt="Mazda CX-5 2025">
                         <div class="card-body">
                             <h5 class="card-title">Mazda CX-5 2025</h5>
                             <p class="card-text">Diseño elegante y deportivo.</p>
-                            <button class="btn btn-primary" onclick="verMas('Mazda CX-5 2025', 'Imagen/mazda1.jpg', 'Diseño elegante y deportivo.')">Ver más</button>
+                            <button class="btn btn-primary" onclick="verMas('Mazda CX-5 2025', 'Imagen/MazdaCX-52025.jpg', 'Diseño elegante y deportivo.')">Ver más</button>
                         </div>
                     </div>
                 </div>
@@ -176,31 +176,31 @@ session_start();
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="Imagen/Audi1.jpg" class="card-img-top" alt="Audi A4 2025">
+                        <img src="Imagen/AudiA42025.png" class="card-img-top" alt="Audi A4 2025">
                         <div class="card-body">
                             <h5 class="card-title">Audi A4 2025</h5>
                             <p class="card-text">Eficiencia y confort para toda la familia.</p>
-                            <button class="btn btn-primary" onclick="verMas('Audi A4 2025', 'Imagen/Audi1.jpg', 'Eficiencia y confort para toda la familia.')">Ver más</button>
+                            <button class="btn btn-primary" onclick="verMas('Audi A4 2025', 'Imagen/AudiA42025.png', 'Eficiencia y confort para toda la familia.')">Ver más</button>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="Imagen/Audi2.jpg" class="card-img-top" alt="Audi Q5 2025">
+                        <img src="Imagen/AudiQ52025.jpg" class="card-img-top" alt="Audi Q5 2025">
                         <div class="card-body">
                             <h5 class="card-title">Audi Q5 2025</h5>
                             <p class="card-text">Diseño y tecnología avanzada.</p>
-                            <button class="btn btn-primary" onclick="verMas('Audi Q5 2025', 'Imagen/Audi2.jpg', 'Diseño y tecnología avanzada.')">Ver más</button>
+                            <button class="btn btn-primary" onclick="verMas('Audi Q5 2025', 'Imagen/AudiQ52025.jpg', 'Diseño y tecnología avanzada.')">Ver más</button>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="Imagen/Audi3.jpg" class="card-img-top" alt="Audi A6 2025">
+                        <img src="Imagen/AudiA62025.jpg" class="card-img-top" alt="Audi A6 2025">
                         <div class="card-body">
                             <h5 class="card-title">Audi A6 2025</h5>
                             <p class="card-text">Confort y lujo en cada detalle.</p>
-                            <button class="btn btn-primary" onclick="verMas('Audi A6 2025', 'Imagen/Audi3.jpg', 'Confort y lujo en cada detalle.')">Ver más</button>
+                            <button class="btn btn-primary" onclick="verMas('Audi A6 2025', 'Imagen/AudiA62025.jpg', 'Confort y lujo en cada detalle.')">Ver más</button>
                         </div>
                     </div>
                 </div>
