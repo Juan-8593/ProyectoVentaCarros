@@ -224,7 +224,7 @@ form button:hover {
 
 /* Pie de página */
 footer {
-    background-color: #343a40;
+    background-color: #000000;  
     color: white;
     padding: 20px;
     text-align: center;
@@ -268,4 +268,81 @@ footer a:hover {
 }
 .nav-item.dropdown:hover .dropdown-menu {
     display: block;
+}
+
+.cita-section {
+    background-color: #000000; /* Fondo negro general */
+    color: #fff;
+    padding: 50px 0;
+}
+
+.cita-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 30px;
+    padding: 0 20px;
+}
+
+.formulario-cita {
+    flex: 1 1 400px;
+    background-color: #000000 !important;
+    color: #faf3f3;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgb(0, 0, 0);
+}
+
+.formulario-cita h2 {
+    margin-bottom: 20px;
+}
+
+.formulario-cita form {
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario-cita select,
+.formulario-cita input {
+    background-color: #ebebeb;  /* Casillas blancas */
+    color: #000;             /* Texto negro */
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.formulario-cita select:focus,
+.formulario-cita input:focus {
+    background-color: #000000; /* Al enfocar, blanco más suave */
+    border-color: #33ff00;
+    outline: none;
+}
+
+.formulario-cita button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.formulario-cita button:hover {
+    background-color: #0056b3;
+}
+
+.imagen-cita {
+    flex: 1 1 400px;
+    text-align: center;
+}
+
+.imagen-cita img {
+    max-width: 100%;
+    border-radius: 10px;
 }

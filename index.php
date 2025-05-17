@@ -274,40 +274,46 @@ session_start();
     </form>
 </div>
                             
-<section id="agendar-cita" class="py-5 bg-light">
-    <div class="container">
-        <h2 class="text-center mb-4">Agendar Cita</h2>
-        <form action="procesar_cita.php" method="post" class="mx-auto" style="max-width: 500px;">
-            <div class="mb-3">
-                <select name="tipoCita" class="form-select" required>
-                    <option value="">Tipo de cita</option>
-                    <option value="compra">Compra</option>
-                    <option value="mantenimiento">Mantenimiento</option>
-                </select>
-            </div>
+<section id="agendar-cita" class="cita-section">
+    <div class="cita-container">
+        <div class="formulario-cita">
+            <h2>Agendar Cita</h2>
+            <form action="procesar_cita.php" method="post">
+                <div class="mb-3">
+                    <select name="tipoCita" required>
+                        <option value="">Tipo de cita</option>
+                        <option value="compra">Compra</option>
+                        <option value="mantenimiento">Mantenimiento</option>
+                    </select>
+                </div>
 
-            <div class="mb-3">
-                <input type="text" name="nombre" class="form-control" placeholder="Nombre" required>
-            </div>
+                <div class="mb-3">
+                    <input type="text" name="nombre" placeholder="Nombre" required>
+                </div>
 
-            <div class="mb-3">
-                <input type="email" name="correo" class="form-control" placeholder="Correo" required>
-            </div>
+                <div class="mb-3">
+                    <input type="email" name="correo" placeholder="Correo" required>
+                </div>
 
-            <div class="mb-3">
-                <input type="date" name="fecha" class="form-control" required>
-            </div>
+                <div class="mb-3">
+                    <input type="date" name="fecha" required>
+                </div>
 
-            <div class="mb-4">
-                <input type="time" name="hora" class="form-control" required>
-            </div>
+                <div class="mb-4">
+                    <input type="time" name="hora" required>
+                </div>
 
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary">Agendar</button>
-            </div>
-        </form>
+                <div class="text-left">
+                    <button type="submit">Agendar</button>
+                </div>
+            </form>
+        </div>
+        <div class="imagen-cita">
+            <img src="Imagen/LogoJJLCAR.jpeg" alt="Imagen de cita">
+        </div>
     </div>
 </section>
+
 
 <!-- Pie de página -->
     <footer class="bg-dark text-white text-center py-3">
