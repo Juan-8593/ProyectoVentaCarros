@@ -109,44 +109,6 @@ session_start();
     </button>
 </section>
 
-    <!-- Sección Toyota -->
-    <!-- <section id="toyota" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-4">Toyota</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="Imagen/ToyotaCorolla2025.jpg" class="card-img-top" alt="Toyota Corolla 2025">
-                        <div class="card-body">
-                            <h5 class="card-title">Toyota Corolla 2025</h5>
-                            <p class="card-text">Eficiencia japonesa con tecnología de punta.</p>
-                            <button class="btn btn-primary" onclick="verMas('Toyota Corolla 2025', 'Imagen/ToyotaCorolla2025.jpg', 'Eficiencia japonesa con tecnología de punta.')">Ver más</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-    <!-- Sección Mazda -->
-    <!-- <section id="mazda" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Mazda</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="Imagen/MazdaCX-52025.jpg" class="card-img-top" alt="Mazda CX-5 2025">
-                        <div class="card-body">
-                            <h5 class="card-title">Mazda CX-5 2025</h5>
-                            <p class="card-text">Diseño elegante y deportivo.</p>
-                            <button class="btn btn-primary" onclick="verMas('Mazda CX-5 2025', 'Imagen/MazdaCX-52025.jpg', 'Diseño elegante y deportivo.')">Ver más</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
     <!-- Sección Ferrari -->
     <section id="ferrari" class="py-5 bg-light">
         <div class="container">
@@ -173,94 +135,37 @@ session_start();
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="Imagen/AudiA42025.png" class="card-img-top" alt="Audi A4 2025">
+                        <img src="Imagen/A3.jpg" class="card-img-top" alt="Audi A4 2025">
                         <div class="card-body">
-                            <h5 class="card-title">Audi A4 2025</h5>
+                            <h5 class="card-title">Audi A3</h5>
                             <p class="card-text">Eficiencia y confort para toda la familia.</p>
-                            <button class="btn btn-primary" onclick="verMas('Audi A4 2025', 'Imagen/AudiA42025.png', 'Eficiencia y confort para toda la familia.')">Ver más</button>
+                            <button class="btn btn-primary" onclick="verMas('Audi A3', 'Imagen/A3.jpg', 'Eficiencia y confort para toda la familia.')">Ver más</button>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="Imagen/AudiQ52025.jpg" class="card-img-top" alt="Audi Q5 2025">
+                        <img src="Imagen/RS Q8.jpg" class="card-img-top" alt="Audi Q5 2025">
                         <div class="card-body">
-                            <h5 class="card-title">Audi Q5 2025</h5>
+                            <h5 class="card-title">Audi RS Q8</h5>
                             <p class="card-text">Diseño y tecnología avanzada.</p>
-                            <button class="btn btn-primary" onclick="verMas('Audi Q5 2025', 'Imagen/AudiQ52025.jpg', 'Diseño y tecnología avanzada.')">Ver más</button>
+                            <button class="btn btn-primary" onclick="verMas('Audi RS Q8', 'Imagen/RS Q8.jpg', 'Diseño y tecnología avanzada.')">Ver más</button>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="Imagen/AudiA62025.jpg" class="card-img-top" alt="Audi A6 2025">
+                        <img src="Imagen/RS.jpg" class="card-img-top" alt="Audi A6 2025">
                         <div class="card-body">
-                            <h5 class="card-title">Audi A6 2025</h5>
+                            <h5 class="card-title">Audi RS</h5>
                             <p class="card-text">Confort y lujo en cada detalle.</p>
-                            <button class="btn btn-primary" onclick="verMas('Audi A6 2025', 'Imagen/AudiA62025.jpg', 'Confort y lujo en cada detalle.')">Ver más</button>
+                            <button class="btn btn-primary" onclick="verMas('RS', 'Imagen/Audi RS.jpg', 'Confort y lujo en cada detalle.')">Ver más</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Sección Lamborghini -->
-    <!-- <section id="lamborghini" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-4">Lamborghini</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="Imagen/lamborghini1.jpg" class="card-img-top" alt="Lamborghini Aventador">
-                        <div class="card-body">
-                            <h5 class="card-title">Lamborghini Aventador</h5>
-                            <p class="card-text">Rendimiento extremo y lujo sin igual.</p>
-                            <button class="btn btn-primary" onclick="verMas('Lamborghini Aventador', 'Imagen/lamborghini1.jpg', 'Rendimiento extremo y lujo sin igual.')">Ver más</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-    <!-- Sección Suzuki
-    <section id="suzuki" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Suzuki</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="Imagen/suzuki1.jpg" class="card-img-top" alt="Suzuki Swift 2025">
-                        <div class="card-body">
-                            <h5 class="card-title">Suzuki Swift 2025</h5>
-                            <p class="card-text">Eficiencia y estilo compacto.</p>
-                            <button class="btn btn-primary" onclick="verMas('Suzuki Swift 2025', 'Imagen/suzuki1.jpg', 'Eficiencia y estilo compacto.')">Ver más</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-    <!-- Sección Hyundai -->
-    <!-- <section id="hyundai" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-4">Hyundai</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="Imagen/hyundai1.jpg" class="card-img-top" alt="Hyundai Tucson 2025">
-                        <div class="card-body">
-                            <h5 class="card-title">Hyundai Tucson 2025</h5>
-                            <p class="card-text">Diseño moderno y eficiencia en cada detalle.</p>
-                            <button class="btn btn-primary" onclick="verMas('Hyundai Tucson 2025', 'Imagen/hyundai1.jpg', 'Diseño moderno y eficiencia en cada detalle.')">Ver más</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
 
     <!-- Sección Chevrolet -->
     <section id="chevrolet" class="py-5">
@@ -339,46 +244,7 @@ session_start();
             </div>
         </div>
     </section>
-
-
-    <!-- Sección Mercedes-Benz -->
-    <!-- <section id="mercedes" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Mercedes-Benz</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="Imagen/mercedes1.jpg" class="card-img-top" alt="Mercedes-Benz S-Class 2025">
-                        <div class="card-body">
-                            <h5 class="card-title">Mercedes-Benz S-Class 2025</h5>
-                            <p class="card-text">Lujo y rendimiento excepcionales.</p>
-                            <button class="btn btn-primary" onclick="verMas('Mercedes-Benz S-Class 2025', 'Imagen/mercedes1.jpg', 'Lujo y rendimiento excepcionales.')">Ver más</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-    <!-- Sección Nissan -->
-    <!-- <section id="nissan" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-4">Nissan</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="Imagen/nissan1.jpg" class="card-img-top" alt="Nissan Altima 2025">
-                        <div class="card-body">
-                            <h5 class="card-title">Nissan Altima 2025</h5>
-                            <p class="card-text">Tecnología y confort al más alto nivel.</p>
-                            <button class="btn btn-primary" onclick="verMas('Nissan Altima 2025', 'Imagen/nissan1.jpg', 'Tecnología y confort al más alto nivel.')">Ver más</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
+    
 <!-- Pie de página -->
     <footer class="bg-dark text-white text-center py-3">
         <p>&copy; 2025 Car Evolution. Todos los derechos reservados.</p>
