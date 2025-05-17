@@ -46,21 +46,21 @@ session_start();
                 <li class="nav-item"><a href="#" class="nav-link text-white" onclick="mostrarFormularioCita()">Agendar Cita</a></li>
                 <li class="nav-item"><a href="#" class="nav-link text-white" onclick="mostrarFormularioContacto()">Contacto</a></li>
 
-                <!-- Login con dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white d-flex align-items-center" href="#" id="loginDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person-plus-fill me-1"></i>
-                        <?php echo isset($_SESSION['usuario']) ? htmlspecialchars($_SESSION['usuario']) : 'Login'; ?>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="loginDropdown">
-                        <?php if (isset($_SESSION['usuario'])): ?>
-                            <li><a class="dropdown-item" href="logout.php">Cerrar Sesión</a></li>
-                        <?php else: ?>
-                            <li><a class="dropdown-item" href="login.php">Iniciar Sesión</a></li>
-                            <li><a class="dropdown-item" href="registro.php">Registrar</a></li>
-                        <?php endif; ?>
-                    </ul>
-                </li>
+<!-- Login con dropdown -->
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle text-white d-flex align-items-center" href="#" id="loginDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="bi bi-person-plus-fill me-1"></i>
+        <?php echo isset($_SESSION['nombre']) ? htmlspecialchars($_SESSION['nombre']) : 'Login'; ?>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="loginDropdown">
+        <?php if (isset($_SESSION['usuario'])): ?>
+            <li><a class="dropdown-item" href="logout.php">Cerrar Sesión</a></li>
+        <?php else: ?>
+            <li><a class="dropdown-item" href="login.php">Iniciar Sesión</a></li>
+            <li><a class="dropdown-item" href="registro.php">Registrar</a></li>
+        <?php endif; ?>
+    </ul>
+</li>
 
                 <!-- Carrito -->
                 <li class="nav-item">
