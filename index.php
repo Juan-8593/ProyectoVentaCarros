@@ -244,7 +244,71 @@ session_start();
             </div>
         </div>
     </section>
-    
+
+    <div id="formularioCita" style="display: none; max-width: 300px; margin: auto; text-align: center; font-family: Arial, sans-serif;">
+    <form action="procesar_cita.php" method="post">
+        <h2 style="margin-bottom: 20px;">Agendar Cita</h2>
+
+        <select name="tipoCita" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
+            <option value="">Tipo de cita</option>
+            <option value="compra">Compra</option>
+            <option value="mantenimiento">Mantenimiento</option>
+        </select>
+
+        <input type="text" name="nombre" placeholder="Nombre" required
+               style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <input type="email" name="correo" placeholder="Correo" required
+               style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <input type="date" name="fecha" required
+               style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <input type="time" name="hora" required
+               style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <button type="submit"
+                style="padding: 10px 20px; background-color: #7a5cf0; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            Agendar
+        </button>
+    </form>
+</div>
+                            
+<section id="agendar-cita" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4">Agendar Cita</h2>
+        <form action="procesar_cita.php" method="post" class="mx-auto" style="max-width: 500px;">
+            <div class="mb-3">
+                <select name="tipoCita" class="form-select" required>
+                    <option value="">Tipo de cita</option>
+                    <option value="compra">Compra</option>
+                    <option value="mantenimiento">Mantenimiento</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <input type="text" name="nombre" class="form-control" placeholder="Nombre" required>
+            </div>
+
+            <div class="mb-3">
+                <input type="email" name="correo" class="form-control" placeholder="Correo" required>
+            </div>
+
+            <div class="mb-3">
+                <input type="date" name="fecha" class="form-control" required>
+            </div>
+
+            <div class="mb-4">
+                <input type="time" name="hora" class="form-control" required>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Agendar</button>
+            </div>
+        </form>
+    </div>
+</section>
+
 <!-- Pie de página -->
     <footer class="bg-dark text-white text-center py-3">
         <p>&copy; 2025 Car Evolution. Todos los derechos reservados.</p>
