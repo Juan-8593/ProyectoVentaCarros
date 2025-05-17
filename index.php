@@ -77,26 +77,23 @@ session_start();
     <div class="carousel-inner">
         <!-- Imagen 1 -->
         <div class="carousel-item active">
-            <img src="Imagen/FerrarimasvendidoCarrusel.jpg" class="carousel-img" alt="Ferrari F80">
+            <img src="Imagen/bmw1.jpg" class="carousel-img" alt="">
             <div class="carousel-caption d-none d-md-block">
-                <h5>Ferrari F80</h5>
-                <p>El Cavallino más rapido de la historia, y el más vendido de nuestra agencia.</p>
+
             </div>
         </div>
         <!-- Imagen 2 -->
         <div class="carousel-item">
-            <img src="Imagen/LamborghiniSC20Exclusivo.jpg" class="carousel-img" alt="Lamborghini SC20">
+            <img src="Imagen/bmw4.jpg" class="carousel-img" alt="">
             <div class="carousel-caption d-none d-md-block">
-                <h5>Lamborghini SC20</h5>
-                <p>El Lamborghini más exlusivo de nuestra agencia.</p>
+            
             </div>
         </div>
         <!-- Imagen 3 -->
         <div class="carousel-item">
-            <img src="Imagen/Mustang Shelby GT 500CR.jpg" class="carousel-img" alt="Mustang Shelby GT 500CR">
+            <img src="Imagen/bmw3.jpg" class="carousel-img" alt="">
             <div class="carousel-caption d-none d-md-block">
-                <h5>Mustang Shelby GT 500CR</h5>
-                <p>Claisco, veloz y sobre todo llamativo para la Universidad.</p>
+              
             </div>
         </div>
     </div>
@@ -157,7 +154,7 @@ session_start();
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="Imagen/Ferrari1.jpg" class="card-img-top" alt="Ferrari F8 Tributo">
+                        <img src="Imagen/Ferrari1.jpg" class="card-img-top" alt="   ">
                         <div class="card-body">
                             <h5 class="card-title">Ferrari F8 Tributo</h5>
                             <p class="card-text">Potencia y lujo incomparables.</p>
@@ -277,6 +274,16 @@ session_start();
                             <h5 class="card-title">Chevrolet Silverado 2025</h5>
                             <p class="card-text">Potencia y durabilidad.</p>
                             <button class="btn btn-primary" onclick="verMas('Chevrolet Silverado 2025', 'Imagen/Silverado 2025 .jpg', 'Potencia y durabilidad.')">Ver más</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="Imagen/chevrolet-tahoe.jpg" class="card-img-top" alt="Audi Q5 2025">
+                        <div class="card-body">
+                            <h5 class="card-title">Chvrolet Tahoe 2025</h5>
+                            <p class="card-text">Potencia y comodidad en un solo vehiculo.</p>
+                            <button class="btn btn-primary" onclick="verMas('Tahoe 2025', 'Imagen/chevrolet-tahoe.jpg', 'Diseño y tecnología avanzada.')">Ver más</button>
                         </div>
                     </div>
                 </div>
