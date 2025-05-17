@@ -60,7 +60,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="password" id="password" name="password" required>
                 </div>
                 <button type="submit" class="login-button">Entrar</button>
-
                 <!-- Mostrar error si existe -->
                 <?php if (isset($error_msg)): ?>
                     <p class="error-msg"><?php echo $error_msg; ?></p>
@@ -68,6 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
 
             <p class="registro-link">¿No tienes cuenta? <a href="registro.php">Regístrate aquí</a></p>
+            <p class="registro-link"> <a href="registro.php">¿Olvidaste tu contrasena?</a></p>
         </div>
     </section>
 
