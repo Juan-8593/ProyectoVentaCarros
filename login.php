@@ -78,13 +78,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="password" id="password" name="password" required>
                     <i class="fas fa-eye toggle-password" id="togglePassword"></i>
                 </div>
-                <button type="submit" class="login-button">Entrar</button>
-                <!-- Mostrar error si existe -->
-                <?php if (isset($error_msg)): ?>
-                    <p class="error-msg"><?php echo $error_msg; ?></p>
-                <?php endif; ?>
-            </form>
+            </div>
 
+            <!-- Aquí agregamos margen superior para el botón -->
+            <div class="form-group" style="margin-top: 20px;">
+                <button type="submit" class="login-button">Entrar</button>
+            </div>
+
+            <?php if (isset($error_msg)): ?>
+                <p class="error-msg"><?php echo $error_msg; ?></p>
+            <?php endif; ?>
+        </form>
             <p class="registro-link">¿No tienes cuenta? <a href="registro.php">Regístrate aquí</a></p>
             <p class="registro-link"> <a href="registro.php">¿Olvidaste tu contrasena?</a></p>
         </div>
