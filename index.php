@@ -84,7 +84,7 @@ session_start();
         </div>
         <!-- Imagen 2 -->
         <div class="carousel-item">
-            <img src="Imagen/bmw4.jpg" class="carousel-img" alt="">
+            <img src="Imagen/bmw5.jpg" class="carousel-img" alt="">
             <div class="carousel-caption d-none d-md-block">
             
             </div>
@@ -279,9 +279,19 @@ session_start();
                 </div>
                 <div class="col-md-4">
                     <div class="card">
+                        <img src="Imagen/chevrolet-spark.jpg" class="card-img-top" alt="Audi Q5 2025">
+                        <div class="card-body">
+                            <h5 class="card-title">Chevrolet spark 2025</h5>
+                            <p class="card-text">Diseno y comodidad .</p>
+                            <button class="btn btn-primary" onclick="verMas('Tahoe 2025', 'Imagen/chevrolet-spark.jpg', 'Diseño y tecnología avanzada.')">Ver más</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
                         <img src="Imagen/chevrolet-tahoe.jpg" class="card-img-top" alt="Audi Q5 2025">
                         <div class="card-body">
-                            <h5 class="card-title">Chvrolet Tahoe 2025</h5>
+                            <h5 class="card-title">Chverolet Tahoe 2025</h5>
                             <p class="card-text">Potencia y comodidad en un solo vehiculo.</p>
                             <button class="btn btn-primary" onclick="verMas('Tahoe 2025', 'Imagen/chevrolet-tahoe.jpg', 'Diseño y tecnología avanzada.')">Ver más</button>
                         </div>
@@ -292,23 +302,44 @@ session_start();
     </section>
 
     <!-- Sección BMW -->
-    <section id="bmw" class="py-5 bg-light">
+       <section id="chevrolet" class="py-5">
         <div class="container">
-            <h2 class="text-center mb-4">BMW</h2>
+            <h2 class="text-center mb-4">Chevrolet</h2>
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="Imagen/BMW 3 Series 2025.jpg" class="card-img-top" alt="BMW 3 Series 2025">
+                        <img src="Imagen/bmw5.jpg" class="card-img-top" alt="Chevrolet Silverado 2025">
                         <div class="card-body">
-                            <h5 class="card-title">BMW 3 Series 2025</h5>
-                            <p class="card-text">Confort deportivo y tecnología avanzada.</p>
-                            <button class="btn btn-primary" onclick="verMas('BMW 3 Series 2025', 'Imagen/BMW 3 Series 2025.jpg', 'Confort deportivo y tecnología avanzada.')">Ver más</button>
+                            <h5 class="card-title">BMW M4 COMPETITION</h5>
+                            <p class="card-text">Lo mejor de nosotros.</p>
+                            <button class="btn btn-primary" onclick="verMas('BMW M4 COMPETITION', 'Imagen/bmw5.jpg', 'Lo mejor de nosotros.')">Ver más</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="Imagen/bmw1.jpg" class="card-img-top" alt="Audi Q5 2025">
+                        <div class="card-body">
+                            <h5 class="card-title">BMW X5</h5>
+                            <p class="card-text">Potencia y lujo .</p>
+                            <button class="btn btn-primary" onclick="verMas('bmw-x5', 'Imagen/bmw1.jpg', 'Potencia y lujo.')">Ver más</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="Imagen/bmw3.jpg" class="card-img-top" alt="Audi Q5 2025">
+                        <div class="card-body">
+                            <h5 class="card-title">BMW X3</h5>
+                            <p class="card-text">El vehiculo familiar mas rapido.</p>
+                            <button class="btn btn-primary" onclick="verMas('bmw-x3', 'Imagen/bmw3.jpg', 'Diseño y tecnología avanzada.')">Ver más</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
 
     <!-- Sección Mercedes-Benz -->
     <!-- <section id="mercedes" class="py-5">
