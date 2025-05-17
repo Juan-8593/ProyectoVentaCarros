@@ -341,13 +341,13 @@ session_start();
         </div>
     </section> -->
 
-    <!-- Pie de página -->
+<!-- Pie de página -->
     <footer class="bg-dark text-white text-center py-3">
         <p>&copy; 2025 Car Evolution. Todos los derechos reservados.</p>
         <div>
-            <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="text-white"><i class="bi bi-whatsapp"></i></a>
+            <a href="https://i.pinimg.com/736x/70/89/c7/7089c71e03059151b11a462eb2a24d00.jpg" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.whatsapp.com/" class="text-white"><i class="bi bi-whatsapp"></i></a>
         </div>
     </footer>
 
