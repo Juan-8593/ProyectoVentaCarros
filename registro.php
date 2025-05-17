@@ -13,32 +13,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tipoUsuario = $_POST['tipo_usuario'];
     $clave_admin = $_POST['clave_admin'] ?? '';
 
-    // Validar si se seleccionó "Administrador"
-    if ($tipoUsuario === "Administrador" && $clave_admin !== "12345") {
-        $mensaje = "❌ Clave de administrador incorrecta. Intenta nuevamente.";
+    // Validar si el nombre de usuario ya existe
+    $verificar_sql = "SELECT * FROM Usuarios WHERE Usuario = ?";
+    $stmt_verificar = $conn->prepare($verificar_sql);
+    $stmt_verificar->bind_param("s", $usuario);
+    $stmt_verificar->execute();
+    $resultado = $stmt_verificar->get_result();
+
+    if ($resultado->num_rows > 0) {
+        $mensaje = "❌ El nombre de usuario ya está registrado. Intenta con otro.";
         $tipo = "error";
         $redirigir = "registro.php";
     } else {
-        $sql = "INSERT INTO Usuarios (Usuario, Nombre, password, TipoUsuario) VALUES (?, ?, ?, ?)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssss", $usuario, $nombre, $password, $tipoUsuario);
-
-        if ($stmt->execute()) {
-            $mensaje = "¡Registro exitoso! Ahora puedes iniciar sesión.";
-            $tipo = "success";
-            $redirigir = "login.php";
-        } else {
-            $mensaje = "Error al registrar: " . $stmt->error;
+        // Validar si se seleccionó "Administrador" y la clave es incorrecta
+        if ($tipoUsuario === "Administrador" && $clave_admin !== "12345") {
+            $mensaje = "❌ Clave de administrador incorrecta. Intenta nuevamente.";
             $tipo = "error";
             $redirigir = "registro.php";
-        }
+        } else {
+            $sql = "INSERT INTO Usuarios (Usuario, Nombre, password, TipoUsuario) VALUES (?, ?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("ssss", $usuario, $nombre, $password, $tipoUsuario);
 
-        $stmt->close();
+            if ($stmt->execute()) {
+                $mensaje = "¡Registro exitoso! Ahora puedes iniciar sesión.";
+                $tipo = "success";
+                $redirigir = "login.php";
+            } else {
+                $mensaje = "Error al registrar: " . $stmt->error;
+                $tipo = "error";
+                $redirigir = "registro.php";
+            }
+
+            $stmt->close();
+        }
     }
 
+    $stmt_verificar->close();
     $conn->close();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -60,12 +75,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form method="post" class="login-form">
 
         <div class="form-group">
-            <label for="usuario">Usuario:</label>
+            <label for="usuario">Correo:</label>
             <input type="text" name="usuario" required>
         </div>
 
         <div class="form-group">
-            <label for="nombre">Nombre completo:</label>
+            <label for="nombre">Id Usuario:</label>
             <input type="text" name="nombre" required>
         </div>
 
