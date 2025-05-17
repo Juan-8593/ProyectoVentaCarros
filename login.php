@@ -2,12 +2,10 @@
 session_start();
 include('conexion.php');  
 
-// Validación del login al enviar el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuario = $_POST['usuario'];
     $password = $_POST['password'];
 
-    // Consulta para verificar si el usuario y la contraseña son correctos
     $sql = "SELECT * FROM Usuarios WHERE Usuario = ? AND password = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $usuario, $password);
@@ -15,19 +13,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $stmt->get_result();
 
     if ($result->num_rows === 1) {
-        // Login exitoso, obtener los datos del usuario
-        $user_data = $result->fetch_assoc(); // Obtener los datos del usuario
+        $user_data = $result->fetch_assoc();
         $_SESSION['usuario'] = $usuario;
-        $_SESSION['nombre'] = $user_data['Nombre']; // Guardar el nombre en la sesión
-
-        // Marcar que el login fue exitoso en la sesión
+        $_SESSION['nombre'] = $user_data['Nombre'];
         $_SESSION['login_success'] = true;
-
-        // Redirigir al mismo archivo (login.php) para ejecutar el alert
         header("Location: login.php");
-        exit();  // Finaliza la ejecución del script
+        exit();
     } else {
-        // Si la validación falla, mostrar un mensaje de error
         $error_msg = "⚠️ Usuario o contraseña incorrectos";
     }
 
@@ -42,55 +34,91 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <title>Iniciar Sesión</title>
     <link rel="stylesheet" href="css/login.css">
-    <!-- Incluir SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Font Awesome para el ícono de ojo -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper input {
+            width: 100%;
+            padding-right: 40px; /* espacio para el ícono */
+        }
+
+        .toggle-password {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #555;
+        }
+
+        .toggle-password:hover {
+            color: #000;
+        }
+    </style>
 </head>
 <body>
 
-    <section class="login-container">
-        <div class="login-box">
-            <h2>Iniciar Sesión</h2>
-            <form method="post" class="login-form">
-                <div class="form-group">
-                    <label for="usuario">Usuario:</label>
-                    <input type="text" id="usuario" name="usuario" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Contraseña:</label>
+<section class="login-container">
+    <div class="login-box">
+        <h2>Iniciar Sesión</h2>
+        <form method="post" class="login-form">
+            <div class="form-group">
+                <label for="usuario">Usuario:</label>
+                <input type="text" id="usuario" name="usuario" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Contraseña:</label>
+                <div class="password-wrapper">
                     <input type="password" id="password" name="password" required>
+                    <i class="fas fa-eye toggle-password" id="togglePassword"></i>
                 </div>
-                <button type="submit" class="login-button">Entrar</button>
+            </div>
 
-                <!-- Mostrar error si existe -->
-                <?php if (isset($error_msg)): ?>
-                    <p class="error-msg"><?php echo $error_msg; ?></p>
-                <?php endif; ?>
-            </form>
+            <button type="submit" class="login-button">Entrar</button>
 
-            <p class="registro-link">¿No tienes cuenta? <a href="registro.php">Regístrate aquí</a></p>
-        </div>
-    </section>
+            <?php if (isset($error_msg)): ?>
+                <p class="error-msg"><?php echo $error_msg; ?></p>
+            <?php endif; ?>
+        </form>
 
-    <!-- Video de fondo -->
-    <video autoplay muted loop class="background-video">
-        <source src="imagen/FondoLogin.mp4" type="video/mp4">
-    </video>
+        <p class="registro-link">¿No tienes cuenta? <a href="registro.php">Regístrate aquí</a></p>
+    </div>
+</section>
 
-    <?php if (isset($_SESSION['login_success']) && $_SESSION['login_success']): ?>
-    <script>
-        Swal.fire({
-            title: 'Inicio de sesión correcto!',
-            icon: 'success',
-            text: '¡Bienvenido, <?php echo $_SESSION['nombre']; ?>!',
-            confirmButtonText: 'OK'
-        }).then(function() {
-            window.location.href = 'index.php';
-        });
-    </script>
-    <?php
-    // Solo limpia el flag, pero deja el nombre
-    unset($_SESSION['login_success']);
-    ?>
+<video autoplay muted loop class="background-video">
+    <source src="imagen/FondoLogin.mp4" type="video/mp4">
+</video>
+
+<script>
+    const togglePassword = document.getElementById("togglePassword");
+    const passwordInput = document.getElementById("password");
+
+    togglePassword.addEventListener("click", function () {
+        const isPassword = passwordInput.type === "password";
+        passwordInput.type = isPassword ? "text" : "password";
+        togglePassword.classList.toggle("fa-eye");
+        togglePassword.classList.toggle("fa-eye-slash");
+    });
+</script>
+
+<?php if (isset($_SESSION['login_success']) && $_SESSION['login_success']): ?>
+<script>
+    Swal.fire({
+        title: 'Inicio de sesión correcto!',
+        icon: 'success',
+        text: '¡Bienvenido, <?php echo $_SESSION['nombre']; ?>!',
+        confirmButtonText: 'OK'
+    }).then(function() {
+        window.location.href = 'index.php';
+    });
+</script>
+<?php unset($_SESSION['login_success']); ?>
 <?php endif; ?>
 
 </body>
