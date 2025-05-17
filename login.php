@@ -78,18 +78,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="password" id="password" name="password" required>
                     <i class="fas fa-eye toggle-password" id="togglePassword"></i>
                 </div>
-            </div>
+                <button type="submit" class="login-button">Entrar</button>
+                <!-- Mostrar error si existe -->
+                <?php if (isset($error_msg)): ?>
+                    <p class="error-msg"><?php echo $error_msg; ?></p>
+                <?php endif; ?>
+            </form>
 
-            <button type="submit" class="login-button">Entrar</button>
-
-            <?php if (isset($error_msg)): ?>
-                <p class="error-msg"><?php echo $error_msg; ?></p>
-            <?php endif; ?>
-        </form>
-
-        <p class="registro-link">¿No tienes cuenta? <a href="registro.php">Regístrate aquí</a></p>
-    </div>
-</section>
+            <p class="registro-link">¿No tienes cuenta? <a href="registro.php">Regístrate aquí</a></p>
+            <p class="registro-link"> <a href="registro.php">¿Olvidaste tu contrasena?</a></p>
+        </div>
+    </section>
 
 <video autoplay muted loop class="background-video">
     <source src="imagen/FondoLogin.mp4" type="video/mp4">
