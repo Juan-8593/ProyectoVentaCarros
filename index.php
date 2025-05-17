@@ -109,44 +109,6 @@ session_start();
     </button>
 </section>
 
-    <!-- Sección Toyota -->
-    <!-- <section id="toyota" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-4">Toyota</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="Imagen/ToyotaCorolla2025.jpg" class="card-img-top" alt="Toyota Corolla 2025">
-                        <div class="card-body">
-                            <h5 class="card-title">Toyota Corolla 2025</h5>
-                            <p class="card-text">Eficiencia japonesa con tecnología de punta.</p>
-                            <button class="btn btn-primary" onclick="verMas('Toyota Corolla 2025', 'Imagen/ToyotaCorolla2025.jpg', 'Eficiencia japonesa con tecnología de punta.')">Ver más</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-    <!-- Sección Mazda -->
-    <!-- <section id="mazda" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Mazda</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="Imagen/MazdaCX-52025.jpg" class="card-img-top" alt="Mazda CX-5 2025">
-                        <div class="card-body">
-                            <h5 class="card-title">Mazda CX-5 2025</h5>
-                            <p class="card-text">Diseño elegante y deportivo.</p>
-                            <button class="btn btn-primary" onclick="verMas('Mazda CX-5 2025', 'Imagen/MazdaCX-52025.jpg', 'Diseño elegante y deportivo.')">Ver más</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
     <!-- Sección Ferrari -->
     <section id="ferrari" class="py-5 bg-light">
         <div class="container">
@@ -204,63 +166,6 @@ session_start();
             </div>
         </div>
     </section>
-
-    <!-- Sección Lamborghini -->
-    <!-- <section id="lamborghini" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-4">Lamborghini</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="Imagen/lamborghini1.jpg" class="card-img-top" alt="Lamborghini Aventador">
-                        <div class="card-body">
-                            <h5 class="card-title">Lamborghini Aventador</h5>
-                            <p class="card-text">Rendimiento extremo y lujo sin igual.</p>
-                            <button class="btn btn-primary" onclick="verMas('Lamborghini Aventador', 'Imagen/lamborghini1.jpg', 'Rendimiento extremo y lujo sin igual.')">Ver más</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-    <!-- Sección Suzuki
-    <section id="suzuki" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Suzuki</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="Imagen/suzuki1.jpg" class="card-img-top" alt="Suzuki Swift 2025">
-                        <div class="card-body">
-                            <h5 class="card-title">Suzuki Swift 2025</h5>
-                            <p class="card-text">Eficiencia y estilo compacto.</p>
-                            <button class="btn btn-primary" onclick="verMas('Suzuki Swift 2025', 'Imagen/suzuki1.jpg', 'Eficiencia y estilo compacto.')">Ver más</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-    <!-- Sección Hyundai -->
-    <!-- <section id="hyundai" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-4">Hyundai</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="Imagen/hyundai1.jpg" class="card-img-top" alt="Hyundai Tucson 2025">
-                        <div class="card-body">
-                            <h5 class="card-title">Hyundai Tucson 2025</h5>
-                            <p class="card-text">Diseño moderno y eficiencia en cada detalle.</p>
-                            <button class="btn btn-primary" onclick="verMas('Hyundai Tucson 2025', 'Imagen/hyundai1.jpg', 'Diseño moderno y eficiencia en cada detalle.')">Ver más</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
 
     <!-- Sección Chevrolet -->
     <section id="chevrolet" class="py-5">
@@ -340,44 +245,69 @@ session_start();
         </div>
     </section>
 
+    <div id="formularioCita" style="display: none; max-width: 300px; margin: auto; text-align: center; font-family: Arial, sans-serif;">
+    <form action="procesar_cita.php" method="post">
+        <h2 style="margin-bottom: 20px;">Agendar Cita</h2>
 
-    <!-- Sección Mercedes-Benz -->
-    <!-- <section id="mercedes" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Mercedes-Benz</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="Imagen/mercedes1.jpg" class="card-img-top" alt="Mercedes-Benz S-Class 2025">
-                        <div class="card-body">
-                            <h5 class="card-title">Mercedes-Benz S-Class 2025</h5>
-                            <p class="card-text">Lujo y rendimiento excepcionales.</p>
-                            <button class="btn btn-primary" onclick="verMas('Mercedes-Benz S-Class 2025', 'Imagen/mercedes1.jpg', 'Lujo y rendimiento excepcionales.')">Ver más</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
+        <select name="tipoCita" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
+            <option value="">Tipo de cita</option>
+            <option value="compra">Compra</option>
+            <option value="mantenimiento">Mantenimiento</option>
+        </select>
 
-    <!-- Sección Nissan -->
-    <!-- <section id="nissan" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-4">Nissan</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="Imagen/nissan1.jpg" class="card-img-top" alt="Nissan Altima 2025">
-                        <div class="card-body">
-                            <h5 class="card-title">Nissan Altima 2025</h5>
-                            <p class="card-text">Tecnología y confort al más alto nivel.</p>
-                            <button class="btn btn-primary" onclick="verMas('Nissan Altima 2025', 'Imagen/nissan1.jpg', 'Tecnología y confort al más alto nivel.')">Ver más</button>
-                        </div>
-                    </div>
-                </div>
+        <input type="text" name="nombre" placeholder="Nombre" required
+               style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <input type="email" name="correo" placeholder="Correo" required
+               style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <input type="date" name="fecha" required
+               style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <input type="time" name="hora" required
+               style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <button type="submit"
+                style="padding: 10px 20px; background-color: #7a5cf0; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            Agendar
+        </button>
+    </form>
+</div>
+                            
+<section id="agendar-cita" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4">Agendar Cita</h2>
+        <form action="procesar_cita.php" method="post" class="mx-auto" style="max-width: 500px;">
+            <div class="mb-3">
+                <select name="tipoCita" class="form-select" required>
+                    <option value="">Tipo de cita</option>
+                    <option value="compra">Compra</option>
+                    <option value="mantenimiento">Mantenimiento</option>
+                </select>
             </div>
-        </div>
-    </section> -->
+
+            <div class="mb-3">
+                <input type="text" name="nombre" class="form-control" placeholder="Nombre" required>
+            </div>
+
+            <div class="mb-3">
+                <input type="email" name="correo" class="form-control" placeholder="Correo" required>
+            </div>
+
+            <div class="mb-3">
+                <input type="date" name="fecha" class="form-control" required>
+            </div>
+
+            <div class="mb-4">
+                <input type="time" name="hora" class="form-control" required>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Agendar</button>
+            </div>
+        </form>
+    </div>
+</section>
 
 <!-- Pie de página -->
     <footer class="bg-dark text-white text-center py-3">
