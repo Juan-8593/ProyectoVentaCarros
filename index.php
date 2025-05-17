@@ -15,61 +15,61 @@ session_start();
 <body>
 
 <!-- Encabezado -->
-<header class="bg-dark text-white p-3 d-flex justify-content-between align-items-center">
-    <!-- Logo a la izquierda -->
-    <h1 class="h3 mb-0 d-flex align-items-center"><i class="bi bi-car-front"></i> Car Evolution</h1>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
+    <div class="container-fluid">
+        <!-- Logo -->
+        <a class="navbar-brand d-flex align-items-center" href="#"><i class="bi bi-car-front me-2"></i>Car Evolution</a>
 
-    <!-- Navegación alineada a la derecha -->
-    <div class="d-flex align-items-center ms-auto">
-        <ul class="nav align-items-center">
-            <li class="nav-item"><a href="#inicio" class="nav-link text-white">Inicio</a></li>
+        <!-- Botón hamburguesa -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContenido" aria-controls="navbarContenido" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <!-- Dropdown Vehículos -->
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-white" href="#" id="vehiculosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Vehículos
-                </a>
-                <ul class="dropdown-menu">
-                    <!-- <li><a class="dropdown-item" href="#toyota">Toyota</a></li>
-                    <li><a class="dropdown-item" href="#mazda">Mazda</a></li> -->
-                    <li><a class="dropdown-item" href="#ferrari">Ferrari</a></li>
-                    <li><a class="dropdown-item" href="#audi">Audi</a></li>
-                    <!-- <li><a class="dropdown-item" href="#lamborghini">Lamborghini</a></li>
-                    <li><a class="dropdown-item" href="#suzuki">Suzuki</a></li>
-                    <li><a class="dropdown-item" href="#hyundai">Hyundai</a></li> -->
-                    <li><a class="dropdown-item" href="#chevrolet">Chevrolet</a></li>
-                    <li><a class="dropdown-item" href="#bmw">BMW</a></li>
-                    <!-- <li><a class="dropdown-item" href="#mercedes">Mercedes-Benz</a></li>
-                    <li><a class="dropdown-item" href="#nissan">Nissan</a></li> -->
-                </ul>
-            </li>
+        <!-- Contenido del menú -->
+        <div class="collapse navbar-collapse" id="navbarContenido">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                <li class="nav-item"><a href="#inicio" class="nav-link text-white">Inicio</a></li>
 
-            <li class="nav-item"><a href="#" class="nav-link text-white" onclick="mostrarFormularioCita()">Agendar Cita</a></li>
-            <li class="nav-item"><a href="#" class="nav-link text-white" onclick="mostrarFormularioContacto()">Contacto</a></li>
+                <!-- Dropdown Vehículos -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="vehiculosDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Vehículos
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#ferrari">Ferrari</a></li>
+                        <li><a class="dropdown-item" href="#audi">Audi</a></li>
+                        <li><a class="dropdown-item" href="#chevrolet">Chevrolet</a></li>
+                        <li><a class="dropdown-item" href="#bmw">BMW</a></li>
+                    </ul>
+                </li>
 
-            <!-- Login con dropdown -->
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-white d-flex align-items-center" href="#" id="loginDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-person-plus-fill me-1"></i>
-                    <?php echo isset($_SESSION['usuario']) ? htmlspecialchars($_SESSION['usuario']) : 'Login'; ?>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="loginDropdown">
-                    <?php if (isset($_SESSION['usuario'])): ?>
-                        <li><a class="dropdown-item" href="logout.php">Cerrar Sesión</a></li>
-                    <?php else: ?>
-                        <li><a class="dropdown-item" href="login.php">Iniciar Sesión</a></li>
-                        <li><a class="dropdown-item" href="registro.php">Registrar</a></li>
-                    <?php endif; ?>
-                </ul>
-            </li>
+                <li class="nav-item"><a href="#" class="nav-link text-white" onclick="mostrarFormularioCita()">Agendar Cita</a></li>
+                <li class="nav-item"><a href="#" class="nav-link text-white" onclick="mostrarFormularioContacto()">Contacto</a></li>
 
-            <!-- Carrito -->
-            <li class="nav-item">
-                <a href="#" class="nav-link text-white fs-5"><i class="bi bi-cart4"></i></a>
-            </li>
-        </ul>
+                <!-- Login con dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white d-flex align-items-center" href="#" id="loginDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-plus-fill me-1"></i>
+                        <?php echo isset($_SESSION['usuario']) ? htmlspecialchars($_SESSION['usuario']) : 'Login'; ?>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="loginDropdown">
+                        <?php if (isset($_SESSION['usuario'])): ?>
+                            <li><a class="dropdown-item" href="logout.php">Cerrar Sesión</a></li>
+                        <?php else: ?>
+                            <li><a class="dropdown-item" href="login.php">Iniciar Sesión</a></li>
+                            <li><a class="dropdown-item" href="registro.php">Registrar</a></li>
+                        <?php endif; ?>
+                    </ul>
+                </li>
+
+                <!-- Carrito -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-white fs-5"><i class="bi bi-cart4"></i></a>
+                </li>
+            </ul>
+        </div>
     </div>
-</header>
+</nav>
 
 
 <!-- Carrusel de vehículos -->
