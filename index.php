@@ -6,7 +6,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Evolution - Concesionario</title>
+    <title>JJLCARS - Concesionario</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styleindex.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -18,7 +18,7 @@ session_start();
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
     <div class="container-fluid">
         <!-- Logo -->
-        <a class="navbar-brand d-flex align-items-center" href="#"><i class="bi bi-car-front me-2"></i>Car Evolution</a>
+        <a class="navbar-brand d-flex align-items-center" href="#"><i class="bi bi-car-front me-2"></i>JJLCARS</a>
 
         <!-- Botón hamburguesa -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContenido" aria-controls="navbarContenido" aria-expanded="false" aria-label="Toggle navigation">
@@ -317,7 +317,7 @@ session_start();
 
 <!-- Pie de página -->
     <footer class="bg-dark text-white text-center py-3">
-        <p>&copy; 2025 Car Evolution. Todos los derechos reservados.</p>
+        <p>&copy; 2025 JJLCARS. Todos los derechos reservados.</p>
         <div>
             <a href="https://i.pinimg.com/736x/70/89/c7/7089c71e03059151b11a462eb2a24d00.jpg" class="text-white me-3"><i class="bi bi-facebook"></i></a>
             <a href="https://www.instagram.com/" class="text-white me-3"><i class="bi bi-instagram"></i></a>
