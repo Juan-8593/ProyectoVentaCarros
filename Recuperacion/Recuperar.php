@@ -1,5 +1,6 @@
 <?php
 session_start();
+include('../conexion.php');
 ?>
 
 <!DOCTYPE html>
@@ -7,7 +8,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <title>Recuperar Cuenta</title>
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
 
@@ -25,7 +26,7 @@ session_start();
 </section>
 
 <video autoplay muted loop class="background-video">
-    <source src="imagen/LoginRecuperacion.jpg" type="video/mp4">
+    <source src="../imagen/LoginRecuperacion.jpg" type="video/mp4">
 </video>
 
 </body>

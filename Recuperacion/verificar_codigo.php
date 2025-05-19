@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('conexion.php');
+include('../conexion.php'); // ruta correcta para incluir conexion.php desde la carpeta Recuperacion
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $codigo_ingresado = $_POST['codigo'];
@@ -10,15 +10,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($codigo_ingresado == $_SESSION['codigo_recuperacion']) {
         if ($nueva === $repetir) {
             $correo = $_SESSION['correo_recuperacion'];
-            $sql = "UPDATE Usuarios SET password = ? WHERE Correo = ?";
+            $sql = "UPDATE Usuarios SET password = ? WHERE Usuario = ?";
             $stmt = $conn->prepare($sql);
+            if (!$stmt) {
+                die("Error en la consulta: " . $conn->error);
+            }
             $stmt->bind_param("ss", $nueva, $correo);
             $stmt->execute();
 
             unset($_SESSION['codigo_recuperacion']);
             unset($_SESSION['correo_recuperacion']);
 
-            echo "<script>alert('Contraseña actualizada correctamente'); window.location.href = 'login.php';</script>";
+            echo "<script>alert('Contraseña actualizada correctamente'); window.location.href = '../login.php';</script>";
+            exit();
         } else {
             $error = "⚠️ Las contraseñas no coinciden.";
         }
@@ -33,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <meta charset="UTF-8">
     <title>Verificar Código</title>
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
 
@@ -62,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </section>
 
 <video autoplay muted loop class="background-video">
-    <source src="imagen/LoginRecuperacion.jpg" type="video/mp4">
+    <source src="../imagen/LoginRecuperacion.jpg" type="video/mp4">
 </video>
 
 </body>
