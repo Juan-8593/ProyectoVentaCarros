@@ -43,7 +43,7 @@ session_start();
                     </ul>
                 </li>
 
-                <li class="nav-item"><a href="#" class="nav-link text-white" onclick="mostrarFormularioCita()">Agendar Cita</a></li>
+                <li class="nav-item"><a href="#agendar-cita" class="nav-link text-white">Agendar Cita</a></li>
                 <li class="nav-item"><a href="#" class="nav-link text-white" onclick="mostrarFormularioContacto()">Contacto</a></li>
 
 <!-- Login con dropdown -->
