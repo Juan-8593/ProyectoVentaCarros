@@ -62,41 +62,33 @@ session_start();
     </ul>
 </li>
 
-                <!-- Carrito -->
-                <li class="nav-item">
-                    <a href="#" class="nav-link text-white fs-5"><i class="bi bi-cart4"></i></a>
-                </li>
-            </ul>
-        </div>
-    </div>
+<!-- Carrito -->
+<li class="nav-item">
+<a href="#" class="nav-link text-white fs-5"><i class="bi bi-cart4"></i></a>
+</li>
+</ul>
+</div>
+</div>
 </nav>
 
-
-<!-- Carrusel de vehículos -->
+<!-- Carrusel -->
 <section id="inicio" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-        <!-- Imagen 1 -->
-        <div class="carousel-item active">
-            <img src="Imagen/bmw1.jpg" class="carousel-img" alt="">
-            <div class="carousel-caption d-none d-md-block">
-
-            </div>
-        </div>
-        <!-- Imagen 2 -->
-        <div class="carousel-item">
-            <img src="Imagen/bmw5.jpg" class="carousel-img" alt="">
-            <div class="carousel-caption d-none d-md-block">
-            
-            </div>
-        </div>
-        <!-- Imagen 3 -->
-        <div class="carousel-item">
-            <img src="Imagen/bmw3.jpg" class="carousel-img" alt="">
-            <div class="carousel-caption d-none d-md-block">
-              
-            </div>
-        </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="Imagen/bmw1.jpg" class="carousel-img" alt="BMW 1">
+      <div class="custom-caption">¡Sueña en grande sobre ruedas!</div>
     </div>
+    <div class="carousel-item">
+      <img src="Imagen/bmw5.jpg" class="carousel-img" alt="BMW 5">
+      <div class="custom-caption">Ahorra con estilo y potencia</div>
+    </div>
+    <div class="carousel-item">
+      <img src="Imagen/bmw3.jpg" class="carousel-img" alt="BMW 3">
+      <div class="custom-caption">Agenda tu prueba, lúcete mañana</div>
+    </div>
+  </div>
+
+  
 
     <!-- Botones de control del carrusel (flechas personalizadas en lugar de puntos) -->
     <button class="carousel-control-prev" type="button" data-bs-target="#inicio" data-bs-slide="prev">
@@ -207,9 +199,9 @@ session_start();
     </section>
 
     <!-- Sección BMW -->
-       <section id="chevrolet" class="py-5">
+       <section id="BMW" class="py-5">
         <div class="container">
-            <h2 class="text-center mb-4">Chevrolet</h2>
+            <h2 class="text-center mb-4">BMW</h2>
             <div class="row">
                 <div class="col-md-4">
                     <div class="card">

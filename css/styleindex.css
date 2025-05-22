@@ -52,7 +52,7 @@ header .nav ul {
 
 /* Estilo de los enlaces de navegación */
 header .nav-item a {
-    color: rgb(0, 0, 0);
+    color: rgb(255, 0, 0);
     text-decoration: none;
     display: flex; /* Para alinear los iconos con el texto */
     align-items: center;
@@ -67,38 +67,42 @@ header .nav-item .bi {
 header .nav-item a:hover {
     background-color: #000000;
     color: #ffffff;
-}
-    
+}  
 
 /* Carrusel */
 #inicio {
-    width: 100%; /* El carrusel debe ocupar el 100% del ancho */
-    max-width: 100%; /* Limitar el tamaño máximo al 100% */
-    margin: auto; /* Centrar el carrusel */
-    height: 425px;  /* Altura fija para el carrusel */
-    position: center;  /* Para asegurar el correcto posicionamiento de los controles */
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
+    height: 450px;
+    background-color: #000; /* fondo negro para que no se noten cortes */
+    position: relative;
+    overflow: hidden;
 }
 
-/* Contenedor interno del carrusel */
+/* Centrado de imagen */
 .carousel-inner {
-    display: center;
-    justify-content: center;
-    align-items: center;
-    height: 200%;  /* Aseguramos que el contenedor ocupe toda la altura */
+    height: 100%;
+    display: flex;
 }
 
-/* Estilo de las imágenes del carrusel */
-.carousel-item img {
-    width: 50%;  /* Asegura que la imagen ocupe todo el ancho */
-    height: 50%;  /* Asegura que la imagen ocupe todo el alto */
-    object-fit: scale-down;  /* La imagen cubre todo el espacio sin distorsionarse */
+/* Imagen sin cortes ni deformaciones */
+.carousel-img {
+    max-height: 950px;
+    width: auto;
+    margin: 0 auto;
+    object-fit: contain;
+    display: block;
 }
 
-/* Estilo de cada item del carrusel */
-.carousel-item {
-    height: 100%;  /* Aseguramos que los items del carrusel ocupen toda la altura del contenedor */
+.custom-caption {
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+    text-align: center;    
+    width: 100%;           /* Ocupa todo el ancho para que el centrado sea efectivo */
 }
-
 
 /* Sección de vehículos */
 #vehiculos {
