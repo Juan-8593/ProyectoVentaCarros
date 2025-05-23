@@ -101,24 +101,16 @@ session_start();
     </button>
 </section>
 
-    <!-- Sección Ferrari -->
-    <section id="ferrari" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-4">Ferrari</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="Imagen/Ferrari1.jpg" class="card-img-top" alt="   ">
-                        <div class="card-body">
-                            <h5 class="card-title">Ferrari F8 Tributo</h5>
-                            <p class="card-text">Potencia y lujo incomparables.</p>
-                            <button class="btn btn-primary" onclick="verMas('Ferrari F8 Tributo', 'Imagen/Ferrari1.jpg', 'Potencia y lujo incomparables.')">Ver más</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- Sección Ferrari -->
+<section id="Ferrari" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4">Ferrari</h2>
+        <div class="row" id="contenedorFerrari">
+            <!-- Aquí se insertan los vehículos con JS -->
         </div>
-    </section>
+    </div>
+</section>
+
 
     <!-- Sección Audi -->
     <section id="audi" class="py-5">
@@ -320,5 +312,7 @@ session_start();
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
+
+    
 </body>
 </html>
