@@ -2,11 +2,12 @@
 session_start();
 include('conexion.php');  
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $correo = $_POST['usuario']; // 'usuario' sigue siendo el name del input, aunque ahora representa el correo
-    $password = $_POST['password'];
+$correo = isset($_POST['correo']) ? $_POST['correo'] : '';
+$password = isset($_POST['password']) ? $_POST['password'] : '';
 
-    $sql = "SELECT * FROM Clientes WHERE correo = ? AND Password = ?";
+if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($correo) && !empty($password)) {
+
+    $sql = "SELECT * FROM Clientes WHERE Correo = ? AND Password = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ss", $correo, $password);
     $stmt->execute();
@@ -14,8 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result->num_rows === 1) {
         $user_data = $result->fetch_assoc();
-        $_SESSION['usuario'] = $correo;
-        $_SESSION['nombre'] = $user_data['Usuario']; // Antes era 'Nombre'
+        $_SESSION['Correo'] = $user_data['Correo']; 
+        $_SESSION['usuario'] = $user_data['Usuario'];  
+        $_SESSION['nombre'] = $user_data['nombre'];   
         $_SESSION['login_success'] = true;
         header("Location: login.php");
         exit();
@@ -26,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
     $conn->close();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -64,8 +67,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h2>Iniciar Sesión</h2>
         <form method="post" class="login-form">
             <div class="form-group">
-                <label for="usuario">Correo:</label>
-                <input type="text" id="usuario" name="usuario" required>
+                <label for="correo">Correo:</label>
+                <input type="text" id="correo" name="correo" required>
             </div>
 
             <div class="form-group">
@@ -111,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     Swal.fire({
         title: 'Inicio de sesión correcto!',
         icon: 'success',
-        text: '¡Bienvenido, <?php echo $_SESSION['nombre']; ?>!',
+        text: '¡Bienvenido, <?php echo $_SESSION['usuario']; ?>!',
         confirmButtonText: 'OK'
     }).then(function() {
         window.location.href = 'index.php';
