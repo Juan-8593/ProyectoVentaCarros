@@ -9,6 +9,12 @@ include('../conexion.php');
     <meta charset="UTF-8">
     <title>Recuperar Cuenta</title>
     <link rel="stylesheet" href="../css/login.css">
+    <style>
+        body {
+            background: url('../imagen/LoginRecuperacion.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+    </style>
 </head>
 <body>
 
@@ -24,10 +30,6 @@ include('../conexion.php');
         </form>
     </div>
 </section>
-
-<video autoplay muted loop class="background-video">
-    <source src="../imagen/LoginRecuperacion.jpg" type="video/mp4">
-</video>
 
 </body>
 </html>

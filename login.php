@@ -3,19 +3,19 @@ session_start();
 include('conexion.php');  
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $usuario = $_POST['usuario'];
+    $correo = $_POST['usuario']; // 'usuario' sigue siendo el name del input, aunque ahora representa el correo
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM Usuarios WHERE Usuario = ? AND password = ?";
+    $sql = "SELECT * FROM Clientes WHERE correo = ? AND Password = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $usuario, $password);
+    $stmt->bind_param("ss", $correo, $password);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($result->num_rows === 1) {
         $user_data = $result->fetch_assoc();
-        $_SESSION['usuario'] = $usuario;
-        $_SESSION['nombre'] = $user_data['Nombre'];
+        $_SESSION['usuario'] = $correo;
+        $_SESSION['nombre'] = $user_data['Usuario']; // Antes era 'Nombre'
         $_SESSION['login_success'] = true;
         header("Location: login.php");
         exit();
@@ -35,18 +35,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Iniciar Sesión</title>
     <link rel="stylesheet" href="css/login.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- Font Awesome para el ícono de ojo -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         .password-wrapper {
             position: relative;
         }
-
         .password-wrapper input {
             width: 100%;
             padding-right: 40px;
         }
-
         .toggle-password {
             position: absolute;
             top: 50%;
@@ -55,7 +52,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             cursor: pointer;
             color: #555;
         }
-
         .toggle-password:hover {
             color: #000;
         }
@@ -68,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h2>Iniciar Sesión</h2>
         <form method="post" class="login-form">
             <div class="form-group">
-                <label for="usuario">Usuario:</label>
+                <label for="usuario">Correo:</label>
                 <input type="text" id="usuario" name="usuario" required>
             </div>
 

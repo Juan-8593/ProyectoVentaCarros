@@ -75,15 +75,15 @@ session_start();
 <section id="inicio" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="Imagen/bmw1.jpg" class="carousel-img" alt="BMW 1">
+      <img src="Imagen/BMW X4.jpg" class="carousel-img" alt="BMW X4">
       <div class="custom-caption">¡Sueña en grande sobre ruedas!</div>
     </div>
     <div class="carousel-item">
-      <img src="Imagen/bmw5.jpg" class="carousel-img" alt="BMW 5">
+      <img src="Imagen/Audi A3.JPG" class="carousel-img" alt="Audi A3">
       <div class="custom-caption">Ahorra con estilo y potencia</div>
     </div>
     <div class="carousel-item">
-      <img src="Imagen/bmw3.jpg" class="carousel-img" alt="BMW 3">
+      <img src="Imagen/Audi RS3.JPG" class="carousel-img" alt="Audi RS3">
       <div class="custom-caption">Agenda tu prueba, lúcete mañana</div>
     </div>
   </div>
@@ -101,6 +101,7 @@ session_start();
     </button>
 </section>
 
+<!-- Sección Ferrari -->
 <section id="Ferrari" class="py-5 bg-light">
     <div class="container">
         <h2 class="text-center mb-4">Ferrari</h2>
@@ -150,123 +151,154 @@ session_start();
 
 
 
-    <!-- Sección Audi -->
-    <section id="audi" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Audi</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="Imagen/A3.jpg" class="card-img-top" alt="Audi A4 2025">
-                        <div class="card-body">
-                            <h5 class="card-title">Audi A3</h5>
-                            <p class="card-text">Eficiencia y confort para toda la familia.</p>
-                            <button class="btn btn-primary" onclick="verMas('Audi A3', 'Imagen/A3.jpg', 'Eficiencia y confort para toda la familia.')">Ver más</button>
+<!-- Sección Audi -->
+    <section id="Audi" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4">Audi</h2>
+        <div class="row" id="contenedorAudi">
+            <?php
+            $conn = new mysqli("localhost", "root", "", "jjlcars");
+            if ($conn->connect_error) {
+                echo "<p class='text-danger'>Error de conexión a la base de datos.</p>";
+            } else {
+                $sql = "SELECT * FROM vehiculos WHERE marca = 'Audi'";
+                $resultado = $conn->query($sql);
+
+                if ($resultado && $resultado->num_rows > 0) {
+                    while ($vehiculo = $resultado->fetch_assoc()) {
+                        $id = htmlspecialchars($vehiculo['id']);
+                        $modelo = htmlspecialchars($vehiculo['modelo']);
+                        $descripcion = htmlspecialchars($vehiculo['descripcion']);
+                        $precio = htmlspecialchars($vehiculo['precio']);
+                        $imagen = htmlspecialchars($vehiculo['imagen']);
+                        $inventario = htmlspecialchars($vehiculo['inventario']);
+                        ?>
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                                <img src="<?php echo $imagen; ?>" class="card-img-top" alt="<?php echo $modelo; ?>">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title"><?php echo $modelo; ?></h5>
+                                    <p class="card-text"><?php echo $descripcion; ?></p>
+                                    <p><strong>Inventario:</strong> <span id="inventarioCard-<?php echo $id; ?>"><?php echo $inventario; ?></span></p>
+                                    <button class="btn btn-primary mt-auto" 
+                                        onclick="verMas('<?php echo addslashes($modelo); ?>', '<?php echo $imagen; ?>', '<?php echo addslashes($descripcion); ?>', '<?php echo $precio; ?>', '<?php echo $inventario; ?>', '<?php echo $id; ?>')">
+                                        Ver más
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="Imagen/RS Q8.jpg" class="card-img-top" alt="Audi Q5 2025">
-                        <div class="card-body">
-                            <h5 class="card-title">Audi RS Q8</h5>
-                            <p class="card-text">Diseño y tecnología avanzada.</p>
-                            <button class="btn btn-primary" onclick="verMas('Audi RS Q8', 'Imagen/RS Q8.jpg', 'Diseño y tecnología avanzada.')">Ver más</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="Imagen/RS.jpg" class="card-img-top" alt="Audi A6 2025">
-                        <div class="card-body">
-                            <h5 class="card-title">Audi RS</h5>
-                            <p class="card-text">Confort y lujo en cada detalle.</p>
-                            <button class="btn btn-primary" onclick="verMas('RS', 'Imagen/Audi RS.jpg', 'Confort y lujo en cada detalle.')">Ver más</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        <?php
+                    }
+                } else {
+                    echo "<p class='text-center'>No hay vehículos Audi disponibles.</p>";
+                }
+                $conn->close();
+            }
+            ?>
         </div>
-    </section>
+    </div>
+</section>
+
 
     <!-- Sección Chevrolet -->
-    <section id="chevrolet" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">Chevrolet</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="Imagen/Silverado 2025 .jpg" class="card-img-top" alt="Chevrolet Silverado 2025">
-                        <div class="card-body">
-                            <h5 class="card-title">Chevrolet Silverado 2025</h5>
-                            <p class="card-text">Potencia y durabilidad.</p>
-                            <button class="btn btn-primary" onclick="verMas('Chevrolet Silverado 2025', 'Imagen/Silverado 2025 .jpg', 'Potencia y durabilidad.')">Ver más</button>
+    <section id="Chevrolet" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4">Chevrolet</h2>
+        <div class="row" id="contenedorChevrolet">
+            <?php
+            $conn = new mysqli("localhost", "root", "", "jjlcars");
+            if ($conn->connect_error) {
+                echo "<p class='text-danger'>Error de conexión a la base de datos.</p>";
+            } else {
+                $sql = "SELECT * FROM vehiculos WHERE marca = 'Chevrolet'";
+                $resultado = $conn->query($sql);
+
+                if ($resultado && $resultado->num_rows > 0) {
+                    while ($vehiculo = $resultado->fetch_assoc()) {
+                        $id = htmlspecialchars($vehiculo['id']);
+                        $modelo = htmlspecialchars($vehiculo['modelo']);
+                        $descripcion = htmlspecialchars($vehiculo['descripcion']);
+                        $precio = htmlspecialchars($vehiculo['precio']);
+                        $imagen = htmlspecialchars($vehiculo['imagen']);
+                        $inventario = htmlspecialchars($vehiculo['inventario']);
+                        ?>
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                                <img src="<?php echo $imagen; ?>" class="card-img-top" alt="<?php echo $modelo; ?>">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title"><?php echo $modelo; ?></h5>
+                                    <p class="card-text"><?php echo $descripcion; ?></p>
+                                    <p><strong>Inventario:</strong> <span id="inventarioCard-<?php echo $id; ?>"><?php echo $inventario; ?></span></p>
+                                    <button class="btn btn-primary mt-auto" 
+                                        onclick="verMas('<?php echo addslashes($modelo); ?>', '<?php echo $imagen; ?>', '<?php echo addslashes($descripcion); ?>', '<?php echo $precio; ?>', '<?php echo $inventario; ?>', '<?php echo $id; ?>')">
+                                        Ver más
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="Imagen/chevrolet-spark.jpg" class="card-img-top" alt="Audi Q5 2025">
-                        <div class="card-body">
-                            <h5 class="card-title">Chevrolet spark 2025</h5>
-                            <p class="card-text">Diseno y comodidad .</p>
-                            <button class="btn btn-primary" onclick="verMas('Tahoe 2025', 'Imagen/chevrolet-spark.jpg', 'Diseño y tecnología avanzada.')">Ver más</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="Imagen/chevrolet-tahoe.jpg" class="card-img-top" alt="Audi Q5 2025">
-                        <div class="card-body">
-                            <h5 class="card-title">Chverolet Tahoe 2025</h5>
-                            <p class="card-text">Potencia y comodidad en un solo vehiculo.</p>
-                            <button class="btn btn-primary" onclick="verMas('Tahoe 2025', 'Imagen/chevrolet-tahoe.jpg', 'Diseño y tecnología avanzada.')">Ver más</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        <?php
+                    }
+                } else {
+                    echo "<p class='text-center'>No hay vehículos Chevrolet disponibles.</p>";
+                }
+                $conn->close();
+            }
+            ?>
         </div>
-    </section>
+    </div>
+</section>
+
 
     <!-- Sección BMW -->
-       <section id="BMW" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-4">BMW</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="Imagen/bmw5.jpg" class="card-img-top" alt="Chevrolet Silverado 2025">
-                        <div class="card-body">
-                            <h5 class="card-title">BMW M4 COMPETITION</h5>
-                            <p class="card-text">Lo mejor de nosotros.</p>
-                            <button class="btn btn-primary" onclick="verMas('BMW M4 COMPETITION', 'Imagen/bmw5.jpg', 'Lo mejor de nosotros.')">Ver más</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="Imagen/bmw1.jpg" class="card-img-top" alt="Audi Q5 2025">
-                        <div class="card-body">
-                            <h5 class="card-title">BMW X5</h5>
-                            <p class="card-text">Potencia y lujo .</p>
-                            <button class="btn btn-primary" onclick="verMas('bmw-x5', 'Imagen/bmw1.jpg', 'Potencia y lujo.')">Ver más</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="Imagen/bmw3.jpg" class="card-img-top" alt="Audi Q5 2025">
-                        <div class="card-body">
-                            <h5 class="card-title">BMW X3</h5>
-                            <p class="card-text">El vehiculo familiar mas rapido.</p>
-                            <button class="btn btn-primary" onclick="verMas('bmw-x3', 'Imagen/bmw3.jpg', 'Diseño y tecnología avanzada.')">Ver más</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <section id="BMW" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4">BMW</h2>
+        <div class="row" id="contenedorBMW">
+            <?php
+            $conn = new mysqli("localhost", "root", "", "jjlcars");
+            if ($conn->connect_error) {
+                echo "<p class='text-danger'>Error de conexión a la base de datos.</p>";
+            } else {
+                $sql = "SELECT * FROM vehiculos WHERE marca = 'BMW'";
+                $resultado = $conn->query($sql);
 
+                if ($resultado && $resultado->num_rows > 0) {
+                    while ($vehiculo = $resultado->fetch_assoc()) {
+                        $id = htmlspecialchars($vehiculo['id']);
+                        $modelo = htmlspecialchars($vehiculo['modelo']);
+                        $descripcion = htmlspecialchars($vehiculo['descripcion']);
+                        $precio = htmlspecialchars($vehiculo['precio']);
+                        $imagen = htmlspecialchars($vehiculo['imagen']);
+                        $inventario = htmlspecialchars($vehiculo['inventario']);
+                        ?>
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                                <img src="<?php echo $imagen; ?>" class="card-img-top" alt="<?php echo $modelo; ?>">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title"><?php echo $modelo; ?></h5>
+                                    <p class="card-text"><?php echo $descripcion; ?></p>
+                                    <p><strong>Inventario:</strong> <span id="inventarioCard-<?php echo $id; ?>"><?php echo $inventario; ?></span></p>
+                                    <button class="btn btn-primary mt-auto" 
+                                        onclick="verMas('<?php echo addslashes($modelo); ?>', '<?php echo $imagen; ?>', '<?php echo addslashes($descripcion); ?>', '<?php echo $precio; ?>', '<?php echo $inventario; ?>', '<?php echo $id; ?>')">
+                                        Ver más
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                } else {
+                    echo "<p class='text-center'>No hay vehículos BMW disponibles.</p>";
+                }
+                $conn->close();
+            }
+            ?>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Sección FormsCita -->
     <div id="formularioCita" style="display: none; max-width: 300px; margin: auto; text-align: center; font-family: Arial, sans-serif;">
     <form action="procesar_cita.php" method="post">
         <h2 style="margin-bottom: 20px;">Agendar Cita</h2>
@@ -295,7 +327,8 @@ session_start();
         </button>
     </form>
 </div>
-                            
+                  
+
 <section id="agendar-cita" class="cita-section">
     <div class="cita-container">
         <div class="formulario-cita">

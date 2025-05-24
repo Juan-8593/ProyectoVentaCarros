@@ -10,11 +10,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($codigo_ingresado == $_SESSION['codigo_recuperacion']) {
         if ($nueva === $repetir) {
             $correo = $_SESSION['correo_recuperacion'];
-            $sql = "UPDATE Usuarios SET password = ? WHERE Usuario = ?";
+
+            // Actualizar la contraseña en la tabla Clientes
+            $sql = "UPDATE Clientes SET Password = ? WHERE correo = ?";
             $stmt = $conn->prepare($sql);
+
             if (!$stmt) {
                 die("Error en la consulta: " . $conn->error);
             }
+
             $stmt->bind_param("ss", $nueva, $correo);
             $stmt->execute();
 
@@ -71,3 +75,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 </body>
 </html>
+                

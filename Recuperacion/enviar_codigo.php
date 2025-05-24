@@ -1,17 +1,17 @@
 <?php
 session_start();
-include('../conexion.php'); // Ajusta la ruta según tu estructura
+include('../conexion.php'); // Ajusta la ruta si es necesario
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require '../vendor/autoload.php';  // Ruta al autoload de Composer
+require '../vendor/autoload.php';  // Asegúrate que esta ruta sea correcta
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['correo'])) {
     $correo = $_POST['correo'];
 
     // Verificar si el correo existe en la base de datos
-    $sql = "SELECT * FROM Usuarios WHERE Usuario = ?";
+    $sql = "SELECT * FROM Clientes WHERE correo = ?";
     $stmt = $conn->prepare($sql);
 
     if (!$stmt) {
@@ -36,9 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['correo'])) {
             $mail->isSMTP();
             $mail->Host       = 'smtp.gmail.com';
             $mail->SMTPAuth   = true;
-
             $mail->Username   = 'eduardojolon46@gmail.com';  
-            $mail->Password   = 'owreqemguhwqigrs'; // Contraseña de aplicación sin espacios
+            $mail->Password   = 'owreqemguhwqigrs'; // Contraseña de aplicación
 
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port       = 587;
@@ -51,13 +50,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['correo'])) {
             $mail->isHTML(true);
             $mail->Subject = 'Codigo de recuperacion de cuenta';
             $mail->Body = "
-    <h2>Hola, $correo</h2>
-    <p>Has solicitado restablecer la contraseña para tu cuenta en <strong>JJLCARS</strong>.</p>
-    <p>Tu código de recuperación es: <strong style='font-size: 1.5em;'>$codigo</strong></p>
-    <p>Si no fuiste tú quien solicitó este cambio, te recomendamos cambiar tu contraseña lo antes posible para proteger tu cuenta.</p>
-    <br>
-    <p>Saludos,<br>Equipo JJLCARS</p>
-";
+                <h2>Hola, $correo</h2>
+                <p>Has solicitado restablecer la contraseña para tu cuenta en <strong>JJLCARS</strong>.</p>
+                <p>Tu código de recuperación es: <strong style='font-size: 1.5em;'>$codigo</strong></p>
+                <p>Si no fuiste tú quien solicitó este cambio, te recomendamos cambiar tu contraseña lo antes posible para proteger tu cuenta.</p>
+                <br>
+                <p>Saludos,<br>Equipo JJLCARS</p>
+            ";
+
             $mail->send();
 
             // Redirigir al formulario para verificar código
@@ -65,8 +65,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['correo'])) {
             exit();
 
         } catch (Exception $e) {
-            echo "Error al enviar correo: {$mail->ErrorInfo}";
+            echo "❌ Error al enviar correo: {$mail->ErrorInfo}";
         }
+
     } else {
         echo "⚠️ El correo no está registrado.";
     }
