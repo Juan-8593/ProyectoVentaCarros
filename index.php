@@ -299,35 +299,25 @@ session_start();
 
 
     <!-- Sección FormsCita -->
-    <div id="formularioCita" style="display: none; max-width: 300px; margin: auto; text-align: center; font-family: Arial, sans-serif;">
+<div id="formularioCita" style="display: none; max-width: 300px; margin: auto; text-align: center; font-family: Arial, sans-serif;">
     <form action="procesar_cita.php" method="post">
         <h2 style="margin-bottom: 20px;">Agendar Cita</h2>
 
-        <select name="tipoCita" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
+        <select name="tipoCita" id="tipoCita1" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
             <option value="">Tipo de cita</option>
             <option value="compra">Compra</option>
             <option value="mantenimiento">Mantenimiento</option>
         </select>
 
-        <input type="text" name="nombre" placeholder="Nombre" required
-               style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
+        <input type="text" name="nombre" placeholder="Nombre" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
+        <input type="email" name="correo" placeholder="Correo" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
+        <input type="date" name="fecha" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
+        <input type="time" name="hora" required style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
 
-        <input type="email" name="correo" placeholder="Correo" required
-               style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
-
-        <input type="date" name="fecha" required
-               style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
-
-        <input type="time" name="hora" required
-               style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
-
-        <button type="submit"
-                style="padding: 10px 20px; background-color: #7a5cf0; color: white; border: none; border-radius: 5px; cursor: pointer;">
-            Agendar
-        </button>
+        <button type="submit" style="padding: 10px 20px; background-color: #7a5cf0; color: white; border: none; border-radius: 5px; cursor: pointer;">Agendar</button>
     </form>
 </div>
-                  
+
 
 <section id="agendar-cita" class="cita-section">
     <div class="cita-container">
@@ -335,10 +325,16 @@ session_start();
             <h2>Agendar Cita</h2>
             <form action="procesar_cita.php" method="post">
                 <div class="mb-3">
-                    <select name="tipoCita" required>
+                    <select name="tipoCita" id="tipoCita2" required>
                         <option value="">Tipo de cita</option>
                         <option value="compra">Compra</option>
                         <option value="mantenimiento">Mantenimiento</option>
+                    </select>
+                </div>
+
+                <div class="mb-3" id="divTipoCompra2" style="display: none;">
+                    <select name="tipoCompra" id="tipoCompra2">
+                        <option value="">Seleccione vehículo</option>
                     </select>
                 </div>
 

@@ -322,7 +322,7 @@ footer a:hover {
 
 .formulario-cita select:focus,
 .formulario-cita input:focus {
-    background-color: #000000; /* Al enfocar, blanco más suave */
+    background-color: #ffffff; /* Al enfocar, blanco más suave */
     border-color: #33ff00;
     outline: none;
 }

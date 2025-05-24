@@ -1,40 +1,6 @@
 // Mostrar formulario de contacto
 function mostrarFormularioContacto() {
     Swal.fire({
-        title: 'Contáctanos',
-        html: `
-            <input id="nombreContacto" class="swal2-input" placeholder="Nombre">
-            <input id="correoContacto" type="email" class="swal2-input" placeholder="Correo Electrónico">
-            <textarea id="mensajeContacto" class="swal2-textarea" placeholder="Escribe tu mensaje aquí"></textarea>
-        `,
-        focusConfirm: false,
-        preConfirm: () => {
-            const nombre = document.getElementById('nombreContacto').value;
-            const correo = document.getElementById('correoContacto').value;
-            const mensaje = document.getElementById('mensajeContacto').value;
-
-            if (!nombre || !correo || !mensaje) {
-                Swal.showValidationMessage('Por favor completa todos los campos.');
-                return false;
-            }
-
-            return { nombre, correo, mensaje };
-        },
-        confirmButtonText: 'Enviar',
-        showCancelButton: true
-    }).then((result) => {
-        if (result.isConfirmed && result.value) {
-            Swal.fire({
-                title: 'Mensaje Enviado',
-                text: `Gracias por tu mensaje, ${result.value.nombre}. Nos pondremos en contacto contigo pronto.`,
-                icon: 'success'
-            });
-        }
-    });
-}
-    
-function mostrarFormularioContacto() {
-    Swal.fire({
         title: 'Contacto',
         html: `
             <form id="formContacto">
@@ -70,28 +36,81 @@ function mostrarFormularioContacto() {
     });
 }
 
-function verMas(modelo, imagen, descripcion, precio, inventario, id) {
-    const inventarioCard = document.getElementById(`inventarioCard-${id}`);
-    let inventarioNum = inventario;
+// Función reutilizable para cargar modelos con precio formateado
+function cargarModelos(selectId, modeloSeleccionado = null) {
+    const select = document.getElementById(selectId);
+    if (!select) return;
 
-    if (inventarioCard) {
-        const inventarioDesdeDOM = parseInt(inventarioCard.textContent);
-        if (!isNaN(inventarioDesdeDOM)) {
-            inventarioNum = inventarioDesdeDOM;
+    fetch('obtener_vehiculos.php')
+        .then(res => res.json())
+        .then(data => {
+            if (Array.isArray(data)) {
+                select.innerHTML = '<option value="">Seleccione vehículo</option>';
+                data.forEach(v => {
+                    const option = document.createElement('option');
+                    option.value = v.modelo;
+
+                    // Formatear precio con comas y 2 decimales
+                    const precioFormateado = Number(v.precio).toLocaleString('es-GT', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+
+                    option.textContent = `${v.modelo} - Q${precioFormateado}`;
+
+                    if (v.modelo === modeloSeleccionado) {
+                        option.selected = true;
+                    }
+                    select.appendChild(option);
+                });
+            } else {
+                select.innerHTML = '<option value="">Error al cargar modelos</option>';
+            }
+        })
+        .catch(() => {
+            select.innerHTML = '<option value="">Error de conexión</option>';
+        });
+}
+
+// Configurar el comportamiento de tipoCita en formularios
+function configurarFormulario(tipoCitaId, tipoCompraId, divCompraId) {
+    const tipoCita = document.getElementById(tipoCitaId);
+    const tipoCompra = document.getElementById(tipoCompraId);
+    const divTipoCompra = document.getElementById(divCompraId);
+
+    if (!tipoCita || !tipoCompra || !divTipoCompra) return;
+
+    tipoCita.addEventListener('change', function () {
+        if (this.value === 'compra') {
+            divTipoCompra.style.display = 'block';
+            cargarModelos(tipoCompraId);
+        } else {
+            divTipoCompra.style.display = 'none';
+            tipoCompra.innerHTML = '<option value="">Seleccione vehículo</option>';
         }
-    }
+    });
+}
 
-    let contenidoCompra = '';
+// Ejecutar configuración cuando se carga la página
+document.addEventListener('DOMContentLoaded', () => {
+    configurarFormulario('tipoCita1', 'tipoCompra1', 'tipoCompra1');
+    configurarFormulario('tipoCita2', 'tipoCompra2', 'divTipoCompra2');
+});
 
-    if (inventarioNum > 0) {
-        contenidoCompra = `
-            <p><strong>Precio:</strong> Q${precio}</p>
-            <p><strong>Inventario:</strong> <span id="inventarioDisplay">${inventarioNum}</span></p>
-            <input type="number" id="cantidadCompra" class="swal2-input" min="1" max="${inventarioNum}" value="1" placeholder="Cantidad">
-        `;
-    } else {
-        contenidoCompra = `<p class="text-danger">Vehículo agotado.</p>`;
-    }
+// Función para verificar sesión con validar_sesion.php
+function verificarSesion() {
+    return fetch('validar_sesion.php')
+        .then(res => res.json())
+        .then(data => data.sesion_activa === true)
+        .catch(() => false);
+}
+
+// Ver más detalles de un vehículo y agendar cita con validación de sesión
+function verMas(modelo, imagen, descripcion, precio, inventario, id) {
+    const precioFormateado = Number(precio).toLocaleString('es-GT', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
 
     Swal.fire({
         title: modelo,
@@ -99,86 +118,49 @@ function verMas(modelo, imagen, descripcion, precio, inventario, id) {
         imageAlt: modelo,
         html: `
             <p>${descripcion}</p>
-            ${contenidoCompra}
+            <p><strong>Precio:</strong> Q${precioFormateado}</p>
+            <p><strong>Inventario:</strong> ${inventario}</p>
+            <p>¿Deseas agendar una cita para este vehículo?</p>
         `,
         showCancelButton: true,
-        confirmButtonText: inventarioNum > 0 ? 'Comprar' : 'Cerrar',
-        cancelButtonText: 'Cancelar',
-        preConfirm: () => {
-            if (inventarioNum > 0) {
-                const inventarioActual = parseInt(document.getElementById('inventarioDisplay').textContent);
-                const cantidad = parseInt(document.getElementById('cantidadCompra').value);
+        confirmButtonText: 'Agendar cita',
+        cancelButtonText: 'Cancelar'
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            const estaLogueado = await verificarSesion();
 
-                if (!cantidad || cantidad < 1 || cantidad > inventarioActual) {
-                    Swal.showValidationMessage(`Ingresa una cantidad válida (1 - ${inventarioActual})`);
-                    return false;
+            if (!estaLogueado) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Debes iniciar sesión',
+                    text: 'Necesitas estar registrado para agendar una cita.',
+                    showCancelButton: true,
+                    confirmButtonText: 'Registrarme',
+                    cancelButtonText: 'Cancelar',
+                    reverseButtons: true
+                }).then((res) => {
+                    if (res.isConfirmed) {
+                        window.location.href = 'registro.php';
+                    } else {
+                        window.location.href = 'index.php';
+                    }
+                });
+            } else {
+                // Ir a la sección de agendar cita
+                document.getElementById('agendar-cita').scrollIntoView({ behavior: 'smooth' });
+
+                const tipoCita = document.getElementById('tipoCita2');
+                const tipoCompra = document.getElementById('tipoCompra2');
+                const divTipoCompra = document.getElementById('divTipoCompra2');
+
+                if (tipoCita && tipoCompra && divTipoCompra) {
+                    tipoCita.value = 'compra';
+                    divTipoCompra.style.display = 'block';
+
+                    // Cargar modelos y preseleccionar
+                    cargarModelos('tipoCompra2', modelo);
                 }
-                return { idVehiculo: id, cantidad: cantidad };
             }
-            return false;
-        }
-    }).then((result) => {
-        if (result.isConfirmed && result.value) {
-            fetch('procesar_compra.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `idVehiculo=${encodeURIComponent(result.value.idVehiculo)}&cantidad=${encodeURIComponent(result.value.cantidad)}`
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Actualizar inventario en la tarjeta principal
-                    if (inventarioCard) {
-                        inventarioCard.textContent = data.nuevoInventario;
-                    }
-
-                    // Actualizar inventario en el SweetAlert detalle (antes de cerrar)
-                    const inventarioDisplay = document.getElementById('inventarioDisplay');
-                    const cantidadInput = document.getElementById('cantidadCompra');
-                    if (inventarioDisplay && cantidadInput) {
-                        inventarioDisplay.textContent = data.nuevoInventario;
-                        cantidadInput.max = data.nuevoInventario;
-
-                        if (parseInt(cantidadInput.value) > data.nuevoInventario) {
-                            cantidadInput.value = data.nuevoInventario > 0 ? data.nuevoInventario : 1;
-                        }
-                    }
-
-                    // No cerrar inmediatamente, actualizar visualmente primero
-                    Swal.update({
-                        html: `
-                            <p>${descripcion}</p>
-                            <p><strong>Precio:</strong> Q${precio}</p>
-                            <p><strong>Inventario:</strong> <span id="inventarioDisplay">${data.nuevoInventario}</span></p>
-                            <input type="number" id="cantidadCompra" class="swal2-input" min="1" max="${data.nuevoInventario}" value="1" placeholder="Cantidad" ${data.nuevoInventario === 0 ? 'disabled' : ''}>
-                        `,
-                        confirmButtonText: data.nuevoInventario > 0 ? 'Comprar' : 'Cerrar'
-                    });
-
-                    // Luego cerrar con un pequeño delay para que el usuario vea el cambio
-                    setTimeout(() => {
-                        Swal.close();
-                        Swal.fire({
-                            icon: 'success',
-                            title: '¡Compra realizada!',
-                            text: `Has comprado ${result.value.cantidad} unidad(es) de ${modelo}.`,
-                            timer: 2000,
-                            timerProgressBar: true,
-                            showConfirmButton: false,
-                        });
-                    }, 800);
-
-                } else if (data.error) {
-                    Swal.fire('Error', data.error, 'error');
-                } else {
-                    Swal.fire('Error', 'Error inesperado al procesar la compra', 'error');
-                }
-            })
-            .catch(() => {
-                Swal.fire('Error', 'No se pudo conectar con el servidor', 'error');
-            });
         }
     });
 }
