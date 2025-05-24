@@ -7,26 +7,26 @@ $tipo = "";
 $redirigir = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $usuario = $_POST['usuario'];
-    $nombre = $_POST['nombre'];
+    $correo = $_POST['usuario']; // El campo visualizado como 'Correo'
+    $usuario = $_POST['nombre']; // El campo visualizado como 'Id Usuario'
     $password = $_POST['password'];
-    $tipoUsuario = "Usuario"; // Tipo fijo
+    $tipoCliente = "Cliente"; // Tipo fijo
 
-    // Validar si el nombre de usuario ya existe
-    $verificar_sql = "SELECT * FROM Usuarios WHERE Usuario = ?";
+    // Validar si el correo ya existe
+    $verificar_sql = "SELECT * FROM Clientes WHERE Correo = ?";
     $stmt_verificar = $conn->prepare($verificar_sql);
-    $stmt_verificar->bind_param("s", $usuario);
+    $stmt_verificar->bind_param("s", $correo);
     $stmt_verificar->execute();
     $resultado = $stmt_verificar->get_result();
 
     if ($resultado->num_rows > 0) {
-        $mensaje = "❌ El nombre de usuario ya está registrado. Intenta con otro.";
+        $mensaje = "❌ El correo ya está registrado. Intenta con otro.";
         $tipo = "error";
         $redirigir = "registro.php";
     } else {
-        $sql = "INSERT INTO Usuarios (Usuario, Nombre, password, TipoUsuario) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO Clientes (Correo, Usuario, Password, tipoCliente) VALUES (?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssss", $usuario, $nombre, $password, $tipoUsuario);
+        $stmt->bind_param("ssss", $correo, $usuario, $password, $tipoCliente);
 
         if ($stmt->execute()) {
             $mensaje = "¡Registro exitoso! Ahora puedes iniciar sesión.";
@@ -46,8 +46,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -66,35 +64,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <section class="login-container">
     <h2>Crear Cuenta</h2>
     <form method="post" class="login-form">
-    <div class="form-group">
-        <label for="usuario">Correo:</label>
-        <input type="text" name="usuario" required>
-    </div>
+        <div class="form-group">
+            <label for="usuario">Correo:</label>
+            <input type="text" name="usuario" required>
+        </div>
 
-    <div class="form-group">
-        <label for="nombre">Id Usuario:</label>
-        <input type="text" name="nombre" required>
-    </div>
+        <div class="form-group">
+            <label for="nombre">Id Usuario:</label>
+            <input type="text" name="nombre" required>
+        </div>
 
-    <div class="form-group">
-        <label for="password">Contraseña:</label>
-        <input type="password" name="password" required>
-    </div>
+        <div class="form-group">
+            <label for="password">Contraseña:</label>
+            <input type="password" name="password" required>
+        </div>
 
-    <button type="submit" class="login-button">Registrarse</button>
+        <button type="submit" class="login-button">Registrarse</button>
 
-    <div class="registro-link">
-        ¿Ya tienes cuenta? <a href="login.php">Inicia sesión</a>
-    </div>
-</form>
-
+        <div class="registro-link">
+            ¿Ya tienes cuenta? <a href="login.php">Inicia sesión</a>
+        </div>
+    </form>
 </section>
 
 <script>
 function mostrarClaveAdmin() {
-    const tipo = document.getElementById('tipo_usuario').value;
+    const tipo = document.getElementById('tipo_usuario')?.value;
     const adminField = document.getElementById('clave_admin_group');
-    adminField.style.display = (tipo === 'Administrador') ? 'block' : 'none';
+    if (adminField) {
+        adminField.style.display = (tipo === 'Administrador') ? 'block' : 'none';
+    }
 }
 </script>
 
