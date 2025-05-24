@@ -1,139 +1,3 @@
-function verMas(nombre, imagen, descripcion, inventario) {
-    const rutaImagen = imagen.includes("Imagen/") ? imagen : 'Imagen/' + imagen;
-
-    // Variable local para inventario que podemos actualizar
-    let inventarioActual = inventario;
-
-    Swal.fire({
-        title: `${nombre}`,
-        html: `
-            <img src="${rutaImagen}" alt="${nombre}" style="width: 100%; max-width: 400px; height: auto; margin-bottom: 20px;">
-            <p><strong>Modelo:</strong> ${nombre}</p>
-            <p><strong>Descripción:</strong> ${descripcion}</p>
-            <p id="inventarioDisponible"><strong>Inventario disponible:</strong> ${inventarioActual}</p>
-            <p>¿Te interesa comprar este vehículo?</p>
-        `,
-        showCancelButton: true,
-        confirmButtonColor: "#28a745",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Agregar al Carrito",
-        cancelButtonText: "Cancelar",
-        preConfirm: () => {
-            // Solo permitir compra si inventario > 0
-            if (inventarioActual <= 0) {
-                Swal.showValidationMessage('No hay inventario disponible para este vehículo.');
-                return false; // Cancela confirmación
-            }
-            return true;
-        }
-    }).then((resultCompra) => {
-        if (resultCompra.isConfirmed) {
-            agregarAlCarrito(nombre, rutaImagen, descripcion);
-
-            fetch('agregarAlCarrito.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ modelo: nombre })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Reducir inventario localmente y actualizar el texto del modal
-                    inventarioActual--;
-
-                    const swalContent = Swal.getHtmlContainer();
-                    if (swalContent) {
-                        const inventarioElemento = swalContent.querySelector('#inventarioDisponible');
-                        if (inventarioElemento) {
-                            inventarioElemento.innerHTML = `<strong>Inventario disponible:</strong> ${inventarioActual}`;
-                        }
-                    }
-
-                    Swal.fire({
-                        title: "¡Se ha agregado al carrito de compras!",
-                        text: "Para completar la compra, dirígete al carrito de compras.",
-                        icon: "success"
-                    });
-                } else {
-                    Swal.fire({
-                        title: "Error",
-                        text: data.message || "No se pudo actualizar el inventario.",
-                        icon: "error"
-                    });
-                }
-            })
-            .catch(error => {
-                console.error(error);
-                Swal.fire({
-                    title: "Error",
-                    text: "Error de conexión al intentar actualizar el inventario.",
-                    icon: "error"
-                });
-            });
-        } else if (resultCompra.isDismissed) {
-            Swal.fire({
-                title: "Compra cancelada",
-                text: "No se realizó ninguna acción.",
-                icon: "error"
-            });
-        }
-    });
-}
-
-// Función para guardar el vehículo en el carrito localStorage
-function agregarAlCarrito(nombre, imagen, descripcion) {
-    const vehiculo = { nombre, imagen, descripcion };
-    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-    carrito.push(vehiculo);
-    localStorage.setItem("carrito", JSON.stringify(carrito));
-}
-
-// Función para cargar vehículos y mostrarlos dinámicamente
-function cargarVehiculos(marca) {
-    fetch(`obtenerVehiculos.php?marca=${marca}`)
-        .then(response => response.json())
-        .then(data => {
-            const contenedor = document.getElementById(`contenedor${marca}`);
-            contenedor.innerHTML = '';
-
-            data.forEach(auto => {
-                // Protección básica para evitar errores si algún campo es null o indefinido
-                const modelo = (auto.modelo || '').replace(/'/g, "\\'");
-                const descripcion = (auto.descripcion || '').replace(/'/g, "\\'");
-                const imagen = auto.imagen || '';
-                const inventario = auto.inventario !== undefined ? auto.inventario : 'No disponible';
-
-const card = document.createElement("div");
-card.className = "col-md-4";
-card.innerHTML = `
-    <div class="card mb-4">
-        <img src="${auto.imagen}" class="card-img-top" alt="${auto.modelo}">
-        <div class="card-body">
-            <h5 class="card-title">${auto.modelo}</h5>
-            <p class="card-text">${auto.descripcion}</p>
-            <p class="inventario-texto"><strong>Inventario disponible:</strong> ${auto.inventario}</p>
-            <button class="btn btn-primary" onclick="verMas('${auto.modelo}', '${auto.imagen}', '${auto.descripcion.replace(/'/g, "\\'")}', ${auto.inventario}, this)">
-                Ver más
-            </button>
-        </div>
-    </div>
-`;
-contenedor.appendChild(card);
-
-            });
-        })
-        .catch(error => {
-            console.error('Error al cargar los vehículos:', error);
-        });
-}
-
-// Llamada inicial para cargar Ferrari (puedes cambiar o hacer dinámica esta parte)
-document.addEventListener('DOMContentLoaded', () => {
-    cargarVehiculos('Ferrari');
-});
-
 // Mostrar formulario de contacto
 function mostrarFormularioContacto() {
     Swal.fire({
@@ -206,28 +70,115 @@ function mostrarFormularioContacto() {
     });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    fetch('mostrar_vehiculos.php')
-        .then(response => response.json())
-        .then(data => {
-            const contenedor = document.getElementById("contenedorFerrari");
-            console.log(data); // <-- Aquí verifica que cada objeto tenga 'inventario'
-            data.forEach(auto => {
-                const card = document.createElement("div");
-                card.className = "col-md-4";
-                card.innerHTML = `
-                    <div class="card mb-4">
-                        <img src="${auto.imagen}" class="card-img-top" alt="${auto.modelo}">
-                        <div class="card-body">
-                            <h5 class="card-title">${auto.modelo}</h5>
-                            <p class="card-text">${auto.descripcion}</p>
-                            <p><strong>Inventario disponible:</strong> ${auto.inventario !== undefined ? auto.inventario : 'No disponible'}</p>
-                            <button class="btn btn-primary" onclick="verMas('${auto.modelo}', '${auto.imagen}', '${auto.descripcion.replace(/'/g, "\\'")}', ${auto.inventario || 0})">Ver más</button>
-                        </div>
-                    </div>
-                `;
-                contenedor.appendChild(card);
+function verMas(modelo, imagen, descripcion, precio, inventario, id) {
+    const inventarioCard = document.getElementById(`inventarioCard-${id}`);
+    let inventarioNum = inventario;
+
+    if (inventarioCard) {
+        const inventarioDesdeDOM = parseInt(inventarioCard.textContent);
+        if (!isNaN(inventarioDesdeDOM)) {
+            inventarioNum = inventarioDesdeDOM;
+        }
+    }
+
+    let contenidoCompra = '';
+
+    if (inventarioNum > 0) {
+        contenidoCompra = `
+            <p><strong>Precio:</strong> Q${precio}</p>
+            <p><strong>Inventario:</strong> <span id="inventarioDisplay">${inventarioNum}</span></p>
+            <input type="number" id="cantidadCompra" class="swal2-input" min="1" max="${inventarioNum}" value="1" placeholder="Cantidad">
+        `;
+    } else {
+        contenidoCompra = `<p class="text-danger">Vehículo agotado.</p>`;
+    }
+
+    Swal.fire({
+        title: modelo,
+        imageUrl: imagen,
+        imageAlt: modelo,
+        html: `
+            <p>${descripcion}</p>
+            ${contenidoCompra}
+        `,
+        showCancelButton: true,
+        confirmButtonText: inventarioNum > 0 ? 'Comprar' : 'Cerrar',
+        cancelButtonText: 'Cancelar',
+        preConfirm: () => {
+            if (inventarioNum > 0) {
+                const inventarioActual = parseInt(document.getElementById('inventarioDisplay').textContent);
+                const cantidad = parseInt(document.getElementById('cantidadCompra').value);
+
+                if (!cantidad || cantidad < 1 || cantidad > inventarioActual) {
+                    Swal.showValidationMessage(`Ingresa una cantidad válida (1 - ${inventarioActual})`);
+                    return false;
+                }
+                return { idVehiculo: id, cantidad: cantidad };
+            }
+            return false;
+        }
+    }).then((result) => {
+        if (result.isConfirmed && result.value) {
+            fetch('procesar_compra.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `idVehiculo=${encodeURIComponent(result.value.idVehiculo)}&cantidad=${encodeURIComponent(result.value.cantidad)}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Actualizar inventario en la tarjeta principal
+                    if (inventarioCard) {
+                        inventarioCard.textContent = data.nuevoInventario;
+                    }
+
+                    // Actualizar inventario en el SweetAlert detalle (antes de cerrar)
+                    const inventarioDisplay = document.getElementById('inventarioDisplay');
+                    const cantidadInput = document.getElementById('cantidadCompra');
+                    if (inventarioDisplay && cantidadInput) {
+                        inventarioDisplay.textContent = data.nuevoInventario;
+                        cantidadInput.max = data.nuevoInventario;
+
+                        if (parseInt(cantidadInput.value) > data.nuevoInventario) {
+                            cantidadInput.value = data.nuevoInventario > 0 ? data.nuevoInventario : 1;
+                        }
+                    }
+
+                    // No cerrar inmediatamente, actualizar visualmente primero
+                    Swal.update({
+                        html: `
+                            <p>${descripcion}</p>
+                            <p><strong>Precio:</strong> Q${precio}</p>
+                            <p><strong>Inventario:</strong> <span id="inventarioDisplay">${data.nuevoInventario}</span></p>
+                            <input type="number" id="cantidadCompra" class="swal2-input" min="1" max="${data.nuevoInventario}" value="1" placeholder="Cantidad" ${data.nuevoInventario === 0 ? 'disabled' : ''}>
+                        `,
+                        confirmButtonText: data.nuevoInventario > 0 ? 'Comprar' : 'Cerrar'
+                    });
+
+                    // Luego cerrar con un pequeño delay para que el usuario vea el cambio
+                    setTimeout(() => {
+                        Swal.close();
+                        Swal.fire({
+                            icon: 'success',
+                            title: '¡Compra realizada!',
+                            text: `Has comprado ${result.value.cantidad} unidad(es) de ${modelo}.`,
+                            timer: 2000,
+                            timerProgressBar: true,
+                            showConfirmButton: false,
+                        });
+                    }, 800);
+
+                } else if (data.error) {
+                    Swal.fire('Error', data.error, 'error');
+                } else {
+                    Swal.fire('Error', 'Error inesperado al procesar la compra', 'error');
+                }
+            })
+            .catch(() => {
+                Swal.fire('Error', 'No se pudo conectar con el servidor', 'error');
             });
-        })
-        .catch(error => console.error('Error al cargar los vehículos:', error));
-});
+        }
+    });
+}

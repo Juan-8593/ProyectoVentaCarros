@@ -101,15 +101,53 @@ session_start();
     </button>
 </section>
 
-<!-- Sección Ferrari -->
 <section id="Ferrari" class="py-5 bg-light">
     <div class="container">
         <h2 class="text-center mb-4">Ferrari</h2>
         <div class="row" id="contenedorFerrari">
-            <!-- Aquí se insertan los vehículos con JS -->
+            <?php
+            $conn = new mysqli("localhost", "root", "", "jjlcars");
+            if ($conn->connect_error) {
+                echo "<p class='text-danger'>Error de conexión a la base de datos.</p>";
+            } else {
+                $sql = "SELECT * FROM vehiculos WHERE marca = 'Ferrari'";
+                $resultado = $conn->query($sql);
+
+                if ($resultado && $resultado->num_rows > 0) {
+                    while ($vehiculo = $resultado->fetch_assoc()) {
+                        $id = htmlspecialchars($vehiculo['id']);
+                        $modelo = htmlspecialchars($vehiculo['modelo']);
+                        $descripcion = htmlspecialchars($vehiculo['descripcion']);
+                        $precio = htmlspecialchars($vehiculo['precio']);
+                        $imagen = htmlspecialchars($vehiculo['imagen']);
+                        $inventario = htmlspecialchars($vehiculo['inventario']);
+                        ?>
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                                <img src="<?php echo $imagen; ?>" class="card-img-top" alt="<?php echo $modelo; ?>">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title"><?php echo $modelo; ?></h5>
+                                    <p class="card-text"><?php echo $descripcion; ?></p>
+                                    <p><strong>Inventario:</strong> <span id="inventarioCard-<?php echo $id; ?>"><?php echo $inventario; ?></span></p>
+                                    <button class="btn btn-primary mt-auto" 
+                                        onclick="verMas('<?php echo addslashes($modelo); ?>', '<?php echo $imagen; ?>', '<?php echo addslashes($descripcion); ?>', '<?php echo $precio; ?>', '<?php echo $inventario; ?>', '<?php echo $id; ?>')">
+                                        Ver más
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                } else {
+                    echo "<p class='text-center'>No hay vehículos Ferrari disponibles.</p>";
+                }
+                $conn->close();
+            }
+            ?>
         </div>
     </div>
 </section>
+
 
 
     <!-- Sección Audi -->
