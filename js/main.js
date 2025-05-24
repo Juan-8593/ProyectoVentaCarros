@@ -36,7 +36,7 @@ function mostrarFormularioContacto() {
     });
 }
 
-// Función reutilizable para cargar modelos con precio formateado
+// Cargar modelos con precio formateado (para compra)
 function cargarModelos(selectId, modeloSeleccionado = null) {
     const select = document.getElementById(selectId);
     if (!select) return;
@@ -50,7 +50,6 @@ function cargarModelos(selectId, modeloSeleccionado = null) {
                     const option = document.createElement('option');
                     option.value = v.modelo;
 
-                    // Formatear precio con comas y 2 decimales
                     const precioFormateado = Number(v.precio).toLocaleString('es-GT', {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2
@@ -72,7 +71,58 @@ function cargarModelos(selectId, modeloSeleccionado = null) {
         });
 }
 
-// Configurar el comportamiento de tipoCita en formularios
+// Cargar servicios con precio fijo (para servicio)
+function cargarServicios(selectId) {
+    const servicios = [
+        { nombre: "Alineación", precio: 1500 },
+        { nombre: "Cambio de aceite", precio: 800 },
+        { nombre: "Frenos", precio: 1200 },
+        { nombre: "Revisión general", precio: 2000 },
+        { nombre: "Limpieza y lavado", precio: 1000 },
+        { nombre: "Bujías", precio: 3000 }
+    ];
+    const select = document.getElementById(selectId);
+    if (!select) return;
+
+    select.innerHTML = '<option value="">Seleccione servicio</option>';
+    servicios.forEach(servicio => {
+        const option = document.createElement('option');
+        option.value = servicio.nombre.toLowerCase().replace(/\s+/g, '_');
+        const precioFormateado = servicio.precio.toLocaleString('es-GT', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+        option.textContent = `${servicio.nombre} - Q${precioFormateado}`;
+        select.appendChild(option);
+    });
+}
+
+// Cargar mantenimientos con precio fijo (para mantenimiento)
+function cargarMantenimiento(selectId) {
+    const mantenimientos = [
+        { nombre: "Cambio de filtro de aire", precio: 1200 },
+        { nombre: "Cambio de filtro de aceite", precio: 900 },
+        { nombre: "Cambio de bujías", precio: 2500 },
+        { nombre: "Revisión de batería", precio: 1800 },
+        { nombre: "Revisión de sistema de enfriamiento", precio: 2200 }
+    ];
+    const select = document.getElementById(selectId);
+    if (!select) return;
+
+    select.innerHTML = '<option value="">Seleccione mantenimiento</option>';
+    mantenimientos.forEach(mant => {
+        const option = document.createElement('option');
+        option.value = mant.nombre.toLowerCase().replace(/\s+/g, '_');
+        const precioFormateado = mant.precio.toLocaleString('es-GT', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+        option.textContent = `${mant.nombre} - Q${precioFormateado}`;
+        select.appendChild(option);
+    });
+}
+
+// Configurar comportamiento del formulario según tipoCita
 function configurarFormulario(tipoCitaId, tipoCompraId, divCompraId) {
     const tipoCita = document.getElementById(tipoCitaId);
     const tipoCompra = document.getElementById(tipoCompraId);
@@ -84,14 +134,20 @@ function configurarFormulario(tipoCitaId, tipoCompraId, divCompraId) {
         if (this.value === 'compra') {
             divTipoCompra.style.display = 'block';
             cargarModelos(tipoCompraId);
+        } else if (this.value === 'servicio') {
+            divTipoCompra.style.display = 'block';
+            cargarServicios(tipoCompraId);
+        } else if (this.value === 'mantenimiento') {
+            divTipoCompra.style.display = 'block';
+            cargarMantenimiento(tipoCompraId);
         } else {
             divTipoCompra.style.display = 'none';
-            tipoCompra.innerHTML = '<option value="">Seleccione vehículo</option>';
+            tipoCompra.innerHTML = '<option value="">Seleccione opción</option>';
         }
     });
 }
 
-// Función para interceptar envío de formularios de cita y mostrar SweetAlert
+// Interceptar envío de formularios de cita
 function manejarEnvioFormulario(formId) {
     const form = document.getElementById(formId);
     if (!form) return;
@@ -115,7 +171,6 @@ function manejarEnvioFormulario(formId) {
                 });
                 form.reset();
 
-                // Ocultar div de tipoCompra si estaba visible
                 const divCompra = form.querySelector('div[id^="divTipoCompra"]');
                 if (divCompra) divCompra.style.display = 'none';
 
@@ -129,7 +184,7 @@ function manejarEnvioFormulario(formId) {
                     cancelButtonText: 'Cancelar',
                 }).then(result => {
                     if (result.isConfirmed) {
-                        window.location.href = 'login.php'; // Cambia según tu ruta de login
+                        window.location.href = 'login.php';
                     }
                 });
             } else {
@@ -150,56 +205,7 @@ function manejarEnvioFormulario(formId) {
     });
 }
 
-// Ejecutar configuración cuando se carga la página y autocompletar nombre si sesión activa
-document.addEventListener('DOMContentLoaded', () => {
-    configurarFormulario('tipoCita1', 'tipoCompra1', 'tipoCompra1');
-    configurarFormulario('tipoCita2', 'tipoCompra2', 'divTipoCompra2');
-
-    fetch('validar_sesion.php')
-        .then(res => res.json())
-        .then(data => {
-            if (data.sesion_activa) {
-                // Formulario dentro de #formularioCita
-                const form1 = document.querySelector('#formularioCita form');
-                if (form1) {
-                    const inputNombre1 = form1.querySelector('input[name="nombre"]');
-                    const inputCorreo1 = form1.querySelector('input[name="correo"]');
-                    if (data.nombre && inputNombre1) {
-                        inputNombre1.value = data.nombre;
-                        inputNombre1.readOnly = true; // bloquear edición
-                    }
-                    if (data.correo && inputCorreo1) {
-                        inputCorreo1.value = data.correo;
-                        inputCorreo1.readOnly = true; // bloquear edición
-                    }
-                }
-
-                // Formulario dentro de #agendar-cita
-                const form2 = document.querySelector('#agendar-cita form');
-                if (form2) {
-                    const inputNombre2 = form2.querySelector('input[name="nombre"]');
-                    const inputCorreo2 = form2.querySelector('input[name="correo"]');
-                    if (data.nombre && inputNombre2) {
-                        inputNombre2.value = data.nombre;
-                        inputNombre2.readOnly = true; // bloquear edición
-                    }
-                    if (data.correo && inputCorreo2) {
-                        inputCorreo2.value = data.correo;
-                        inputCorreo2.readOnly = true; // bloquear edición
-                    }
-                }
-            }
-        })
-        .catch(err => {
-            console.error('Error al validar sesión:', err);
-        });
-
-    // Interceptar envío de formularios de cita
-    manejarEnvioFormulario('formularioCita1');
-    manejarEnvioFormulario('formularioCita2');
-});
-
-// Función para verificar sesión con validar_sesion.php (solo estado)
+// Verificar sesión (solo estado booleano)
 function verificarSesion() {
     return fetch('validar_sesion.php')
         .then(res => res.json())
@@ -207,7 +213,7 @@ function verificarSesion() {
         .catch(() => false);
 }
 
-// Ver más detalles de un vehículo y agendar cita con validación de sesión
+// Mostrar detalles de vehículo y agendar cita
 function verMas(modelo, imagen, descripcion, precio, inventario, id) {
     const precioFormateado = Number(precio).toLocaleString('es-GT', {
         minimumFractionDigits: 2,
@@ -237,7 +243,7 @@ function verMas(modelo, imagen, descripcion, precio, inventario, id) {
                     title: 'Debes iniciar sesión',
                     text: 'Necesitas estar registrado para agendar una cita.',
                     showCancelButton: true,
-                    confirmButtonText: 'Iniciar Sesion',
+                    confirmButtonText: 'Iniciar Sesión',
                     cancelButtonText: 'Cancelar',
                     reverseButtons: true
                 }).then((res) => {
@@ -248,6 +254,7 @@ function verMas(modelo, imagen, descripcion, precio, inventario, id) {
                     }
                 });
             } else {
+                // Llevar al formulario y prellenar con compra y modelo seleccionado
                 document.getElementById('agendar-cita').scrollIntoView({ behavior: 'smooth' });
 
                 const tipoCita = document.getElementById('tipoCita2');
@@ -263,3 +270,36 @@ function verMas(modelo, imagen, descripcion, precio, inventario, id) {
         }
     });
 }
+
+// Inicialización al cargar página
+document.addEventListener('DOMContentLoaded', () => {
+    configurarFormulario('tipoCita1', 'tipoCompra1', 'tipoCompra1');  // Aquí asumo que el div para compra tiene id igual a select tipoCompra1 (ajustar si no)
+    configurarFormulario('tipoCita2', 'tipoCompra2', 'divTipoCompra2');
+
+    // Rellenar datos de usuario si está logueado
+    fetch('validar_sesion.php')
+        .then(res => res.json())
+        .then(data => {
+            if (data.sesion_activa) {
+                ['formularioCita', 'agendar-cita'].forEach(formId => {
+                    const form = document.querySelector(`#${formId} form`);
+                    if (form) {
+                        const inputNombre = form.querySelector('input[name="nombre"]');
+                        const inputCorreo = form.querySelector('input[name="correo"]');
+                        if (data.nombre && inputNombre) {
+                            inputNombre.value = data.nombre;
+                            inputNombre.readOnly = true;
+                        }
+                        if (data.correo && inputCorreo) {
+                            inputCorreo.value = data.correo;
+                            inputCorreo.readOnly = true;
+                        }
+                    }
+                });
+            }
+        })
+        .catch(err => console.error('Error al validar sesión:', err));
+
+    manejarEnvioFormulario('formularioCita1');
+    manejarEnvioFormulario('formularioCita2');
+});

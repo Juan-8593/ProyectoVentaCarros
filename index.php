@@ -267,68 +267,95 @@ session_start();
             </div>
             </div>
             </section>
-        <!-- Sección FormsCita -->
-            <div id="formularioCita" style="display: none; max-width: 300px; margin: auto; text-align: center; font-family: Arial, sans-serif;">
-            <form id="formularioCita1" action="procesar_cita.php" method="post">
-            <h2 style="margin-bottom: 20px;">Agendar Cita</h2>
-            <select name="tipoCita" id="tipoCita1" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
+<!-- Formulario Emergente -->
+<div id="formularioCita" style="display: none; max-width: 300px; margin: auto; text-align: center; font-family: Arial, sans-serif;">
+    <form id="formularioCita1" action="procesar_cita.php" method="post">
+        <h2 style="margin-bottom: 20px;">Agendar Cita</h2>
+        <select name="tipoCita" id="tipoCita1" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
             <option value="">Tipo de cita</option>
             <option value="compra">Compra</option>
+            <option value="servicio">Servicio</option>
             <option value="mantenimiento">Mantenimiento</option>
+        </select>
+
+        <!-- Vehículos -->
+        <div id="divTipoCompra1" style="display: none; margin-bottom: 15px;">
+            <select name="tipoCompra" id="tipoCompra1" style="width: 100%; padding: 10px;">
+                <option value="">Seleccione vehículo</option>
+                <!-- Opciones desde JS + SQL -->
             </select>
-            <div id="divTipoCompra1" style="display: none; margin-bottom: 15px;">
-            <select name="tipoCompra" id="tipoCompra1" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-            <option value="">Seleccione vehículo</option>
-        <!-- Se mandan a llamar lo vehiculos desde JS que esten en la SQL -->
+        </div>
+
+        <!-- Servicios/Mantenimientos -->
+        <div id="divTipoServicio1" style="display: none; margin-bottom: 15px;">
+            <select name="tipoCompra" id="tipoServicio1" style="width: 100%; padding: 10px;">
+                <option value="">Seleccione servicio o mantenimiento</option>
+                <!-- Opciones desde JS -->
             </select>
-            </div>
-            <input type="text" name="nombre" placeholder="Nombre" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
-            <input type="email" name="correo" placeholder="Correo" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
-            <input type="date" name="fecha" required style="width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;">
-            <input type="time" name="hora" required style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
-            <button type="submit" style="padding: 10px 20px; background-color: #7a5cf0; color: white; border: none; border-radius: 5px; cursor: pointer;">Agendar</button>
-            </form>
-            </div>
-            <section id="agendar-cita" class="cita-section">
-            <div class="cita-container">
-            <div class="formulario-cita">
+        </div>
+
+        <input type="text" name="nombre" placeholder="Nombre" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
+        <input type="email" name="correo" placeholder="Correo" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
+        <input type="date" name="fecha" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
+        <input type="time" name="hora" required style="width: 100%; padding: 10px; margin-bottom: 20px;">
+        <button type="submit" style="padding: 10px 20px; background-color: #7a5cf0; color: white;">Agendar</button>
+    </form>
+</div>
+
+<!-- Sección Principal de Citas -->
+<section id="agendar-cita" class="cita-section">
+    <div class="cita-container">
+        <div class="formulario-cita">
             <h2>Agendar Cita</h2>
             <form id="formularioCita2" action="procesar_cita.php" method="post">
-            <div class="mb-3">
-            <select name="tipoCita" id="tipoCita2" required>
-            <option value="">Tipo de cita</option>
-            <option value="compra">Compra</option>
-            <option value="mantenimiento">Mantenimiento</option>
-            </select>
-            </div>
-            <div class="mb-3" id="divTipoCompra2" style="display: none;">
-            <select name="tipoCompra" id="tipoCompra2">
-            <option value="">Seleccione vehículo</option>
-        <!-- También cargar vehículos dinámicamente -->
-            </select>
-            </div>
-            <div class="mb-3">
-            <input type="text" name="nombre" placeholder="Nombre" required>
-            </div>
-            <div class="mb-3">
-            <input type="email" name="correo" placeholder="Correo" required>
-            </div>
-            <div class="mb-3">
-            <input type="date" name="fecha" required>
-            </div>
-            <div class="mb-4">
-            <input type="time" name="hora" required>
-            </div>
-            <div class="text-left">
-            <button type="submit">Agendar</button>
-            </div>
+                <div class="mb-3">
+                    <select name="tipoCita" id="tipoCita2" required>
+                        <option value="">Tipo de cita</option>
+                        <option value="compra">Compra</option>
+                        <option value="servicio">Servicio</option>
+                        <option value="mantenimiento">Mantenimiento</option>
+                    </select>
+                </div>
+
+                <!-- Vehículos -->
+                <div class="mb-3" id="divTipoCompra2" style="display: none;">
+                    <select name="tipoCompra" id="tipoCompra2">
+                        <option value="">Seleccione vehículo</option>
+                        <!-- Opciones desde JS + SQL -->
+                    </select>
+                </div>
+
+                <!-- Servicios/Mantenimientos -->
+                <div class="mb-3" id="divTipoServicio2" style="display: none;">
+                    <select name="tipoCompra" id="tipoServicio2">
+                        <option value="">Seleccione servicio o mantenimiento</option>
+                        <!-- Opciones desde JS -->
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <input type="text" name="nombre" placeholder="Nombre" required>
+                </div>
+                <div class="mb-3">
+                    <input type="email" name="correo" placeholder="Correo" required>
+                </div>
+                <div class="mb-3">
+                    <input type="date" name="fecha" required>
+                </div>
+                <div class="mb-4">
+                    <input type="time" name="hora" required>
+                </div>
+                <div class="text-left">
+                    <button type="submit">Agendar</button>
+                </div>
             </form>
-            </div>
-            <div class="imagen-cita">
+        </div>
+        <div class="imagen-cita">
             <img src="Imagen/LogoJJLCAR.jpeg" alt="Imagen de cita">
-            </div>
-            </div>
-            </section>
+        </div>
+    </div>
+</section>
+
         <!-- Pie de página -->
             <footer class="bg-dark text-white text-center py-3">
             <p>&copy; 2025 JJLCARS. Todos los derechos reservados.</p>
