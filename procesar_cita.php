@@ -3,7 +3,6 @@ session_start();
 
 header('Content-Type: application/json');
 
-// Validar que el usuario esté logueado
 if (!isset($_SESSION['usuario'])) {
     echo json_encode([
         'status' => 'error',
@@ -22,9 +21,9 @@ if ($conexion->connect_error) {
     exit;
 }
 
-// Obtener datos del formulario
 $tipoCita = $_POST['tipoCita'] ?? '';
-$tipoCompra = $_POST['tipoCompra'] ?? null; // Solo aplica si tipoCita = compra
+$tipoCompra = $_POST['tipoCompra'] ?? null;   // Modelo vehículo
+$tipoServicio = $_POST['tipoServicio'] ?? null; // Servicio o mantenimiento
 $nombre = trim($_POST['nombre'] ?? '');
 $correo = trim($_POST['correo'] ?? '');
 $fecha = $_POST['fecha'] ?? '';
@@ -47,7 +46,10 @@ if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
     exit;
 }
 
-$precio = null;
+$precio = 0.0;
+$tipoSeleccionado = null;
+$vehiculo_id = null;
+
 if ($tipoCita === 'compra') {
     if (!$tipoCompra) {
         echo json_encode([
@@ -56,8 +58,9 @@ if ($tipoCita === 'compra') {
         ]);
         exit;
     }
+    $tipoSeleccionado = $tipoCompra;
 
-    $stmtVehiculo = $conexion->prepare("SELECT precio FROM vehiculos WHERE modelo = ?");
+    $stmtVehiculo = $conexion->prepare("SELECT id, precio FROM vehiculos WHERE modelo = ?");
     if (!$stmtVehiculo) {
         echo json_encode([
             'status' => 'error',
@@ -67,7 +70,7 @@ if ($tipoCita === 'compra') {
     }
     $stmtVehiculo->bind_param("s", $tipoCompra);
     $stmtVehiculo->execute();
-    $stmtVehiculo->bind_result($precio);
+    $stmtVehiculo->bind_result($vehiculo_id, $precio);
     if (!$stmtVehiculo->fetch()) {
         echo json_encode([
             'status' => 'error',
@@ -77,11 +80,38 @@ if ($tipoCita === 'compra') {
         exit;
     }
     $stmtVehiculo->close();
+} else if ($tipoCita === 'servicio' || $tipoCita === 'mantenimiento') {
+    if (!$tipoServicio) {
+        echo json_encode([
+            'status' => 'error',
+            'message' => 'Debe seleccionar un servicio.'
+        ]);
+        exit;
+    }
+    $tipoSeleccionado = $tipoServicio;
+
+    $stmtServicio = $conexion->prepare("SELECT id, precio FROM servicios WHERE tipoServicio = ?");
+    if ($stmtServicio) {
+        $stmtServicio->bind_param("s", $tipoServicio);
+        $stmtServicio->execute();
+        $stmtServicio->bind_result($vehiculo_id, $precio);
+        $stmtServicio->fetch();
+        $stmtServicio->close();
+    } else {
+        $vehiculo_id = null;
+        $precio = 0.0;
+    }
+} else {
+    echo json_encode([
+        'status' => 'error',
+        'message' => 'Tipo de cita no válido.'
+    ]);
+    exit;
 }
 
-// Preparar inserción
-$sql = "INSERT INTO citas (tipoCita, tipoCompra, precio, nombre, correo, fecha, hora, fecha_registro, status) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), 'pendiente')";
+// Insertar cita con tipo seleccionado (texto) y ID del vehículo o servicio
+$sql = "INSERT INTO citas (tipoCita, tipoCompra, vehiculo_id, precio, nombre, correo, fecha, hora, fecha_registro, status) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW(), 'pendiente')";
 $stmt = $conexion->prepare($sql);
 
 if (!$stmt) {
@@ -92,13 +122,7 @@ if (!$stmt) {
     exit;
 }
 
-if ($tipoCita === 'compra') {
-    $stmt->bind_param("ssdssss", $tipoCita, $tipoCompra, $precio, $nombre, $correo, $fecha, $hora);
-} else {
-    $null = null;
-    $precio = 0.0;
-    $stmt->bind_param("ssdssss", $tipoCita, $null, $precio, $nombre, $correo, $fecha, $hora);
-}
+$stmt->bind_param("sssdssss", $tipoCita, $tipoSeleccionado, $vehiculo_id, $precio, $nombre, $correo, $fecha, $hora);
 
 if ($stmt->execute()) {
     echo json_encode([

@@ -5,19 +5,19 @@ if ($conexion->connect_error) {
     die(json_encode(["error" => "Conexión fallida: " . $conexion->connect_error]));
 }
 
-$sql = "SELECT modelo, precio, id FROM vehiculos";
+$sql = "SELECT tipoServicio, precio, id FROM servicios";
 $resultado = $conexion->query($sql);
 
-$vehiculos = [];
+$servicios = [];
 
 if ($resultado && $resultado->num_rows > 0) {
     while ($fila = $resultado->fetch_assoc()) {
-        $vehiculos[] = $fila;
+        $servicios[] = $fila;
     }
 }
 
 header('Content-Type: application/json');
-echo json_encode($vehiculos);
+echo json_encode($servicios);
 
 $conexion->close();
 ?>

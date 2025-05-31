@@ -267,6 +267,7 @@ session_start();
             </div>
             </div>
             </section>
+
 <!-- Formulario Emergente -->
 <div id="formularioCita" style="display: none; max-width: 300px; margin: auto; text-align: center; font-family: Arial, sans-serif;">
     <form id="formularioCita1" action="procesar_cita.php" method="post">
@@ -286,20 +287,20 @@ session_start();
             </select>
         </div>
 
-        <!-- Servicios/Mantenimientos -->
-        <div id="divTipoServicio1" style="display: none; margin-bottom: 15px;">
-            <select name="tipoCompra" id="tipoServicio1" style="width: 100%; padding: 10px;">
-                <option value="">Seleccione servicio o mantenimiento</option>
-                <!-- Opciones desde JS -->
-            </select>
-        </div>
+<!-- Servicios -->
+<div id="divTipoServicio1" style="display: none; margin-bottom: 15px;">
+    <select name="tipoServicio" id="tipoServicio1" style="width: 100%; padding: 10px;">
+        <option value="">Seleccione Servicio</option>
+        <!-- Opciones desde JS -->
+    </select>
+</div>
 
-        <input type="text" name="nombre" placeholder="Nombre" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
-        <input type="email" name="correo" placeholder="Correo" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
-        <input type="date" name="fecha" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
-        <input type="time" name="hora" required style="width: 100%; padding: 10px; margin-bottom: 20px;">
-        <button type="submit" style="padding: 10px 20px; background-color: #7a5cf0; color: white;">Agendar</button>
-    </form>
+<input type="text" name="nombre" placeholder="Nombre" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
+<input type="email" name="correo" placeholder="Correo" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
+<input type="date" name="fecha" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
+<input type="time" name="hora" required style="width: 100%; padding: 10px; margin-bottom: 20px;">
+<button type="submit" style="padding: 10px 20px; background-color: #7a5cf0; color: white;">Agendar</button>
+</form>
 </div>
 
 <!-- Sección Principal de Citas -->
@@ -325,13 +326,14 @@ session_start();
                     </select>
                 </div>
 
-                <!-- Servicios/Mantenimientos -->
-                <div class="mb-3" id="divTipoServicio2" style="display: none;">
-                    <select name="tipoCompra" id="tipoServicio2">
-                        <option value="">Seleccione servicio o mantenimiento</option>
-                        <!-- Opciones desde JS -->
-                    </select>
-                </div>
+                <!-- Servicios -->
+        <div class="mb-3" id="divTipoServicio2" style="display: none;">
+            <select name="tipoServicio" id="tipoServicio2">
+                <option value="">Seleccione Servicio</option>
+                <!-- Opciones desde JS -->
+            </select>
+        </div>
+
 
                 <div class="mb-3">
                     <input type="text" name="nombre" placeholder="Nombre" required>
@@ -354,6 +356,77 @@ session_start();
             <img src="Imagen/LogoJJLCAR.jpeg" alt="Imagen de cita">
         </div>
     </div>
+    <script>
+  function actualizarCampos(formId) {
+    const form = document.getElementById(formId);
+    const tipoCita = form.querySelector('select[name="tipoCita"]');
+    const divCompra = form.querySelector('#divTipoCompra' + formId.slice(-1));
+    const divServicio = form.querySelector('#divTipoServicio' + formId.slice(-1));
+    const selectCompra = divCompra.querySelector('select[name="tipoCompra"]');
+    const selectServicio = divServicio.querySelector('select[name="tipoServicio"]');
+
+    tipoCita.addEventListener('change', () => {
+      if (tipoCita.value === 'compra') {
+        divCompra.style.display = 'block';
+        divServicio.style.display = 'none';
+        selectCompra.required = true;
+        selectServicio.required = false;
+      } else if (tipoCita.value === 'servicio' || tipoCita.value === 'mantenimiento') {
+        divCompra.style.display = 'none';
+        divServicio.style.display = 'block';
+        selectCompra.required = false;
+        selectServicio.required = true;
+      } else {
+        divCompra.style.display = 'none';
+        divServicio.style.display = 'none';
+        selectCompra.required = false;
+        selectServicio.required = false;
+      }
+    });
+
+    // Dispara el evento al cargar para ajustar campos según valor inicial
+    tipoCita.dispatchEvent(new Event('change'));
+  }
+
+  actualizarCampos('formularioCita1');
+  actualizarCampos('formularioCita2');
+</script>
+<script>
+  function actualizarCampos(formId) {
+    const form = document.getElementById(formId);
+    const tipoCita = form.querySelector('select[name="tipoCita"]');
+    const divCompra = form.querySelector('#divTipoCompra' + formId.slice(-1));
+    const divServicio = form.querySelector('#divTipoServicio' + formId.slice(-1));
+    const selectCompra = divCompra.querySelector('select[name="tipoCompra"]');
+    const selectServicio = divServicio.querySelector('select[name="tipoServicio"]');
+
+    tipoCita.addEventListener('change', () => {
+      if (tipoCita.value === 'compra') {
+        divCompra.style.display = 'block';
+        divServicio.style.display = 'none';
+        selectCompra.required = true;
+        selectServicio.required = false;
+      } else if (tipoCita.value === 'servicio' || tipoCita.value === 'mantenimiento') {
+        divCompra.style.display = 'none';
+        divServicio.style.display = 'block';
+        selectCompra.required = false;
+        selectServicio.required = true;
+      } else {
+        divCompra.style.display = 'none';
+        divServicio.style.display = 'none';
+        selectCompra.required = false;
+        selectServicio.required = false;
+      }
+    });
+
+    // Dispara el evento al cargar para ajustar campos según valor inicial
+    tipoCita.dispatchEvent(new Event('change'));
+  }
+
+  actualizarCampos('formularioCita1');
+  actualizarCampos('formularioCita2');
+</script>
+
 </section>
 
         <!-- Pie de página -->
