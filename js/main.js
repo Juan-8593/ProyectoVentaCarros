@@ -1,41 +1,3 @@
-// Mostrar formulario de contacto
-function mostrarFormularioContacto() {
-    Swal.fire({
-        title: 'Contacto',
-        html: `
-            <form id="formContacto">
-                <input type="text" name="nombre" class="swal2-input" placeholder="Tu nombre" required>
-                <input type="email" name="correo" class="swal2-input" placeholder="Tu correo" required>
-                <textarea name="mensaje" class="swal2-textarea" placeholder="Escribe tu mensaje" required></textarea>
-            </form>
-        `,
-        showCancelButton: true,
-        confirmButtonText: 'Enviar',
-        preConfirm: () => {
-            const form = document.getElementById('formContacto');
-            const formData = new FormData(form);
-
-            return fetch('guardar_contacto.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.text())
-            .then(result => {
-                if (result.trim() === "ok") {
-                    Swal.fire('¡Mensaje enviado!', 'Gracias por contactarnos.', 'success');
-                } else {
-                    Swal.fire('Error', result, 'error');
-                }
-            })
-            .catch(() => {
-                Swal.fire('Error', 'No se pudo enviar el mensaje.', 'error');
-            });
-
-            return false;
-        }
-    });
-}
-
 // Cargar modelos con precio formateado (para compra)
 function cargarModelos(selectId, modeloSeleccionado = null) {
     const select = document.getElementById(selectId);
@@ -71,57 +33,6 @@ function cargarModelos(selectId, modeloSeleccionado = null) {
         });
 }
 
-// Cargar servicios con precio fijo (para servicio)
-function cargarServicios(selectId) {
-    const servicios = [
-        { nombre: "Alineación", precio: 1500 },
-        { nombre: "Cambio de aceite", precio: 800 },
-        { nombre: "Frenos", precio: 1200 },
-        { nombre: "Revisión general", precio: 2000 },
-        { nombre: "Limpieza y lavado", precio: 1000 },
-        { nombre: "Bujías", precio: 3000 }
-    ];
-    const select = document.getElementById(selectId);
-    if (!select) return;
-
-    select.innerHTML = '<option value="">Seleccione servicio</option>';
-    servicios.forEach(servicio => {
-        const option = document.createElement('option');
-        option.value = servicio.nombre.toLowerCase().replace(/\s+/g, '_');
-        const precioFormateado = servicio.precio.toLocaleString('es-GT', {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        });
-        option.textContent = `${servicio.nombre} - Q${precioFormateado}`;
-        select.appendChild(option);
-    });
-}
-
-// Cargar mantenimientos con precio fijo (para mantenimiento)
-function cargarMantenimiento(selectId) {
-    const mantenimientos = [
-        { nombre: "Cambio de filtro de aire", precio: 1200 },
-        { nombre: "Cambio de filtro de aceite", precio: 900 },
-        { nombre: "Cambio de bujías", precio: 2500 },
-        { nombre: "Revisión de batería", precio: 1800 },
-        { nombre: "Revisión de sistema de enfriamiento", precio: 2200 }
-    ];
-    const select = document.getElementById(selectId);
-    if (!select) return;
-
-    select.innerHTML = '<option value="">Seleccione mantenimiento</option>';
-    mantenimientos.forEach(mant => {
-        const option = document.createElement('option');
-        option.value = mant.nombre.toLowerCase().replace(/\s+/g, '_');
-        const precioFormateado = mant.precio.toLocaleString('es-GT', {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        });
-        option.textContent = `${mant.nombre} - Q${precioFormateado}`;
-        select.appendChild(option);
-    });
-}
-
 // Configurar comportamiento del formulario según tipoCita
 function configurarFormulario(tipoCitaId, tipoCompraId, divCompraId, tipoServicioId, divServicioId) {
     const tipoCita = document.getElementById(tipoCitaId);
@@ -155,20 +66,13 @@ function configurarFormulario(tipoCitaId, tipoCompraId, divCompraId, tipoServici
             tipoServicio.disabled = false;
 
             cargarServicios(tipoServicioId);
-        } else if (this.value === 'mantenimiento') {
+        } else if (this.value === 'TestDeManejo') {
             divTipoCompra.style.display = 'none';
             tipoCompra.disabled = true;
 
             divTipoServicio.style.display = 'block';
+       
             tipoServicio.disabled = false;
-
-            cargarMantenimiento(tipoServicioId);
-        } else {
-            divTipoCompra.style.display = 'none';
-            tipoCompra.disabled = true;
-
-            divTipoServicio.style.display = 'none';
-            tipoServicio.disabled = true;
         }
     });
 }
@@ -295,9 +199,6 @@ function verMas(modelo, imagen, descripcion, precio, inventario, id, tipoCita = 
                     } else if (tipoCita === 'servicio') {
                         cargarServicios('tipoCompra2');
                         tipoCompraInput.value = tipoServicio.toLowerCase().replace(/\s+/g, '_');
-                    } else if (tipoCita === 'mantenimiento') {
-                        cargarMantenimiento('tipoCompra2');
-                        tipoCompraInput.value = modelo.toLowerCase().replace(/\s+/g, '_');
                     }
                 }
             }

@@ -38,7 +38,8 @@ session_start();
             </ul>
             </li>
             <li class="nav-item"><a href="#agendar-cita" class="nav-link text-white">Agendar Cita</a></li>
-            <li class="nav-item"><a href="#" class="nav-link text-white" onclick="mostrarFormularioContacto()">Contacto</a></li>
+            <li class="nav-item"><a href="#contacto" class="nav-link text-white">Contacto</a></li>
+            <li class="nav-item"><a href="#Sobre-Nosotros" class="nav-link text-white">Sobre Nosotros</a></li>
         <!-- Login con dropdown -->
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white d-flex align-items-center" href="#" id="loginDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -268,73 +269,68 @@ session_start();
             </div>
             </section>
 
-<!-- Formulario Emergente -->
-<div id="formularioCita" style="display: none; max-width: 300px; margin: auto; text-align: center; font-family: Arial, sans-serif;">
-    <form id="formularioCita1" action="procesar_cita.php" method="post">
-        <h2 style="margin-bottom: 20px;">Agendar Cita</h2>
-        <select name="tipoCita" id="tipoCita1" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
+    <!-- Formulario Emergente -->
+            <div id="formularioCita" style="display: none; max-width: 300px; margin: auto; text-align: center; font-family: Arial, sans-serif;">
+            <form id="formularioCita1" action="procesar_cita.php" method="post">
+            <h2 style="margin-bottom: 20px;">Agendar Cita</h2>
+            <select name="tipoCita" id="tipoCita1" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
             <option value="">Tipo de cita</option>
             <option value="compra">Compra</option>
             <option value="servicio">Servicio</option>
-            <option value="mantenimiento">Mantenimiento</option>
-        </select>
-
-        <!-- Vehículos -->
-        <div id="divTipoCompra1" style="display: none; margin-bottom: 15px;">
-            <select name="tipoCompra" id="tipoCompra1" style="width: 100%; padding: 10px;">
-                <option value="">Seleccione vehículo</option>
-                <!-- Opciones desde JS + SQL -->
             </select>
-        </div>
 
-<!-- Servicios -->
-<div id="divTipoServicio1" style="display: none; margin-bottom: 15px;">
-    <select name="tipoServicio" id="tipoServicio1" style="width: 100%; padding: 10px;">
+    <!-- Vehículos -->
+            <div id="divTipoCompra1" style="display: none; margin-bottom: 15px;">
+            <select name="tipoCompra" id="tipoCompra1" style="width: 100%; padding: 10px;">
+            <option value="">Seleccione vehículo</option>
+            <!-- Opciones desde JS + SQL -->
+            </select>
+            </div>
+
+    <!-- Servicios -->
+        <div id="divTipoServicio1" style="display: none; margin-bottom: 15px;">
+        <select name="tipoServicio" id="tipoServicio1" style="width: 100%; padding: 10px;">
         <option value="">Seleccione Servicio</option>
         <!-- Opciones desde JS -->
-    </select>
-</div>
-
-<input type="text" name="nombre" placeholder="Nombre" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
-<input type="email" name="correo" placeholder="Correo" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
-<input type="date" name="fecha" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
-<input type="time" name="hora" required style="width: 100%; padding: 10px; margin-bottom: 20px;">
-<button type="submit" style="padding: 10px 20px; background-color: #7a5cf0; color: white;">Agendar</button>
-</form>
-</div>
-
-<!-- Sección Principal de Citas -->
-<section id="agendar-cita" class="cita-section">
-    <div class="cita-container">
-        <div class="formulario-cita">
-            <h2>Agendar Cita</h2>
-            <form id="formularioCita2" action="procesar_cita.php" method="post">
-                <div class="mb-3">
-                    <select name="tipoCita" id="tipoCita2" required>
-                        <option value="">Tipo de cita</option>
-                        <option value="compra">Compra</option>
-                        <option value="servicio">Servicio</option>
-                        <option value="mantenimiento">Mantenimiento</option>
-                    </select>
-                </div>
-
-                <!-- Vehículos -->
-                <div class="mb-3" id="divTipoCompra2" style="display: none;">
-                    <select name="tipoCompra" id="tipoCompra2">
-                        <option value="">Seleccione vehículo</option>
-                        <!-- Opciones desde JS + SQL -->
-                    </select>
-                </div>
-
-                <!-- Servicios -->
-        <div class="mb-3" id="divTipoServicio2" style="display: none;">
-            <select name="tipoServicio" id="tipoServicio2">
-                <option value="">Seleccione Servicio</option>
-                <!-- Opciones desde JS -->
-            </select>
+        </select>
+        </div>
+        <input type="text" name="nombre" placeholder="Nombre" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
+        <input type="email" name="correo" placeholder="Correo" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
+        <input type="date" name="fecha" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
+        <input type="time" name="hora" required style="width: 100%; padding: 10px; margin-bottom: 20px;">
+        <button type="submit" style="padding: 10px 20px; background-color: #7a5cf0; color: white;">Agendar</button>
+        </form>
         </div>
 
+    <!-- Sección Principal de Citas -->
+        <section id="agendar-cita" class="cita-section">
+        <div class="cita-container">
+        <div class="formulario-cita">
+        <h2>Agendar Cita</h2>
+        <form id="formularioCita2" action="procesar_cita.php" method="post">
+        <div class="mb-3">
+        <select name="tipoCita" id="tipoCita2" required>
+        <option value="">Tipo de cita</option>
+        <option value="compra">Compra</option>
+        <option value="servicio">Servicio</option>
+        </select>
+        </div>
+               
+    <!-- Vehículos -->
+        <div class="mb-3" id="divTipoCompra2" style="display: none;">
+        <select name="tipoCompra" id="tipoCompra2">
+        <option value="">Seleccione vehículo</option>
+        <!-- Opciones desde JS + SQL -->
+        </select>
+        </div>
 
+        <!-- Servicios -->
+        <div class="mb-3" id="divTipoServicio2" style="display: none;">
+        <select name="tipoServicio" id="tipoServicio2">
+        <option value="">Seleccione Servicio</option>
+        <!-- Opciones desde JS -->
+        </select>
+        </div>
                 <div class="mb-3">
                     <input type="text" name="nombre" placeholder="Nombre" required>
                 </div>
@@ -353,11 +349,45 @@ session_start();
             </form>
         </div>
         <div class="imagen-cita">
-            <img src="Imagen/LogoJJLCAR.jpeg" alt="Imagen de cita">
+        <img src="Imagen/LogoJJLCAR.jpeg" alt="Imagen de cita">
         </div>
-    </div>
+        </div>
+        <script>
+        function actualizarCampos(formId) {
+        const form = document.getElementById(formId);
+        const tipoCita = form.querySelector('select[name="tipoCita"]');
+        const divCompra = form.querySelector('#divTipoCompra' + formId.slice(-1));
+        const divServicio = form.querySelector('#divTipoServicio' + formId.slice(-1));
+        const selectCompra = divCompra.querySelector('select[name="tipoCompra"]');
+        const selectServicio = divServicio.querySelector('select[name="tipoServicio"]');
+
+        tipoCita.addEventListener('change', () => {
+        if (tipoCita.value === 'compra') {
+            divCompra.style.display = 'block';
+            divServicio.style.display = 'none';
+            selectCompra.required = true;
+            selectServicio.required = false;
+        } else if (tipoCita.value === 'servicio') {
+            divCompra.style.display = 'none';
+            divServicio.style.display = 'block';
+            selectCompra.required = false;
+            selectServicio.required = true;
+        } else {
+            divCompra.style.display = 'none';
+            divServicio.style.display = 'none';
+            selectCompra.required = false;
+            selectServicio.required = false;
+        }
+        });
+
+    // Dispara el evento al cargar para ajustar campos según valor inicial
+    tipoCita.dispatchEvent(new Event('change'));
+    }
+    actualizarCampos('formularioCita1');
+    actualizarCampos('formularioCita2');
+    </script>
     <script>
-  function actualizarCampos(formId) {
+    function actualizarCampos(formId) {
     const form = document.getElementById(formId);
     const tipoCita = form.querySelector('select[name="tipoCita"]');
     const divCompra = form.querySelector('#divTipoCompra' + formId.slice(-1));
@@ -371,7 +401,7 @@ session_start();
         divServicio.style.display = 'none';
         selectCompra.required = true;
         selectServicio.required = false;
-      } else if (tipoCita.value === 'servicio' || tipoCita.value === 'mantenimiento') {
+      } else if (tipoCita.value === 'servicio') {
         divCompra.style.display = 'none';
         divServicio.style.display = 'block';
         selectCompra.required = false;
@@ -386,55 +416,33 @@ session_start();
 
     // Dispara el evento al cargar para ajustar campos según valor inicial
     tipoCita.dispatchEvent(new Event('change'));
-  }
+    }
+    actualizarCampos('formularioCita1');
+    actualizarCampos('formularioCita2');
+    </script>
+    </section>  
 
-  actualizarCampos('formularioCita1');
-  actualizarCampos('formularioCita2');
-</script>
-<script>
-  function actualizarCampos(formId) {
-    const form = document.getElementById(formId);
-    const tipoCita = form.querySelector('select[name="tipoCita"]');
-    const divCompra = form.querySelector('#divTipoCompra' + formId.slice(-1));
-    const divServicio = form.querySelector('#divTipoServicio' + formId.slice(-1));
-    const selectCompra = divCompra.querySelector('select[name="tipoCompra"]');
-    const selectServicio = divServicio.querySelector('select[name="tipoServicio"]');
+    <!-- Sobre Nosotros -->
+    <div class="info-card empresa">
+    <h2>Sobre JJLCARS</h2>
+    <img src="../Imagen/LogoJJLCAR.jpeg" alt="Imagen de la empresa" class="empresa-img">
+    <div class="empresa-contenido">
+    <h3>Nuestra Historia</h3>
+    <p>JJLCARS nació en 2025 con la visión de revolucionar el mercado automotriz digital. Lo que comenzó como un pequeño catálogo de autos en línea, se transformó rápidamente en una de las plataformas más confiables para encontrar vehículos nuevos y seminuevos con transparencia, calidad y confianza.</p>
+        <h3>Misión</h3>
+        <p>Ofrecer a nuestros clientes la mejor experiencia al momento de buscar, comparar y adquirir vehículos, proporcionando atención personalizada, confianza y un catálogo actualizado con las mejores opciones del mercado.</p>
+        <h3>Visión</h3>
+        <p>Ser la plataforma líder en soluciones automotrices digitales en Guatemala, innovando constantemente para conectar a las personas con el vehículo de sus sueños.</p>
+    </div>
+    </div>
 
-    tipoCita.addEventListener('change', () => {
-      if (tipoCita.value === 'compra') {
-        divCompra.style.display = 'block';
-        divServicio.style.display = 'none';
-        selectCompra.required = true;
-        selectServicio.required = false;
-      } else if (tipoCita.value === 'servicio' || tipoCita.value === 'mantenimiento') {
-        divCompra.style.display = 'none';
-        divServicio.style.display = 'block';
-        selectCompra.required = false;
-        selectServicio.required = true;
-      } else {
-        divCompra.style.display = 'none';
-        divServicio.style.display = 'none';
-        selectCompra.required = false;
-        selectServicio.required = false;
-      }
-    });
 
-    // Dispara el evento al cargar para ajustar campos según valor inicial
-    tipoCita.dispatchEvent(new Event('change'));
-  }
-
-  actualizarCampos('formularioCita1');
-  actualizarCampos('formularioCita2');
-</script>
-
-</section>
-
-        <!-- Pie de página -->
-            <footer class="bg-dark text-white text-center py-3">
-            <p>&copy; 2025 JJLCARS. Todos los derechos reservados.</p>
-            <div>
-            <a href="https://i.pinimg.com/736x/70/89/c7/7089c71e03059151b11a462eb2a24d00.jpg" class="text-white me-3"><i class="bi bi-facebook"></i></a>
-            <a href="https://www.instagram.com/" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+    <!-- Pie de página -->
+    <footer id="contacto" class="bg-dark text-white text-center py-3">
+    <p>&copy; 2025 JJLCARS. Todos los derechos reservados.</p>
+    <div>
+    <a href="https://i.pinimg.com/736x/70/89/c7/7089c71e03059151b11a462eb2a24d00.jpg" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+    <a href="https://www.instagram.com/jjl.cars_?igsh=MXZqM3VtZW11NTg1Yw==" class="text-white me-3"><i class="bi bi-instagram"></i></a>
             <a href="https://www.whatsapp.com/" class="text-white"><i class="bi bi-whatsapp"></i></a>
             </div>
             </footer>
