@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         .login-form input {
-            width: 90%;
+            width: 100%;
             padding: 8px;
             font-size: 14px;
         }
@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin-bottom: 10px;
         }
         .login-container {
-            width: 320px;
+            width: 400px;
         }
     </style>
 </head>

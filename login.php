@@ -1,35 +1,43 @@
 <?php
 session_start();
-include('conexion.php');  
+include('conexion.php');
 
 $correo = isset($_POST['correo']) ? $_POST['correo'] : '';
 $password = isset($_POST['password']) ? $_POST['password'] : '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($correo) && !empty($password)) {
 
-    $sql = "SELECT * FROM Clientes WHERE Correo = ? AND Password = ?";
+    // 1. Buscar usuario por correo
+    $sql = "SELECT * FROM Clientes WHERE Correo = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $correo, $password);
+    $stmt->bind_param("s", $correo);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($result->num_rows === 1) {
         $user_data = $result->fetch_assoc();
-        $_SESSION['Correo'] = $user_data['Correo']; 
-        $_SESSION['usuario'] = $user_data['Usuario'];  
-        $_SESSION['nombre'] = $user_data['nombre'];   
+
+        // 2. Verificar contraseña con password_verify
+    if (password_verify($password, $user_data['Password'])) {
+        $_SESSION['Correo'] = $user_data['Correo'];
+        $_SESSION['usuario'] = $user_data['Usuario'];
+        $_SESSION['nombre'] = isset($user_data['Nombre']) ? $user_data['Nombre'] : ''; // Validar si existe
         $_SESSION['login_success'] = true;
-        header("Location: login.php");
-        exit();
+    }
+    else {
+            // Contraseña incorrecta
+            $error_msg = "⚠️ Usuario o contraseña incorrectos";
+        }
     } else {
+        // Usuario no encontrado
         $error_msg = "⚠️ Usuario o contraseña incorrectos";
     }
 
     $stmt->close();
     $conn->close();
 }
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
