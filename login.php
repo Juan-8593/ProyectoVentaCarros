@@ -18,12 +18,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($correo) && !empty($password)
         $user_data = $result->fetch_assoc();
 
         // 2. Verificar contraseña con password_verify
-    if (password_verify($password, $user_data['Password'])) {
-        $_SESSION['Correo'] = $user_data['Correo'];
-        $_SESSION['usuario'] = $user_data['Usuario'];
-        $_SESSION['nombre'] = isset($user_data['Nombre']) ? $user_data['Nombre'] : ''; // Validar si existe
-        $_SESSION['login_success'] = true;
-    }
+if (password_verify($password, $user_data['Password'])) {
+    $_SESSION['Correo'] = $user_data['Correo'];
+    $_SESSION['usuario'] = $user_data['Usuario'];
+    $_SESSION['nombre'] = isset($user_data['nombre']) ? $user_data['nombre'] : ''; // <-- Aquí
+    $_SESSION['login_success'] = true;
+}
+
     else {
             // Contraseña incorrecta
             $error_msg = "⚠️ Usuario o contraseña incorrectos";
