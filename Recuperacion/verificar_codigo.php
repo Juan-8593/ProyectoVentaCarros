@@ -11,6 +11,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($nueva === $repetir) {
             $correo = $_SESSION['correo_recuperacion'];
 
+            // Hash de la nueva contraseña
+            $hash_password = password_hash($nueva, PASSWORD_DEFAULT);
+
             $sql = "UPDATE Clientes SET Password = ? WHERE correo = ?";
             $stmt = $conn->prepare($sql);
 
@@ -18,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 die("Error en la consulta: " . $conn->error);
             }
 
-            $stmt->bind_param("ss", $nueva, $correo);
+            $stmt->bind_param("ss", $hash_password, $correo);
             $stmt->execute();
 
             unset($_SESSION['codigo_recuperacion']);
@@ -34,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">

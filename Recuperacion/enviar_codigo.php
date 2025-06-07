@@ -1,11 +1,11 @@
 <?php
 session_start();
-include('../conexion.php'); // Ajusta la ruta si es necesario
+include('../conexion.php'); 
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require '../vendor/autoload.php';  // Asegúrate que esta ruta sea correcta
+require '../vendor/autoload.php';  
 
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['correo'])) {
     $correo = $_POST['correo'];

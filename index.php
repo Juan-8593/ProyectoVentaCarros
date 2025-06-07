@@ -423,19 +423,18 @@ session_start();
     </section>  
 
     <!-- Sobre Nosotros -->
-    <div class="info-card empresa">
-    <h2>Sobre JJLCARS</h2>
-    <img src="../Imagen/LogoJJLCAR.jpeg" alt="Imagen de la empresa" class="empresa-img">
-    <div class="empresa-contenido">
-    <h3>Nuestra Historia</h3>
-    <p>JJLCARS nació en 2025 con la visión de revolucionar el mercado automotriz digital. Lo que comenzó como un pequeño catálogo de autos en línea, se transformó rápidamente en una de las plataformas más confiables para encontrar vehículos nuevos y seminuevos con transparencia, calidad y confianza.</p>
+        <div id="Sobre-Nosotros" class="info-card empresa">
+        <h2>Sobre JJLCARS</h2>
+        <img src="../Imagen/LogoJJLCAR.jpeg" alt="Imagen de la empresa" class="empresa-img">
+        <div class="empresa-contenido">
+        <h3>Nuestra Historia</h3>
+        <p>JJLCARS nació en 2025 con la visión de revolucionar el mercado automotriz digital. Lo que comenzó como un pequeño catálogo de autos en línea, se transformó rápidamente en una de las plataformas más confiables para encontrar vehículos nuevos y seminuevos con transparencia, calidad y confianza.</p>
         <h3>Misión</h3>
         <p>Ofrecer a nuestros clientes la mejor experiencia al momento de buscar, comparar y adquirir vehículos, proporcionando atención personalizada, confianza y un catálogo actualizado con las mejores opciones del mercado.</p>
         <h3>Visión</h3>
         <p>Ser la plataforma líder en soluciones automotrices digitales en Guatemala, innovando constantemente para conectar a las personas con el vehículo de sus sueños.</p>
-    </div>
-    </div>
-
+        </div>
+        </div>
 
     <!-- Pie de página -->
     <footer id="contacto" class="bg-dark text-white text-center py-3">
