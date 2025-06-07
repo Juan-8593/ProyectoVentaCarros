@@ -60,6 +60,9 @@ if ($tipoCita === 'compra') {
     }
     $tipoSeleccionado = $tipoCompra;
 
+    // Cambiar tipoCita a "Cotización" para guardar en la base de datos
+    $tipoCita = "Cotización";
+
     $stmtVehiculo = $conexion->prepare("SELECT id, precio FROM vehiculos WHERE modelo = ?");
     if (!$stmtVehiculo) {
         echo json_encode([
@@ -109,7 +112,7 @@ if ($tipoCita === 'compra') {
     exit;
 }
 
-// Insertar cita con tipo seleccionado (texto) y ID del vehículo o servicio
+// Insertar cita con tipoCita (posiblemente cambiado a "Cotización") y tipoSeleccionado (modelo o servicio)
 $sql = "INSERT INTO citas (tipoCita, tipoCompra, vehiculo_id, precio, nombre, correo, fecha, hora, fecha_registro, status) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW(), 'pendiente')";
 $stmt = $conexion->prepare($sql);

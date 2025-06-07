@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('../conexion.php'); // ruta correcta para incluir conexion.php desde la carpeta Recuperacion
+include('../conexion.php');
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $codigo_ingresado = $_POST['codigo'];
@@ -11,7 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($nueva === $repetir) {
             $correo = $_SESSION['correo_recuperacion'];
 
-            // Actualizar la contraseña en la tabla Clientes
             $sql = "UPDATE Clientes SET Password = ? WHERE correo = ?";
             $stmt = $conn->prepare($sql);
 
@@ -42,8 +41,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta charset="UTF-8">
     <title>Verificar Código</title>
     <link rel="stylesheet" href="../css/login.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('../imagen/Verificacion.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -1;
+        }
+    </style>
 </head>
 <body>
+
+<div class="background-image"></div>
 
 <section class="login-container">
     <div class="login-box">
@@ -69,10 +88,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </div>
 </section>
 
-<video autoplay muted loop class="background-video">
-    <source src="../imagen/LoginRecuperacion.jpg" type="video/mp4">
-</video>
-
 </body>
 </html>
-                

@@ -17,7 +17,7 @@ function cargarModelos(selectId, modeloSeleccionado = null) {
                         maximumFractionDigits: 2
                     });
 
-                    option.textContent = `${v.modelo} - Q${precioFormateado}`;
+                    option.textContent = `${v.modelo} - $${precioFormateado}`;
 
                     if (v.modelo === modeloSeleccionado) {
                         option.selected = true;
@@ -143,8 +143,8 @@ function verificarSesion() {
         .catch(() => false);
 }
 
-// Mostrar detalles de vehículo y agendar cita
-function verMas(modelo, imagen, descripcion, precio, inventario, id, tipoCita = 'compra') {
+function verMas(modelo, nombreImagen, descripcion, precio, inventario, id, tipoCita = 'compra') {
+    const rutaImagen = `imagen/${nombreImagen}`; // Concatenar ruta fija con nombre desde SQL
     const precioFormateado = Number(precio).toLocaleString('es-GT', {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
@@ -152,11 +152,11 @@ function verMas(modelo, imagen, descripcion, precio, inventario, id, tipoCita = 
 
     Swal.fire({
         title: modelo,
-        imageUrl: imagen,
+        imageUrl: rutaImagen,
         imageAlt: modelo,
         html: `
             <p>${descripcion}</p>
-            <p><strong>Precio:</strong> Q${precioFormateado}</p>
+            <p><strong>Precio:</strong> $${precioFormateado}</p>
             <p><strong>Inventario:</strong> ${inventario}</p>
             <p>¿Deseas agendar una cita para este ${tipoCita === 'compra' ? 'vehículo' : tipoCita}?</p>
         `,
@@ -177,11 +177,7 @@ function verMas(modelo, imagen, descripcion, precio, inventario, id, tipoCita = 
                     cancelButtonText: 'Cancelar',
                     reverseButtons: true
                 }).then((res) => {
-                    if (res.isConfirmed) {
-                        window.location.href = 'login.php';
-                    } else {
-                        window.location.href = 'index.php';
-                    }
+                    window.location.href = res.isConfirmed ? 'login.php' : 'index.php';
                 });
             } else {
                 document.getElementById('agendar-cita').scrollIntoView({ behavior: 'smooth' });
@@ -194,7 +190,7 @@ function verMas(modelo, imagen, descripcion, precio, inventario, id, tipoCita = 
                     tipoCitaInput.value = tipoCita;
                     divTipoCompra.style.display = 'block';
 
-                     if (tipoCita === 'compra') {
+                    if (tipoCita === 'compra') {
                         cargarModelos('tipoCompra2', modelo);
                     } else if (tipoCita === 'servicio') {
                         cargarServicios('tipoCompra2');
@@ -256,7 +252,7 @@ function cargarServicios(selectId, servicioSeleccionado = '') {
                 data.forEach(servicio => {
                     const option = document.createElement('option');
                     option.value = servicio.tipoServicio;
-                    option.textContent = `${servicio.tipoServicio} - Q${Number(servicio.precio).toLocaleString('es-GT', {
+                    option.textContent = `${servicio.tipoServicio} - $${Number(servicio.precio).toLocaleString('es-GT', {
                         minimumFractionDigits: 2
                     })}`;
 
@@ -288,7 +284,7 @@ function cargarVehiculosDesdeSQL(select) {
                     maximumFractionDigits: 2
                 });
 
-                option.textContent = `${item.modelo} — Q${precioFormateado}`;
+                option.textContent = `${item.modelo} — $${precioFormateado}`;
                 option.setAttribute('data-precio', item.precio);
                 select.appendChild(option);
             });
@@ -311,7 +307,7 @@ function cargarServiciosDesdeSQL(select) {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2
                 });
-                option.textContent = `${item.tipoServicio} — Q${precioFormateado}`;
+                option.textContent = `${item.tipoServicio} — $${precioFormateado}`;
                 option.setAttribute('data-precio', item.precio);
                 select.appendChild(option);
             });
