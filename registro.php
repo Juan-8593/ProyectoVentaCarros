@@ -7,10 +7,14 @@ $tipo = "";
 $redirigir = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $correo = $_POST['usuario']; // El campo visualizado como 'Correo'
-    $usuario = $_POST['nombre']; // El campo visualizado como 'Id Usuario'
+    $correo = $_POST['usuario']; // Campo visualizado como 'Correo'
+    $usuario = $_POST['nombre']; // Campo visualizado como 'Id Usuario'
+    $nombreCompleto = $_POST['nombre_completo'];
     $password = $_POST['password'];
-    $tipoCliente = "Cliente"; // Tipo fijo
+    $tipoCliente = "Cliente";
+
+    // Encriptar la contraseña
+    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
     // Validar si el correo ya existe
     $verificar_sql = "SELECT * FROM Clientes WHERE Correo = ?";
@@ -24,9 +28,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $tipo = "error";
         $redirigir = "registro.php";
     } else {
-        $sql = "INSERT INTO Clientes (Correo, Usuario, Password, tipoCliente) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO Clientes (Correo, Usuario, Nombre, Password, tipoCliente) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssss", $correo, $usuario, $password, $tipoCliente);
+        $stmt->bind_param("sssss", $correo, $usuario, $nombreCompleto, $passwordHash, $tipoCliente);
 
         if ($stmt->execute()) {
             $mensaje = "¡Registro exitoso! Ahora puedes iniciar sesión.";
@@ -46,6 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -53,10 +58,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Registrarse</title>
     <link rel="stylesheet" href="css/login.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        .login-form input {
+            width: 90%;
+            padding: 8px;
+            font-size: 14px;
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+        .login-container {
+            width: 320px;
+        }
+    </style>
 </head>
 <body>
 
-<!-- Video de fondo -->
 <video autoplay muted loop class="background-video">
     <source src="imagen/RegistroFondo.mp4" type="video/mp4">
 </video>
@@ -75,6 +92,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
         <div class="form-group">
+            <label for="nombre_completo">Nombre Completo:</label>
+            <input type="text" name="nombre_completo" required>
+        </div>
+
+        <div class="form-group">
             <label for="password">Contraseña:</label>
             <input type="password" name="password" required>
         </div>
@@ -86,16 +108,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </form>
 </section>
-
-<script>
-function mostrarClaveAdmin() {
-    const tipo = document.getElementById('tipo_usuario')?.value;
-    const adminField = document.getElementById('clave_admin_group');
-    if (adminField) {
-        adminField.style.display = (tipo === 'Administrador') ? 'block' : 'none';
-    }
-}
-</script>
 
 <?php if (!empty($mensaje)): ?>
 <script>
